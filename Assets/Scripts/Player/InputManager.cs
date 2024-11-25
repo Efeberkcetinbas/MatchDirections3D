@@ -4,29 +4,25 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] private Camera cam; // Camera to use for raycasting
-    [SerializeField] private LayerMask placementLayerMask; // Layer mask for raycasting
-    private Vector3 lastPosition; // Store the last valid position
+    [SerializeField] private Camera cam; // Camera for raycasting
+    [SerializeField] private LayerMask placementLayerMask; // Layer mask for grid detection
+    private Vector3 lastPosition; // Last valid position on the grid
 
     public Vector3 GetSelectedMapPosition()
     {
-        if (Input.touchCount > 0) // Check if there is at least one touch
+        if (Input.touchCount > 0) // Ensure there is at least one touch
         {
-            Touch touch = Input.GetTouch(0); // Get the first touch
+            Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
             {
                 Vector3 touchPosition = touch.position;
-                touchPosition.z = cam.nearClipPlane; // Set z to near clip plane distance
                 Ray ray = cam.ScreenPointToRay(touchPosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, 100, placementLayerMask))
+                if (Physics.Raycast(ray, out RaycastHit hit, 100, placementLayerMask))
                 {
-                    lastPosition = hit.point; // Update the last valid position
+                    lastPosition = hit.point;
                 }
             }
         }
-
-        return lastPosition; // Return the last known valid position
+        return lastPosition; // Return the last valid position
     }
 }

@@ -14,11 +14,15 @@ public class ObjectData
 {
     [field: SerializeField]
     public string Name{get; private set;}
-    [field: SerializeField]
-    public int ID{get; private set;}
+    
     [field: SerializeField]
     public Vector2Int Size{get; private set;} = Vector2Int.one;
     [field: SerializeField]
     public GameObject Prefab {get; private set;}
+    [field: SerializeField]
+    public float XOffset { get; private set; } = 0f; // Custom X offset for placement
+
+    [field: SerializeField]
+    public float ZOffset { get; private set; } = 0f; // Custom Z offset for placement
     
 }

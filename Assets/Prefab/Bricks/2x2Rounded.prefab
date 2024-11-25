@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7142726528264387803}
   - component: {fileID: 8349850350635574149}
   - component: {fileID: 5186931387047739267}
+  - component: {fileID: 4721862103988807821}
   m_Layer: 0
   m_Name: 2x2Rounded
   m_TagString: Untagged
@@ -82,6 +83,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4721862103988807821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655925855742824738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df80544cfd9e324399796719d299fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6898467600625098735
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +156,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6538903991835684241, guid: e0dc218bd7aaaf940be4ef920695e78b, type: 3}
+  - {fileID: 2100000, guid: 53075413b4c5bdd40beba7738abd3257, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
