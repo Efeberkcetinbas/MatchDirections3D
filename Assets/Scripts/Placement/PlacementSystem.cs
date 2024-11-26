@@ -10,12 +10,16 @@ public class PlacementSystem : MonoBehaviour
 
     private Brick _currentBrick;
     private ObjectData _currentObjectData;
+    private Vector3 _precomputedOffset; // Precomputed offset for current brick
     private HashSet<Vector3Int> _occupiedCells = new HashSet<Vector3Int>();
 
     public void StartPlacingBrick(Brick brick, ObjectData objectData)
     {
         _currentBrick = brick;
         _currentObjectData = objectData;
+
+        // Precompute the offset for smoother snapping
+        _precomputedOffset = new Vector3(objectData.XOffset, 0, objectData.ZOffset);
 
         // Set the brick material to transparent for preview
         SetBrickMaterial(_currentBrick.gameObject, validMaterial, 0.25f);
@@ -25,13 +29,16 @@ public class PlacementSystem : MonoBehaviour
     {
         if (_currentBrick == null || _currentObjectData == null) return;
 
-        // Get the dynamically snapped position using offsets from ObjectData
-        Vector3 snappedPosition = GetSnappedPosition(worldPosition);
+        // Step 1: Convert touch position to the nearest grid center
+        Vector3 snappedPosition = GetSnappedPositionToGridCenter(worldPosition);
 
-        // Update brick's position
+        // Step 2: Apply the precomputed offset to simulate proper positioning during drag
+        snappedPosition += _precomputedOffset;
+
+        // Step 3: Smoothly move the brick to the snapped position
         _currentBrick.transform.position = snappedPosition;
 
-        // Check if placement is valid and update material
+        // Step 4: Validate placement and update materials
         Vector3Int gridPosition = grid.WorldToCell(snappedPosition);
         bool isPlacementValid = CheckGridAvailability(gridPosition, _currentObjectData.Size);
         SetBrickMaterial(_currentBrick.gameObject, isPlacementValid ? validMaterial : invalidMaterial, 0.25f);
@@ -41,19 +48,25 @@ public class PlacementSystem : MonoBehaviour
     {
         if (_currentBrick == null || _currentObjectData == null) return;
 
-        // Get the snapped position for final placement
-        Vector3 snappedPosition = GetSnappedPosition(_currentBrick.transform.position);
+        // Step 1: Snap to the grid center
+        Vector3 snappedPosition = GetSnappedPositionToGridCenter(_currentBrick.transform.position);
+
+        // Step 2: Subtract the precomputed offset to match final position
+        snappedPosition -= _precomputedOffset; // Subtract offset to align with grid
+
+        // Step 3: Lock the brick to the final snapped position
         Vector3Int gridPosition = grid.WorldToCell(snappedPosition);
 
         if (CheckGridAvailability(gridPosition, _currentObjectData.Size))
         {
-            // Lock the brick in place
-            MarkGridCells(gridPosition, _currentObjectData.Size);
+            // Step 4: Lock the brick in place and finalize the placement
             _currentBrick.transform.position = snappedPosition;
-            _currentBrick.transform.rotation = Quaternion.identity;
 
             // Reset material to fully opaque
             SetBrickMaterial(_currentBrick.gameObject, validMaterial, 1f);
+
+            // Mark cells as occupied
+            MarkGridCells(gridPosition, _currentObjectData.Size);
 
             Debug.Log("Brick placed successfully!");
         }
@@ -62,26 +75,23 @@ public class PlacementSystem : MonoBehaviour
             Debug.Log("Invalid placement!");
         }
 
+        // Reset states
         _currentBrick = null;
         _currentObjectData = null;
     }
 
-    private Vector3 GetSnappedPosition(Vector3 worldPosition)
+    private Vector3 GetSnappedPositionToGridCenter(Vector3 worldPosition)
     {
         // Convert the world position to the nearest grid cell
-        Vector3Int gridPosition = grid.WorldToCell(worldPosition);
+        Vector3Int gridCell = grid.WorldToCell(worldPosition);
 
-        // Calculate the snapped position
-        Vector3 snappedPosition = grid.CellToWorld(gridPosition);
+        // Calculate the center of the cell
+        Vector3 gridCenter = grid.CellToWorld(gridCell);
+        gridCenter.x += grid.cellSize.x / 2f; // Center X
+        gridCenter.z += grid.cellSize.z / 2f; // Center Z
+        gridCenter.y = 0; // Keep height consistent
 
-        // Apply the custom offsets from ObjectData
-        snappedPosition.x += _currentObjectData.XOffset;
-        snappedPosition.z += _currentObjectData.ZOffset;
-
-        // Set Y to 0 (or keep the current height if needed)
-        snappedPosition.y = 0;
-
-        return snappedPosition;
+        return gridCenter;
     }
 
     private bool CheckGridAvailability(Vector3Int gridPosition, Vector2Int size)

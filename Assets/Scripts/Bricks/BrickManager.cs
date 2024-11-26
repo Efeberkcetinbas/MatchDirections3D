@@ -66,9 +66,7 @@ public class BrickManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(touch.position);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            _currentBrick.DragTo(hit.point);
-
-            // Update preview in PlacementManager
+            // Notify PlacementManager to update the preview position
             placementManager.UpdatePreview(hit.point);
         }
     }

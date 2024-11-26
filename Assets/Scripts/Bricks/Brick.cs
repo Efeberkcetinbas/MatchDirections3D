@@ -16,27 +16,25 @@ public class Brick : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _initialScale = transform.localScale;
     }
-    //Brick brickInstance = Instantiate(objectData.Prefab).GetComponent<Brick>();
-//brickInstance.PrefabReference = objectData.Prefab;
-
+    
 
     public void OnTouched()
     {
         _rigidbody.isKinematic = true;
         //transform.DOScale(_initialScale * 1.2f, 0.2f);
 
-        Vector3 position = transform.position;
+        /*Vector3 position = transform.position;
         position.y += 0.5f; // Adjust height
-        transform.position = position;
+        transform.position = position;*/
 
         transform.rotation = Quaternion.identity;
     }
 
     public void OnReleased()
     {
-        Vector3 position = transform.position;
+        /*Vector3 position = transform.position;
         position.y = 0f;
-        transform.position = position;
+        transform.position = position;*/
 
         //transform.DOScale(_initialScale, 0.2f);
         _rigidbody.isKinematic = false;
