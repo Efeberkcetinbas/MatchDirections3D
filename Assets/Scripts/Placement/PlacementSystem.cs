@@ -48,11 +48,11 @@ public class PlacementSystem : MonoBehaviour
     {
         if (_currentBrick == null || _currentObjectData == null) return;
 
-        // Step 1: Snap to the grid center
+        // Step 1: Snap to the grid center (without offset for final placement)
         Vector3 snappedPosition = GetSnappedPositionToGridCenter(_currentBrick.transform.position);
 
-        // Step 2: Subtract the precomputed offset to match final position
-        snappedPosition -= _precomputedOffset; // Subtract offset to align with grid
+        // Step 2: Subtract the precomputed offset to align the brick with the grid
+        snappedPosition -= _precomputedOffset; // Correct the final position
 
         // Step 3: Lock the brick to the final snapped position
         Vector3Int gridPosition = grid.WorldToCell(snappedPosition);
@@ -85,8 +85,10 @@ public class PlacementSystem : MonoBehaviour
         // Convert the world position to the nearest grid cell
         Vector3Int gridCell = grid.WorldToCell(worldPosition);
 
-        // Calculate the center of the cell
+        // Calculate the center of the cell (the world position of the grid cell)
         Vector3 gridCenter = grid.CellToWorld(gridCell);
+
+        // Adjust for the center of the grid cell
         gridCenter.x += grid.cellSize.x / 2f; // Center X
         gridCenter.z += grid.cellSize.z / 2f; // Center Z
         gridCenter.y = 0; // Keep height consistent
@@ -96,25 +98,37 @@ public class PlacementSystem : MonoBehaviour
 
     private bool CheckGridAvailability(Vector3Int gridPosition, Vector2Int size)
     {
+        // Loop through the grid area where the brick will be placed
         for (int x = 0; x < size.x; x++)
         {
-            for (int y = 0; y < size.y; y++)
+            for (int z = 0; z < size.y; z++) // Corrected to use Z instead of Y
             {
-                Vector3Int cellPosition = gridPosition + new Vector3Int(x, y, 0);
-                if (_occupiedCells.Contains(cellPosition)) return false;
+                Vector3Int cellPosition = gridPosition + new Vector3Int(x, 0, z); // Correct grid position
+
+                // Debugging: Show the cell being checked (optional)
+                Debug.Log($"Checking cell at: {cellPosition} (Occupied: {_occupiedCells.Contains(cellPosition)})");
+
+                if (_occupiedCells.Contains(cellPosition))
+                {
+                    return false; // If any cell is occupied, return false
+                }
             }
         }
-        return true;
+        return true; // If all cells are free, return true
     }
 
     private void MarkGridCells(Vector3Int gridPosition, Vector2Int size)
     {
         for (int x = 0; x < size.x; x++)
         {
-            for (int y = 0; y < size.y; y++)
+            for (int z = 0; z < size.y; z++) // Corrected to use Z instead of Y
             {
-                Vector3Int cellPosition = gridPosition + new Vector3Int(x, y, 0);
-                _occupiedCells.Add(cellPosition);
+                Vector3Int cellPosition = gridPosition + new Vector3Int(x, 0, z); // Correct grid position
+
+                // Debugging: Show the cell being marked as occupied (optional)
+                Debug.Log($"Marking cell at: {cellPosition} as occupied");
+
+                _occupiedCells.Add(cellPosition); // Mark this cell as occupied
             }
         }
     }
@@ -130,6 +144,7 @@ public class PlacementSystem : MonoBehaviour
             renderer.material = newMaterial;
         }
     }
+
 }
     
 

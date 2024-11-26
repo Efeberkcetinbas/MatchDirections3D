@@ -14,6 +14,9 @@ public enum GameEvent
     OnUIUpdate,
     OnLevelUIUpdate,
 
+    //Placement
+    OnPlacement,
+
 
     
     OnNextLevel,
