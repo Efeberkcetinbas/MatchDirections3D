@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Odd-Odd Grid ObjectDatabase
   m_EditorClassIdentifier: 
   objectsData:
+  - <Name>k__BackingField: 4x2
+    <Size>k__BackingField: {x: 4, y: 2}
+    <Prefab>k__BackingField: {fileID: 595989939562762006, guid: ed57a72a6b46ff84e881199bd173306d, type: 3}
+    <XOffset>k__BackingField: 0
+    <ZOffset>k__BackingField: 0
   - <Name>k__BackingField: 2x4
     <Size>k__BackingField: {x: 2, y: 4}
     <Prefab>k__BackingField: {fileID: 2212684035188331215, guid: b17d186aa14e9504091a050f0888b563, type: 3}
@@ -43,11 +48,6 @@ MonoBehaviour:
     <Prefab>k__BackingField: {fileID: 655925855742824738, guid: 8a55f6adc95497c44906137689ddfa31, type: 3}
     <XOffset>k__BackingField: 0
     <ZOffset>k__BackingField: 0
-  - <Name>k__BackingField: 4x2
-    <Size>k__BackingField: {x: 4, y: 2}
-    <Prefab>k__BackingField: {fileID: 4303043752777160539, guid: 56ef98115c62548428b2bed8536ecb7e, type: 3}
-    <XOffset>k__BackingField: 0
-    <ZOffset>k__BackingField: 0.5
   - <Name>k__BackingField: 4x4
     <Size>k__BackingField: {x: 4, y: 4}
     <Prefab>k__BackingField: {fileID: 4822654516583855546, guid: f5fea31016cb1cc4982a934569570d2c, type: 3}

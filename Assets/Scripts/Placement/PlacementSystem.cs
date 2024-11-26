@@ -87,6 +87,7 @@ public class PlacementSystem : MonoBehaviour
 
         // Calculate the center of the cell (the world position of the grid cell)
         Vector3 gridCenter = grid.CellToWorld(gridCell);
+        
 
         // Adjust for the center of the grid cell
         gridCenter.x += grid.cellSize.x / 2f; // Center X
