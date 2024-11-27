@@ -11,7 +11,7 @@ public class Product : MonoBehaviour
         attributes = GetComponent<ProductAttributes>();
     }
 
-    private void Start()
+    private void Initialize()
     {
         // Example: Access ColorEnumAttribute
         var colorAttribute = attributes.GetAttribute<ColorEnumAttribute>();

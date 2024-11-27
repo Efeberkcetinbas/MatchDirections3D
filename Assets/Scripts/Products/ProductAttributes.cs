@@ -1,12 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ProductAttributes : MonoBehaviour
 {
-    private Dictionary<System.Type, EnumAttribute> attributes = new();
+    private Dictionary<Type, EnumAttribute> attributes = new();
 
-    // Add an attribute to the game object
+    // Add an attribute to the product
     public void AddAttribute(EnumAttribute attribute)
     {
         var type = attribute.GetType();
@@ -25,6 +26,19 @@ public class ProductAttributes : MonoBehaviour
     {
         var type = typeof(T);
         return attributes.ContainsKey(type) ? (T)attributes[type] : null;
+    }
+
+    // Get an attribute by its type
+    public EnumAttribute GetAttributeByType(Type type)
+    {
+        attributes.TryGetValue(type, out var attribute);
+        return attribute;
+    }
+
+    // Get all types of attributes this product has
+    public IEnumerable<Type> GetTypes()
+    {
+        return attributes.Keys;
     }
 
     // Check if a specific type of attribute exists

@@ -16,7 +16,7 @@ public abstract class Obstacleable : MonoBehaviour
         if (!canInteract) return;
         if (other.tag == interactionTag)
         {
-            StartInteractWithEnemy(other.GetComponent<PlayerTrigger>());
+            StartInteractWithEnemy(other.GetComponent<PlayerAttributes>());
         }
     }
     void OnTriggerStay(Collider other)
@@ -24,28 +24,28 @@ public abstract class Obstacleable : MonoBehaviour
         if (!canInteract) return;
         if (other.tag == interactionTag)
         {
-            InteractWithEnemy(other.GetComponent<PlayerTrigger>());
+            InteractWithEnemy(other.GetComponent<PlayerAttributes>());
         }
     }
     void OnTriggerExit(Collider other)
     {
         if (other.tag == interactionTag)
         {
-            StopInteractWithEnemy(other.GetComponent<PlayerTrigger>());
+            StopInteractWithEnemy(other.GetComponent<PlayerAttributes>());
         }
     }
 
-    void StartInteractWithEnemy(PlayerTrigger player)
+    void StartInteractWithEnemy(PlayerAttributes player)
     {
         DoAction(player);
     }
 
-    void StopInteractWithEnemy(PlayerTrigger player)
+    void StopInteractWithEnemy(PlayerAttributes player)
     {
         StopAction(player);
     }
 
-    void InteractWithEnemy(PlayerTrigger player)
+    void InteractWithEnemy(PlayerAttributes player)
     {
         st += Time.deltaTime;
         if (st > interval && canStay)
@@ -59,12 +59,12 @@ public abstract class Obstacleable : MonoBehaviour
         st = 0;
     }
     
-    internal virtual void DoAction(PlayerTrigger player)
+    internal virtual void DoAction(PlayerAttributes player)
     {
         throw new System.NotImplementedException();
     }
 
-    internal virtual void StopAction(PlayerTrigger player)
+    internal virtual void StopAction(PlayerAttributes player)
     {
         st = 0;
     }
