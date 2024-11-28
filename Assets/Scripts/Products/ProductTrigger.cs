@@ -6,10 +6,12 @@ using UnityEngine;
 public class ProductTrigger : Obstacleable
 {
     private ProductAttributes productAttributes;
+    private DragManager dragManager;
 
     private void Start()
     {
         productAttributes = GetComponent<ProductAttributes>();
+        dragManager=FindAnyObjectByType<DragManager>();
     }
 
     public ProductTrigger()
@@ -73,6 +75,7 @@ public class ProductTrigger : Obstacleable
         if (isMatch)
         {
             Debug.Log("Match found.");
+            dragManager.CurrentProduct=null;
         }
         else
         {
