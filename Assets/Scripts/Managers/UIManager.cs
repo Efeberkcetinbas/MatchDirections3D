@@ -11,8 +11,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI levelText;
 
-    [Header("Scene Incremental Panel")]
-    [SerializeField] private List<Button> specialButtons=new List<Button>();
+    [Header("Combo Part")]
+    [SerializeField] private TextMeshProUGUI comboText;
+    [SerializeField] private Image progressBar;
 
     [Header("DATA'S")]
     public GameData gameData;
@@ -21,20 +22,18 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnUIUpdate, OnUIUpdate);
-        EventManager.AddHandler(GameEvent.OnPlayerStartMove, OnPlayerStartMove);
-        EventManager.AddHandler(GameEvent.OnNextLevel, OnNextLevel);
-        EventManager.AddHandler(GameEvent.OnRestartLevel, OnRestartLevel);
         EventManager.AddHandler(GameEvent.OnLevelUIUpdate,OnLevelUIUpdate);
+        EventManager.AddHandler(GameEvent.OnComboProgress,OnComboProgress);
+        EventManager.AddHandler(GameEvent.OnComboUIUpdate,OnComboUIUpdate);
         
         
     }
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnUIUpdate, OnUIUpdate);
-        EventManager.RemoveHandler(GameEvent.OnPlayerStartMove, OnPlayerStartMove);
-        EventManager.RemoveHandler(GameEvent.OnNextLevel, OnNextLevel);
-        EventManager.RemoveHandler(GameEvent.OnRestartLevel, OnRestartLevel);
         EventManager.RemoveHandler(GameEvent.OnLevelUIUpdate,OnLevelUIUpdate);
+        EventManager.RemoveHandler(GameEvent.OnComboProgress,OnComboProgress);
+        EventManager.RemoveHandler(GameEvent.OnComboUIUpdate,OnComboUIUpdate);
     }
 
     
@@ -48,32 +47,20 @@ public class UIManager : MonoBehaviour
     {
         levelText.SetText("LEVEL " + (gameData.levelNumber+1).ToString());
     }
-   
+
+    private void OnComboProgress()
+    {
+        var val=gameData.elapsedTime/gameData.currentInterval;
+        progressBar.fillAmount=val;
+    }
+
+    private void OnComboUIUpdate()
+    {
+        comboText.SetText("x " + gameData.comboCount);
+    }
+    
 
     
-    private void OnPlayerStartMove()
-    {
-        CheckButtonInteractability(false);
-    }
-
-    private void OnNextLevel()
-    {
-        CheckButtonInteractability(true);
-    }
-
-    private void OnRestartLevel()
-    {
-        CheckButtonInteractability(true);
-    }
-
-
-    private void CheckButtonInteractability(bool val)
-    {
-        for (int i = 0; i < specialButtons.Count; i++)
-        {
-            specialButtons[i].interactable=val;
-        }
-    }
-
+    
     
 }

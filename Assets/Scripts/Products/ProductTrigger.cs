@@ -75,12 +75,14 @@ public class ProductTrigger : Obstacleable
         if (isMatch)
         {
             Debug.Log("Match found.");
+            EventManager.Broadcast(GameEvent.OnMatchFound);
             transform.gameObject.SetActive(false);
             dragManager.CurrentProduct=null;
         }
         else
         {
             Debug.Log("No match found.");
+            EventManager.Broadcast(GameEvent.OnDismatch);
         }
     }
 

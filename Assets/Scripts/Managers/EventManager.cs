@@ -6,16 +6,22 @@ public enum GameEvent
 {
     //Player
     OnPlayerStartMove,
+
+    //Player-Product
+    OnMatchFound,
+    OnDismatch,
     
     //Game Management
     OnGameStart,
     OnGameOver,
     OnIncreaseScore,
+   
+    //UI
     OnUIUpdate,
     OnLevelUIUpdate,
+    OnComboUIUpdate,
+    OnComboProgress,
 
-    //Placement
-    OnPlacement,
 
 
     

@@ -12,6 +12,12 @@ public class GameData : ScriptableObject
     public int levelIndex;
     public int levelNumber;
 
+
+    //Combo
+    public int comboCount;
+    public float currentInterval;
+    public float elapsedTime;
+
     public bool isGameEnd=false;
 
 }
