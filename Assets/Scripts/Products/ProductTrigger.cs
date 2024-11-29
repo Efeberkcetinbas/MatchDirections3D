@@ -75,6 +75,7 @@ public class ProductTrigger : Obstacleable
         if (isMatch)
         {
             Debug.Log("Match found.");
+            transform.gameObject.SetActive(false);
             dragManager.CurrentProduct=null;
         }
         else

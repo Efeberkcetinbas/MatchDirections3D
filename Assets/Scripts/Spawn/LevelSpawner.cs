@@ -58,9 +58,9 @@ public class LevelSpawner : MonoBehaviour
     {
         // Replace with your spawn logic (e.g., random within a spawn area)
         return new Vector3(
-            Random.Range(-5f, 5f),
+            Random.Range(-2f, -3f),
             Random.Range(0f, 1f),
-            Random.Range(-5f, 5f)
+            Random.Range(1f, -1f)
         );
     }
 }
