@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b986d9df00ac5df4185f724d0c4ca366, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: 
-  levelName: Colors
-  productCount: 48
-  productPrefabs:
-  - {fileID: 5966416049494237097, guid: 375a985f1bc913349a2a78cf144b6d99, type: 3}
-  - {fileID: 2520758505895360114, guid: bcec858d3328fb74982b2a52580cef47, type: 3}
-  - {fileID: 7856159840223764565, guid: 45a479bbffe2a6040adc97c94619f025, type: 3}
-  - {fileID: 5757699450568324426, guid: ebe11e4b74950004e9ab314f612c667c, type: 3}
+  levelName: Level1
+  productSpawnConfigs:
+  - productPrefab: {fileID: 5966416049494237097, guid: 375a985f1bc913349a2a78cf144b6d99, type: 3}
+    spawnCount: 10
+  - productPrefab: {fileID: 2520758505895360114, guid: bcec858d3328fb74982b2a52580cef47, type: 3}
+    spawnCount: 25
+  - productPrefab: {fileID: 7856159840223764565, guid: 45a479bbffe2a6040adc97c94619f025, type: 3}
+    spawnCount: 5
+  - productPrefab: {fileID: 5757699450568324426, guid: ebe11e4b74950004e9ab314f612c667c, type: 3}
+    spawnCount: 15
+  spawnAreaCenter: {x: 0, y: 0, z: 0}
+  spawnAreaSize: {x: 0, y: 0, z: 2}

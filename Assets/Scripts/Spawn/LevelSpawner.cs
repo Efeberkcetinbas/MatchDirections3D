@@ -7,9 +7,6 @@ public class LevelSpawner : MonoBehaviour
     
     public LevelConfiguration currentLevelConfig; // Assign via the LevelManager
 
-    [SerializeField]
-    private Transform spawnArea; // Optional: Area for spawning products
-
     private Queue<GameObject> productPool = new Queue<GameObject>();
 
     private void Start()
@@ -20,17 +17,23 @@ public class LevelSpawner : MonoBehaviour
             return;
         }
 
-        InitializePool(currentLevelConfig.productPrefabs, currentLevelConfig.productCount);
+        InitializePool(currentLevelConfig.productSpawnConfigs);
         SpawnProducts();
     }
 
-    private void InitializePool(List<GameObject> prefabs, int count)
+    private void InitializePool(List<ProductSpawnConfig> spawnConfigs)
     {
-        foreach (var prefab in prefabs)
+        foreach (var config in spawnConfigs)
         {
-            for (int i = 0; i < count / prefabs.Count; i++)
+            if (config.productPrefab == null)
             {
-                var product = Instantiate(prefab);
+                Debug.LogWarning("A product prefab is missing in the spawn configuration.");
+                continue;
+            }
+
+            for (int i = 0; i < config.spawnCount; i++)
+            {
+                var product = Instantiate(config.productPrefab);
                 product.SetActive(false);
                 productPool.Enqueue(product);
             }
@@ -39,28 +42,33 @@ public class LevelSpawner : MonoBehaviour
 
     private void SpawnProducts()
     {
-        for (int i = 0; i < currentLevelConfig.productCount; i++)
+        foreach (var config in currentLevelConfig.productSpawnConfigs)
         {
-            if (productPool.Count > 0)
+            for (int i = 0; i < config.spawnCount; i++)
             {
-                var product = productPool.Dequeue();
-                product.transform.position = GetRandomSpawnPosition();
-                product.SetActive(true);
-            }
-            else
-            {
-                Debug.LogWarning("Not enough products in the pool!");
+                if (productPool.Count > 0)
+                {
+                    var product = productPool.Dequeue();
+                    product.transform.position = GetRandomSpawnPosition();
+                    product.SetActive(true);
+                }
+                else
+                {
+                    Debug.LogWarning("Not enough products in the pool!");
+                }
             }
         }
     }
 
     private Vector3 GetRandomSpawnPosition()
     {
-        // Replace with your spawn logic (e.g., random within a spawn area)
-        return new Vector3(
-            Random.Range(-2f, -3f),
-            Random.Range(0f, 1f),
-            Random.Range(1f, -1f)
+        var center = currentLevelConfig.spawnAreaCenter;
+        var size = currentLevelConfig.spawnAreaSize;
+
+        return center + new Vector3(
+            Random.Range(-size.x / 2, size.x / 2),
+            Random.Range(-size.y / 2, size.y / 2),
+            Random.Range(-size.z / 2, size.z / 2)
         );
     }
 }
