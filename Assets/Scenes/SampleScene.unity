@@ -1620,6 +1620,50 @@ Transform:
   - {fileID: 665373018}
   m_Father: {fileID: 1148560624}
   m_LocalEulerAnglesHint: {x: 0, y: -33.14, z: 0}
+--- !u!1 &1206305086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1206305087}
+  - component: {fileID: 1206305088}
+  m_Layer: 0
+  m_Name: PlayerWaitManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1206305087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206305086}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1473381815}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1206305088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206305086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c0fc34b0881b9439b1673daa5c8b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1245244415
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,6 +2211,7 @@ Transform:
   - {fileID: 1679552071}
   - {fileID: 704688721}
   - {fileID: 2122663611}
+  - {fileID: 1206305087}
   m_Father: {fileID: 1754096861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1488498174
@@ -2474,6 +2519,7 @@ GameObject:
   - component: {fileID: 1710276573}
   - component: {fileID: 1710276572}
   - component: {fileID: 1710276571}
+  - component: {fileID: 1710276576}
   m_Layer: 0
   m_Name: People (1)
   m_TagString: Player
@@ -2560,6 +2606,19 @@ Transform:
   - {fileID: 205434563}
   m_Father: {fileID: 1148560624}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1710276576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710276570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56d15a0352f056449216ce11f177dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerWaitSettings1: {fileID: 11400000, guid: e84bed59acaaa7f4f8db1a56cd991f97, type: 2}
 --- !u!1 &1754096860
 GameObject:
   m_ObjectHideFlags: 0
