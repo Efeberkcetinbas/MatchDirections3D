@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
     private PlayerAttributes playerAttributes;
+
+    [SerializeField] private GameObject xP;
+    [SerializeField] private Transform xPSpawnPos;
 
     private void Awake()
     {
@@ -27,4 +32,18 @@ public class Player : MonoBehaviour
             Debug.Log($"Player's direction is {directionAttribute.value}");
         }
     }
+
+    //Set it to Money UI or Moneycase. Whereever you want!
+    internal void CoinUp()
+    {
+        GameObject xPeffect=Instantiate(xP,xPSpawnPos.position,xP.transform.rotation);
+        xPeffect.transform.DOLocalJump(xPSpawnPos.position,1,1,1,false);
+        xPeffect.transform.GetChild(0).GetComponent<TextMeshPro>().SetText("+5");
+        xPeffect.transform.GetChild(0).GetComponent<TextMeshPro>().DOFade(0,2f).OnComplete(()=>{
+            Destroy(xPeffect);
+        });
+
+    }
+
+
 }

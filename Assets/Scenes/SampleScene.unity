@@ -228,6 +228,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1418606727}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &205434562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205434563}
+  m_Layer: 0
+  m_Name: CoinSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &205434563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205434562}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1710276575}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &257592580
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac579a66cef3192408e5a8da77fe965f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xP: {fileID: 726099549360330756, guid: ee30cc13a835b3d4091c03b7fe046ae0, type: 3}
+  xPSpawnPos: {fileID: 774796666}
 --- !u!65 &299650478
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -480,6 +513,7 @@ Transform:
   m_Children:
   - {fileID: 3769939285752168416}
   - {fileID: 992835107}
+  - {fileID: 774796666}
   m_Father: {fileID: 1148560624}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &313657648
@@ -587,6 +621,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1418606727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &444524893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 444524894}
+  m_Layer: 0
+  m_Name: CoinSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &444524894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444524893}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 988275010}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &457191612
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,6 +790,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 457191613}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &665373017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 665373018}
+  m_Layer: 0
+  m_Name: CoinSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &665373018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665373017}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1176118495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &704688720
 GameObject:
@@ -867,6 +963,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1830269432}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &774796665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 774796666}
+  m_Layer: 0
+  m_Name: CoinSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &774796666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774796665}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 299650479}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,6 +1144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac579a66cef3192408e5a8da77fe965f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xP: {fileID: 726099549360330756, guid: ee30cc13a835b3d4091c03b7fe046ae0, type: 3}
+  xPSpawnPos: {fileID: 444524894}
 --- !u!65 &988275009
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1053,6 +1182,7 @@ Transform:
   m_Children:
   - {fileID: 2901661965948370657}
   - {fileID: 1488498175}
+  - {fileID: 444524894}
   m_Father: {fileID: 1148560624}
   m_LocalEulerAnglesHint: {x: 0, y: 33, z: 0}
 --- !u!1 &992835106
@@ -1183,7 +1313,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevelConfig: {fileID: 11400000, guid: c4bdf27633672344182bb301002c3d8d, type: 2}
-  spawnArea: {fileID: 1004545702}
 --- !u!1 &1037886158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,6 +1579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac579a66cef3192408e5a8da77fe965f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xP: {fileID: 726099549360330756, guid: ee30cc13a835b3d4091c03b7fe046ae0, type: 3}
+  xPSpawnPos: {fileID: 665373018}
 --- !u!65 &1176118494
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1486,6 +1617,7 @@ Transform:
   m_Children:
   - {fileID: 6941123192607044002}
   - {fileID: 1468023317}
+  - {fileID: 665373018}
   m_Father: {fileID: 1148560624}
   m_LocalEulerAnglesHint: {x: 0, y: -33.14, z: 0}
 --- !u!1 &1245244415
@@ -2387,6 +2519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac579a66cef3192408e5a8da77fe965f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xP: {fileID: 726099549360330756, guid: ee30cc13a835b3d4091c03b7fe046ae0, type: 3}
+  xPSpawnPos: {fileID: 205434563}
 --- !u!65 &1710276574
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2423,6 +2557,7 @@ Transform:
   m_Children:
   - {fileID: 8087842989218509284}
   - {fileID: 257592581}
+  - {fileID: 205434563}
   m_Father: {fileID: 1148560624}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1754096860

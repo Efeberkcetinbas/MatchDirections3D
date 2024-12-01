@@ -75,6 +75,7 @@ public class ProductTrigger : Obstacleable
         if (isMatch)
         {
             Debug.Log("Match found.");
+            player.GetComponent<Player>().CoinUp();
             EventManager.Broadcast(GameEvent.OnMatchFound);
             transform.gameObject.SetActive(false);
             dragManager.CurrentProduct=null;
