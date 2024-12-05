@@ -6,8 +6,10 @@ public enum GameEvent
 {
     //Player
     OnPlayerStartMove,
+    OnMatchFullPlayer,
 
     //Player-Product
+    
     OnMatchFound,
     OnDismatch,
     

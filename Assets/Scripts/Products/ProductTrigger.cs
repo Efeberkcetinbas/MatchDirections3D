@@ -76,13 +76,16 @@ public class ProductTrigger : Obstacleable
         {
             Debug.Log("Match found.");
             player.GetComponent<Player>().CoinUp();
+            player.GetComponent<Player>().IncreaseProductNumber();
             EventManager.Broadcast(GameEvent.OnMatchFound);
+            //Increase Satisfaction Bar
             transform.gameObject.SetActive(false);
             dragManager.CurrentProduct=null;
         }
         else
         {
             Debug.Log("No match found.");
+            //Decrease Satisfaction Bar
             EventManager.Broadcast(GameEvent.OnDismatch);
         }
     }

@@ -10,12 +10,24 @@ public class PlayerManager : MonoBehaviour
 
     private Queue<Player> playerQueue = new Queue<Player>(); // Queue to manage players
     private int currentMovementIndex = 0; // Tracks the current movement step
+    private int counter;
+    private int index;
 
     private void Start()
     {
         InitializePlayerQueue();
         AssignAttributes();
         OnNextPlayer();
+    }
+
+    private void OnEnable()
+    {
+        EventManager.AddHandler(GameEvent.OnMatchFullPlayer, OnMatchFullPlayer);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.RemoveHandler(GameEvent.OnMatchFullPlayer, OnMatchFullPlayer);
     }
 
     private void InitializePlayerQueue()
@@ -25,6 +37,18 @@ public class PlayerManager : MonoBehaviour
             player.gameObject.SetActive(false); // Deactivate all players at the start
             playerQueue.Enqueue(player);
         }
+    }
+
+    private void OnMatchFullPlayer()
+    {
+        counter++;
+        if(counter==index)
+        {
+            counter=0;
+            index=0;
+            OnNextPlayer();
+        }
+        
     }
 
     private void AssignAttributes()
@@ -100,5 +124,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log($"{player.name} moving to {destination}");
         player.transform.position = destination;
         PlayerWaitManager.Instance.RegisterWaiter(player.GetComponent<PlayerWait>());
+        index++;
+        Debug.Log("INDEX " + index);
     }
 }

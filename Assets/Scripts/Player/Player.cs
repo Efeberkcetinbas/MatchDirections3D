@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject xP;
     [SerializeField] private Transform xPSpawnPos;
+    [SerializeField] private int requirementProduct;
+    [SerializeField] private int productNumber;
 
     private void Awake()
     {
@@ -44,6 +46,26 @@ public class Player : MonoBehaviour
         });
 
     }
+
+    internal void CheckAllMatch()
+    {
+        if(requirementProduct==productNumber)
+        {
+            Debug.Log("FULL");
+            EventManager.Broadcast(GameEvent.OnMatchFullPlayer);
+            PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
+            //Turn back
+            gameObject.SetActive(false);
+        }
+    }
+
+    internal void IncreaseProductNumber()
+    {
+        productNumber++;
+        CheckAllMatch();
+    }
+
+
 
 
 }
