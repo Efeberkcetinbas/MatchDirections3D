@@ -12,7 +12,7 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
     private void Start()
     {
         ApplyWaitSettings(playerWaitSettings1);
-        PlayerWaitManager.Instance.RegisterWaiter(this);
+        //PlayerWaitManager.Instance.RegisterWaiter(this);
     }   
 
     public void ApplyWaitSettings(PlayerWaitSettings playerWaitSettings)
