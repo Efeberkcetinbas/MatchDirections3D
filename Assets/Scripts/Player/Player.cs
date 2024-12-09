@@ -90,6 +90,12 @@ public class Player : MonoBehaviour
         CheckAllMatch();
     }
 
+    private void OnRestart()
+    {
+        productNumber=0;
+        counterText.SetText(productNumber.ToString() + " / " + requirementProduct.ToString());
+    }
+
 
     
 

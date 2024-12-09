@@ -20,13 +20,11 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
     {
         player = GetComponent<Player>();
         ApplyWaitSettings(playerWaitSettings1);
-        //PlayerWaitManager.Instance.RegisterWaiter(this);
     }   
 
     public void ApplyWaitSettings(PlayerWaitSettings playerWaitSettings)
     {
         waitTime=playerWaitSettings.WaitTime;
-        //
     }
     public void UpdateBehavior(float deltaTime)
     {
@@ -55,6 +53,7 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
 
         
     }
+
 
     
 }

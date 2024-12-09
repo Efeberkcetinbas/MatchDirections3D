@@ -19,6 +19,11 @@ public class ProductDrag : MonoBehaviour
         rb=GetComponent<Rigidbody>();
     }
 
+    private void OnRestart()
+    {
+        IsPlaced=false;
+    }   
+
    
     
 }

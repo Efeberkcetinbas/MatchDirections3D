@@ -128,4 +128,9 @@ public class ProductTrigger : Obstacleable
 
         return productValue.Equals(playerValue);
     }
+
+    private void OnRestart()
+    {
+        matched=false;
+    }
 }

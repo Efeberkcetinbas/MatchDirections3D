@@ -30,4 +30,9 @@ public class LevelSpawnerManager : MonoBehaviour
         spawner.currentLevelConfig = levelConfigs[currentLevelIndex];
         spawner.enabled = true; // Restart with new config
     }
+
+    private void OnRestart()
+    {
+        LoadLevel(currentLevelIndex);
+    }
 }

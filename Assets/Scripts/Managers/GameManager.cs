@@ -6,7 +6,6 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     public GameData gameData;
-    public PlayerData playerData;
 
 
     private WaitForSeconds waitForSeconds;
@@ -14,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake() 
     {
-        ClearData(true);
+        ClearData();
     }
 
     private void Start()
@@ -41,13 +40,13 @@ public class GameManager : MonoBehaviour
 
     private void OnNextLevel()
     {
-        ClearData(false);
+        ClearData();
         
     }
 
     private void OnRestartLevel()
     {
-        ClearData(false);
+        ClearData();
     }
 
     private void OnConditionSuccess()
@@ -69,9 +68,14 @@ public class GameManager : MonoBehaviour
         StartCoroutine(OpenFail());
     }
 
-    private void ClearData(bool val)
+    private void ClearData()
     {
-        gameData.isGameEnd=val;
+        gameData.isGameEnd=true;
+        gameData.dissatisfy=false;
+
+        gameData.dissatisfyPeople=0;
+        gameData.comboCount=0;
+        gameData.elapsedTime=0;
     }
 
     private IEnumerator OpenSuccess()

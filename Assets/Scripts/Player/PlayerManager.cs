@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -126,9 +127,22 @@ public class PlayerManager : MonoBehaviour
     {
         // Replace with your preferred movement logic
         Debug.Log($"{player.name} moving to {destination}");
-        player.transform.position = destination;
-        PlayerWaitManager.Instance.RegisterWaiter(player.GetComponent<PlayerWait>());
+        player.transform.DOMove(destination,1f).OnComplete(()=>{
+            PlayerWaitManager.Instance.RegisterWaiter(player.GetComponent<PlayerWait>());
+        });
+        
         index++;
         Debug.Log("INDEX " + index);
+    }
+
+    public void OnRestartPlayers()
+    {
+        currentMovementIndex=0;
+        counter=0;
+        index=0;
+
+        InitializePlayerQueue();
+        AssignAttributes();
+        OnNextPlayer();
     }
 }

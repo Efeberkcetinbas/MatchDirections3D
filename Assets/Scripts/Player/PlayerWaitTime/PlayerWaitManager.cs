@@ -53,4 +53,16 @@ public class PlayerWaitManager : MonoBehaviour
             playersToRemove.Add(player); // Mark the player for removal
         }
     }
+
+    private void OnRestart()
+    {
+        for (int i = 0; i < players.Count; i++)
+        {
+            playersToRemove.Add(players[i]);
+        }
+
+        //OnRestartPlayers
+    }
+
+    
 }

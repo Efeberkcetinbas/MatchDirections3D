@@ -71,4 +71,9 @@ public class LevelSpawner : MonoBehaviour
             Random.Range(-size.z / 2, size.z / 2)
         );
     }
+
+    private void OnRestart()
+    {
+        SpawnProducts();
+    }
 }
