@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class PlayerTrigger : MonoBehaviour
 {
-    
+   public Transform ProductEnter;
+
+   public GameObject ProductKeeper;
 }

@@ -39,7 +39,7 @@ public class DragManager : MonoBehaviour
                 if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, productLayerMask))
                 {
                     CurrentProduct = hit.collider.GetComponent<ProductDrag>();
-                    if (CurrentProduct != null)
+                    if (CurrentProduct != null && !CurrentProduct.IsPlaced)
                     {
                         CurrentProduct.IsBeingDragged = true;
                         CurrentProduct.Collider.isTrigger=true;

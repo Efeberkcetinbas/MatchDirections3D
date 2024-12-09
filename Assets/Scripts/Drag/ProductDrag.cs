@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProductDrag : MonoBehaviour
 {
     public bool IsBeingDragged{get;set;}
+    public bool IsPlaced {get;set;}
     public Collider Collider{get; set;}
     public Rigidbody rb{get; set;}
 

@@ -4,18 +4,37 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 
+
 public class Player : MonoBehaviour
 {
     private PlayerAttributes playerAttributes;
+
+    [SerializeField] private TextMeshProUGUI counterText;
 
     [SerializeField] private GameObject xP;
     [SerializeField] private Transform xPSpawnPos;
     [SerializeField] private int requirementProduct;
     [SerializeField] private int productNumber;
+    [SerializeField] private MeshFilter meshFilter;
+    [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private Mesh placeholderMesh;
+    [SerializeField] private Material mat;
 
     private void Awake()
     {
         playerAttributes = GetComponent<PlayerAttributes>();
+        counterText.SetText(productNumber.ToString() + " / " + requirementProduct.ToString());
+    }
+
+    private void Start()
+    {
+        AssignPlaceHolder();
+    }
+
+    private void AssignPlaceHolder()
+    {
+        meshFilter.mesh=placeholderMesh;
+        meshRenderer.material=mat;
     }
 
     public void Initialize()
@@ -47,6 +66,8 @@ public class Player : MonoBehaviour
 
     }
 
+
+
     internal void CheckAllMatch()
     {
         if(requirementProduct==productNumber)
@@ -62,8 +83,12 @@ public class Player : MonoBehaviour
     internal void IncreaseProductNumber()
     {
         productNumber++;
+        counterText.SetText(productNumber.ToString() + " / " + requirementProduct.ToString());
         CheckAllMatch();
     }
+
+
+    
 
 
 

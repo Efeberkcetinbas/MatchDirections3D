@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using DG.Tweening;
 public class ProductTrigger : Obstacleable
 {
     private ProductAttributes productAttributes;
     private DragManager dragManager;
+    private ProductDrag productDrag;
+
+    private bool matched=false;
 
     private void Start()
     {
         productAttributes = GetComponent<ProductAttributes>();
         dragManager=FindAnyObjectByType<DragManager>();
+        productDrag=GetComponent<ProductDrag>();
     }
 
     public ProductTrigger()
@@ -72,15 +76,22 @@ public class ProductTrigger : Obstacleable
             }
         }
 
-        if (isMatch)
+        if (isMatch && !matched)
         {
             Debug.Log("Match found.");
-            player.GetComponent<Player>().CoinUp();
-            player.GetComponent<Player>().IncreaseProductNumber();
-            EventManager.Broadcast(GameEvent.OnMatchFound);
+            
+            player.GetComponent<PlayerTrigger>().ProductKeeper.transform.DOPunchScale(Vector3.one,0.1f);
+            transform.DORotate(player.GetComponent<PlayerTrigger>().ProductEnter.rotation.eulerAngles,.25f);
+            transform.DOJump(player.GetComponent<PlayerTrigger>().ProductEnter.position,1,1,.5f).OnComplete(()=>{
+                player.GetComponent<Player>().CoinUp();
+                player.GetComponent<Player>().IncreaseProductNumber();
+                EventManager.Broadcast(GameEvent.OnMatchFound);
+                transform.gameObject.SetActive(false);
+            });
+            productDrag.IsPlaced=true;
             //Increase Satisfaction Bar
-            transform.gameObject.SetActive(false);
             dragManager.CurrentProduct=null;
+            matched=true;
         }
         else
         {

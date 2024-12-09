@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerWait : MonoBehaviour,IPlayerWait
 {
     private float waitTime;
     private float timer=0f;
-
+    
+    [SerializeField] private Image progressImage;
     [SerializeField] private PlayerWaitSettings playerWaitSettings1;
 
     private void Start()
@@ -23,7 +25,10 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
     public void UpdateBehavior(float deltaTime)
     {
         timer += deltaTime;
-        Debug.Log("S");
+
+        var val=timer/waitTime;
+        progressImage.fillAmount=val;
+
 
         if (timer >= waitTime)
         {
