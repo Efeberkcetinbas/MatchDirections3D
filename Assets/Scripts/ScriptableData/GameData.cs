@@ -11,6 +11,7 @@ public class GameData : ScriptableObject
     public int increaseScore;
     public int levelIndex;
     public int levelNumber;
+    public int dissatisfyPeople;
 
 
     //Combo
@@ -19,5 +20,6 @@ public class GameData : ScriptableObject
     public float elapsedTime;
 
     public bool isGameEnd=false;
+    public bool dissatisfy=false;
 
 }

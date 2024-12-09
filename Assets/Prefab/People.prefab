@@ -464,6 +464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressImage: {fileID: 1222364263634090448}
   playerWaitSettings1: {fileID: 11400000, guid: e84bed59acaaa7f4f8db1a56cd991f97, type: 2}
+  gameData: {fileID: 11400000, guid: 6f4f5a97a52dbab4eaa60efa1f850580, type: 2}
 --- !u!114 &9008570293522978425
 MonoBehaviour:
   m_ObjectHideFlags: 0

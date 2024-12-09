@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Mesh placeholderMesh;
     [SerializeField] private Material mat;
 
+    public bool UnRegister=false;
+
     private void Awake()
     {
         playerAttributes = GetComponent<PlayerAttributes>();
@@ -74,7 +76,8 @@ public class Player : MonoBehaviour
         {
             Debug.Log("FULL");
             EventManager.Broadcast(GameEvent.OnMatchFullPlayer);
-            PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
+            if(!UnRegister)
+                PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
             //Turn back
             gameObject.SetActive(false);
         }

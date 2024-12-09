@@ -2054,7 +2054,8 @@ MonoBehaviour:
   DecreaseRate: 1
   CorrectProductBoost: 10
   WrongProductPenalty: 15
-  TimeoutPenalty: 20
+  TimeoutPenalty: 5
+  gameData: {fileID: 11400000, guid: 6f4f5a97a52dbab4eaa60efa1f850580, type: 2}
 --- !u!1 &1561124204
 GameObject:
   m_ObjectHideFlags: 0

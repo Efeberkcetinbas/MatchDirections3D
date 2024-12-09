@@ -16,7 +16,9 @@ MonoBehaviour:
   increaseScore: 0
   levelIndex: 0
   levelNumber: 0
-  comboCount: 1
+  dissatisfyPeople: 0
+  comboCount: 0
   currentInterval: 3
-  elapsedTime: 1.833191
+  elapsedTime: 0
   isGameEnd: 0
+  dissatisfy: 0

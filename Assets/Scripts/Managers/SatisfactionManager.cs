@@ -10,10 +10,13 @@ public class SatisfactionManager : MonoBehaviour
     public float CorrectProductBoost = 10f;
     public float WrongProductPenalty = 15f;
     public float TimeoutPenalty = 20f;
+
+    [SerializeField] private GameData gameData;
     
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnMatchFound, OnMatchFound);
+        EventManager.AddHandler(GameEvent.OnMatchFullPlayer, OnMatchFullPlayer);
         EventManager.AddHandler(GameEvent.OnDismatch, OnDismatch);
         EventManager.AddHandler(GameEvent.OnPlayerWaitTooMuch, OnPlayerWaitTooMuch);
     }
@@ -21,6 +24,7 @@ public class SatisfactionManager : MonoBehaviour
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnMatchFound, OnMatchFound);
+        EventManager.RemoveHandler(GameEvent.OnMatchFullPlayer, OnMatchFullPlayer);
         EventManager.RemoveHandler(GameEvent.OnDismatch, OnDismatch);
         EventManager.RemoveHandler(GameEvent.OnPlayerWaitTooMuch, OnPlayerWaitTooMuch);
     }
@@ -29,6 +33,11 @@ public class SatisfactionManager : MonoBehaviour
     private void Update()
     {
         DecreaseSatisfaction(DecreaseRate * Time.deltaTime);
+        
+        if(gameData.dissatisfy)
+        {
+            DecreaseSatisfaction(TimeoutPenalty*Time.deltaTime * gameData.dissatisfyPeople);
+        }
     }
 
     private void OnMatchFound()
@@ -46,6 +55,17 @@ public class SatisfactionManager : MonoBehaviour
         OnTimeout();
     }
 
+    private void OnMatchFullPlayer()
+    {
+        if(gameData.dissatisfy)
+        {
+            gameData.dissatisfyPeople--;
+            if(gameData.dissatisfyPeople<=0)
+            {
+                gameData.dissatisfy=false;
+            }
+        }
+    }
     private void IncreaseSatisfaction(float amount)
     {
         Satisfaction = Mathf.Clamp(Satisfaction + amount, 0, 100);
@@ -68,6 +88,6 @@ public class SatisfactionManager : MonoBehaviour
 
     private void OnTimeout()
     {
-        DecreaseSatisfaction(TimeoutPenalty);
+        gameData.dissatisfy=true;
     }
 }

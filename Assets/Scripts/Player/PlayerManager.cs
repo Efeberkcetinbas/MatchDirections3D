@@ -23,13 +23,11 @@ public class PlayerManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnMatchFullPlayer, OnMatchFullPlayer);
-        EventManager.AddHandler(GameEvent.OnPlayerWaitTooMuch, OnPlayerWaitTooMuch);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnMatchFullPlayer, OnMatchFullPlayer);
-        EventManager.RemoveHandler(GameEvent.OnPlayerWaitTooMuch, OnPlayerWaitTooMuch);
     }
 
     private void InitializePlayerQueue()
@@ -42,11 +40,6 @@ public class PlayerManager : MonoBehaviour
     }
 
     private void OnMatchFullPlayer()
-    {
-        ControlNextPlayer();
-    }
-
-    private void OnPlayerWaitTooMuch()
     {
         ControlNextPlayer();
     }

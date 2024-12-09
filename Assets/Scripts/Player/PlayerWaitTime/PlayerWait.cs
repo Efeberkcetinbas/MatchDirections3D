@@ -10,9 +10,15 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
     
     [SerializeField] private Image progressImage;
     [SerializeField] private PlayerWaitSettings playerWaitSettings1;
+    
+    [SerializeField] private GameData gameData;
+
+    private Player player;
+
 
     private void Start()
     {
+        player = GetComponent<Player>();
         ApplyWaitSettings(playerWaitSettings1);
         //PlayerWaitManager.Instance.RegisterWaiter(this);
     }   
@@ -40,8 +46,12 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
     private void WaitTooMuch()
     {
         Debug.Log("WAITED SO LONG AND ANGRY");
+        player.UnRegister=true;
         PlayerWaitManager.Instance.UnRegisterWaiter(this);
         EventManager.Broadcast(GameEvent.OnPlayerWaitTooMuch);
+        
+        
+        gameData.dissatisfyPeople++;
 
         
     }
