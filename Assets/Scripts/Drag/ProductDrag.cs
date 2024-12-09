@@ -8,6 +8,8 @@ public class ProductDrag : MonoBehaviour
     public Collider Collider{get; set;}
     public Rigidbody rb{get; set;}
 
+    public Outline OutlineMesh;
+
 
 
     private void Start()

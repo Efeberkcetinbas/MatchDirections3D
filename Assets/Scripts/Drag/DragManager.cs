@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class DragManager : MonoBehaviour
 {
@@ -45,6 +46,14 @@ public class DragManager : MonoBehaviour
                         CurrentProduct.rb.useGravity=false;
                         CurrentProduct.rb.isKinematic=true;
                         CurrentProduct.transform.DOMoveY(CurrentProduct.transform.position.y+1,0.5f);
+
+
+                        CurrentProduct.OutlineMesh.enabled=true;
+                        CurrentProduct.OutlineMesh.OpenOutline();
+                        CurrentProduct.OutlineMesh.OutlineMode = Outline.Mode.OutlineAll;
+                        CurrentProduct.OutlineMesh.OutlineColor = Color.yellow;
+                        CurrentProduct.OutlineMesh.OutlineWidth = 5f;
+                        CurrentProduct.OutlineMesh.UpdateMaterialProperties();
                         
                         
                         _dragPlane = new Plane(Vector3.up, CurrentProduct.transform.position);
@@ -75,9 +84,12 @@ public class DragManager : MonoBehaviour
                     CurrentProduct.Collider.isTrigger=false;
                     CurrentProduct.rb.useGravity=true;
                     CurrentProduct.rb.isKinematic=false;
+                   
 
                 }
 
+                CurrentProduct.OutlineMesh.RemoveOutline();
+                CurrentProduct.OutlineMesh.enabled=false;
                 CurrentProduct.IsBeingDragged = false;
                 CurrentProduct = null;
             }
