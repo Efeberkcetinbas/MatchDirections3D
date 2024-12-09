@@ -12,6 +12,7 @@ public enum GameEvent
     
     OnMatchFound,
     OnDismatch,
+    OnPlayerWaitTooMuch,
     
     //Game Management
     OnGameStart,

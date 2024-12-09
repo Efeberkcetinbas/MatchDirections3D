@@ -93,7 +93,7 @@ public class ProductTrigger : Obstacleable
             dragManager.CurrentProduct=null;
             matched=true;
         }
-        else
+        if(!isMatch)
         {
             Debug.Log("No match found.");
             //Decrease Satisfaction Bar
