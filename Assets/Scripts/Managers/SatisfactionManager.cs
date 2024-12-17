@@ -43,6 +43,8 @@ public class SatisfactionManager : MonoBehaviour
 
         float val=Satisfaction/100;
         satisfactionProgress.fillAmount=val;
+        satisfactionProgress.color=GetColorForProgress(val);
+        
     }
 
     private void OnMatchFound()
@@ -94,5 +96,27 @@ public class SatisfactionManager : MonoBehaviour
     private void OnTimeout()
     {
         gameData.dissatisfy=true;
+    }
+
+    private Color GetColorForProgress(float progress)
+    {
+        // Define the colors
+        Color green = Color.green;
+        Color yellow = Color.yellow;
+        Color orange = new Color(1f, 0.5f, 0f); // Orange
+        Color red = Color.red;
+
+        if (progress < 0.33f)
+        {
+            return Color.Lerp(red, orange, progress / 0.33f);
+        }
+        else if (progress < 0.66f)
+        {
+            return Color.Lerp(orange, yellow, (progress - 0.33f) / 0.33f);
+        }
+        else
+        {
+            return Color.Lerp(yellow, green, (progress - 0.66f) / 0.34f);
+        }
     }
 }
