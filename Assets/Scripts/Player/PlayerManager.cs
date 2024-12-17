@@ -98,7 +98,7 @@ public class PlayerManager : MonoBehaviour
             Debug.LogWarning($"Cannot assign {playersToMove} players; only {destinationTargets.Length} targets available!");
             playersToMove = destinationTargets.Length;
         }
-
+        EventManager.Broadcast(GameEvent.OnPlayerStartMove);
         List<Transform> availableDestinations = new List<Transform>(destinationTargets);
 
         for (int i = 0; i < playersToMove; i++)

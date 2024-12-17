@@ -11,17 +11,17 @@ public class Player : MonoBehaviour
     
     
 
-    public TextMeshPro counterText;
 
     [SerializeField] private GameObject xP;
     [SerializeField] private Transform xPSpawnPos;
-    [SerializeField] private int requirementProduct;
     [SerializeField] private int productNumber;
 
     internal PeopleSelect peopleSelect;
     
+    public int requirementProduct;
     public Mesh placeholderMesh;
     public Material mat;
+    public TextMeshPro counterText;
 
     public bool UnRegister=false;
 
