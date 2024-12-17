@@ -113,7 +113,7 @@ public class PlayerManager : MonoBehaviour
                 Transform target = availableDestinations[randomIndex];
                 availableDestinations.RemoveAt(randomIndex);
 
-                MovePlayerToDestination(player, target.position);
+                MovePlayerToDestination(player, target);
             }
             else
             {
@@ -123,11 +123,16 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void MovePlayerToDestination(Player player, Vector3 destination)
+    private void MovePlayerToDestination(Player player, Transform destination)
     {
         // Replace with your preferred movement logic
         Debug.Log($"{player.name} moving to {destination}");
-        player.transform.DOMove(destination,1f).OnComplete(()=>{
+        player.transform.DOMove(destination.position,1f).OnComplete(()=>{
+            destination.GetComponent<Destination>().meshFilter.mesh=player.placeholderMesh;
+            destination.GetComponent<Destination>().meshRenderer.material=player.mat;
+            player.counterText=destination.GetComponent<Destination>().CounterText;
+            player.UpdateCounterText();
+            player.GetComponent<PlayerTrigger>().ProductEnter=destination.GetComponent<Destination>().ProductEnter;
             PlayerWaitManager.Instance.RegisterWaiter(player.GetComponent<PlayerWait>());
         });
         

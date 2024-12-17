@@ -66,9 +66,9 @@ public class LevelSpawner : MonoBehaviour
         var size = currentLevelConfig.spawnAreaSize;
 
         return center + new Vector3(
-            Random.Range(-size.x / 2, size.x / 2),
-            Random.Range(-size.y / 2, size.y / 2),
-            Random.Range(-size.z / 2, size.z / 2)
+            Random.Range(-5, 5),
+            Random.Range(1, 4),
+            Random.Range(-12, -1)
         );
     }
 

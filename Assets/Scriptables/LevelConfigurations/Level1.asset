@@ -23,4 +23,4 @@ MonoBehaviour:
   - productPrefab: {fileID: 5757699450568324426, guid: ebe11e4b74950004e9ab314f612c667c, type: 3}
     spawnCount: 15
   spawnAreaCenter: {x: 0, y: 0, z: 0}
-  spawnAreaSize: {x: 0, y: 0, z: 1}
+  spawnAreaSize: {x: 0, y: 0, z: 5}

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SatisfactionManager : MonoBehaviour
-{
-
+{   
+    [Header("Satisfaction Settings")]
+    [SerializeField] private Image satisfactionProgress;
     [Range(0, 100)] public float Satisfaction = 100f;
     public float DecreaseRate = 0.1f; // Automatic decrease rate per second
     public float CorrectProductBoost = 10f;
@@ -38,6 +40,9 @@ public class SatisfactionManager : MonoBehaviour
         {
             DecreaseSatisfaction(TimeoutPenalty*Time.deltaTime * gameData.dissatisfyPeople);
         }
+
+        float val=Satisfaction/100;
+        satisfactionProgress.fillAmount=val;
     }
 
     private void OnMatchFound()

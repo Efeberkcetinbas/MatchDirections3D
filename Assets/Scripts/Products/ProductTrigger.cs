@@ -80,8 +80,11 @@ public class ProductTrigger : Obstacleable
         {
             Debug.Log("Match found.");
             
-            player.GetComponent<PlayerTrigger>().ProductKeeper.transform.DOPunchScale(Vector3.one,0.1f);
-            transform.DORotate(player.GetComponent<PlayerTrigger>().ProductEnter.rotation.eulerAngles,.25f);
+            //player.GetComponent<PlayerTrigger>().ProductParticle.Play();
+            player.GetComponent<PlayerTrigger>().ProductEnter.transform.DOPunchScale(Vector3.one,0.1f);
+            transform.DORotate(player.GetComponent<PlayerTrigger>().ProductEnter.rotation.eulerAngles,.25f).OnComplete(()=>{
+                //Add event for sound
+            });
             transform.DOJump(player.GetComponent<PlayerTrigger>().ProductEnter.position,1,1,.5f).OnComplete(()=>{
                 player.GetComponent<Player>().CoinUp();
                 player.GetComponent<Player>().IncreaseProductNumber();

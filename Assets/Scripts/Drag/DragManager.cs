@@ -45,7 +45,8 @@ public class DragManager : MonoBehaviour
                         CurrentProduct.Collider.isTrigger=true;
                         CurrentProduct.rb.useGravity=false;
                         CurrentProduct.rb.isKinematic=true;
-                        CurrentProduct.transform.DOMoveY(CurrentProduct.transform.position.y+1,0.5f);
+                        //CurrentProduct.transform.position.y+1
+                        CurrentProduct.transform.DOMoveY(6,0.5f);
 
 
                         CurrentProduct.OutlineMesh.enabled=true;

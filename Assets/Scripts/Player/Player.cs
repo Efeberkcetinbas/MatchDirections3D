@@ -9,35 +9,27 @@ public class Player : MonoBehaviour
 {
     private PlayerAttributes playerAttributes;
 
-    [SerializeField] private TextMeshProUGUI counterText;
+    public TextMeshPro counterText;
 
     [SerializeField] private GameObject xP;
     [SerializeField] private Transform xPSpawnPos;
     [SerializeField] private int requirementProduct;
     [SerializeField] private int productNumber;
-    [SerializeField] private MeshFilter meshFilter;
-    [SerializeField] private MeshRenderer meshRenderer;
-    [SerializeField] private Mesh placeholderMesh;
-    [SerializeField] private Material mat;
+
+    
+    public Mesh placeholderMesh;
+    public Material mat;
 
     public bool UnRegister=false;
 
     private void Awake()
     {
         playerAttributes = GetComponent<PlayerAttributes>();
-        counterText.SetText(productNumber.ToString() + " / " + requirementProduct.ToString());
     }
 
-    private void Start()
-    {
-        AssignPlaceHolder();
-    }
+    
 
-    private void AssignPlaceHolder()
-    {
-        meshFilter.mesh=placeholderMesh;
-        meshRenderer.material=mat;
-    }
+   
 
     public void Initialize()
     {
@@ -79,8 +71,14 @@ public class Player : MonoBehaviour
             if(!UnRegister)
                 PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
             //Turn back
+            
             gameObject.SetActive(false);
         }
+    }
+
+    internal void UpdateCounterText()
+    {
+        counterText.SetText(productNumber.ToString() + " / " + requirementProduct.ToString());
     }
 
     internal void IncreaseProductNumber()

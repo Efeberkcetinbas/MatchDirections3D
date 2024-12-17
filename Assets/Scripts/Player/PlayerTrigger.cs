@@ -6,5 +6,5 @@ public class PlayerTrigger : MonoBehaviour
 {
    public Transform ProductEnter;
 
-   public GameObject ProductKeeper;
+   public ParticleSystem ProductParticle;
 }
