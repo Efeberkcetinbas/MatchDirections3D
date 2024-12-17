@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PeopleSelect : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> peoples=new List<GameObject>();
+    public List<GameObject> peoples=new List<GameObject>();
 
 
-    private int index;
+    internal int index;
     private void Start()
     {
         SelectPeople();

@@ -81,6 +81,7 @@ public class ProductTrigger : Obstacleable
             Debug.Log("Match found.");
             
             //player.GetComponent<PlayerTrigger>().ProductParticle.Play();
+            player.GetComponent<PeopleSelect>().peoples[player.GetComponent<PeopleSelect>().index].GetComponent<Animator>().SetTrigger("TrueProduct");
             player.GetComponent<PlayerTrigger>().ProductEnter.transform.DOPunchScale(Vector3.one,0.1f);
             transform.DORotate(player.GetComponent<PlayerTrigger>().ProductEnter.rotation.eulerAngles,.25f).OnComplete(()=>{
                 //Add event for sound
@@ -99,6 +100,7 @@ public class ProductTrigger : Obstacleable
         if(!isMatch)
         {
             Debug.Log("No match found.");
+            player.GetComponent<PeopleSelect>().peoples[player.GetComponent<PeopleSelect>().index].GetComponent<Animator>().SetTrigger("FalseProduct");
             //Decrease Satisfaction Bar
             EventManager.Broadcast(GameEvent.OnDismatch);
         }

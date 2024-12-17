@@ -8,6 +8,8 @@ using DG.Tweening;
 public class Player : MonoBehaviour
 {
     private PlayerAttributes playerAttributes;
+    
+    
 
     public TextMeshPro counterText;
 
@@ -16,6 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int requirementProduct;
     [SerializeField] private int productNumber;
 
+    internal PeopleSelect peopleSelect;
     
     public Mesh placeholderMesh;
     public Material mat;
@@ -25,6 +28,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         playerAttributes = GetComponent<PlayerAttributes>();
+        peopleSelect = GetComponent<PeopleSelect>();
     }
 
     
