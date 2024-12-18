@@ -131,6 +131,7 @@ public class PlayerManager : MonoBehaviour
             destination.GetComponent<Destination>().meshFilter.mesh=player.placeholderMesh;
             destination.GetComponent<Destination>().meshRenderer.material=player.mat;
             player.counterText=destination.GetComponent<Destination>().CounterText;
+            player.GetComponent<PlayerWait>().SetActivityProgress(true);
             player.UpdateCounterText();
             player.GetComponent<PlayerTrigger>().ProductEnter=destination.GetComponent<Destination>().ProductEnter;
             player.peopleSelect.peoples[player.peopleSelect.index].GetComponent<Animator>().SetTrigger("Hold");

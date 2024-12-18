@@ -8,6 +8,7 @@ using DG.Tweening;
 public class Player : MonoBehaviour
 {
     private PlayerAttributes playerAttributes;
+    private PlayerWait playerWait;
     
     
 
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     {
         playerAttributes = GetComponent<PlayerAttributes>();
         peopleSelect = GetComponent<PeopleSelect>();
+        playerWait=GetComponent<PlayerWait>();
         
     }
 
@@ -81,6 +83,7 @@ public class Player : MonoBehaviour
                 PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
             //Turn back 
             
+            playerWait.SetActivityProgress(false);
             peopleSelect.peoples[peopleSelect.index].GetComponent<Animator>().SetTrigger("Completed");
             transform.Rotate(0, 180, 0);
             EventManager.Broadcast(GameEvent.OnPlayerLeaving);

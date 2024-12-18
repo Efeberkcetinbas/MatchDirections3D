@@ -21,6 +21,12 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
         InitializeColorGradientList();
     }   
 
+    internal void SetActivityProgress(bool val)
+    {
+        progressImage.gameObject.SetActive(val);
+        normalImage.gameObject.SetActive(val);
+    }
+
     public void ApplyWaitSettings(PlayerWaitSettings playerWaitSettings)
     {
         waitTime=playerWaitSettings.WaitTime;
