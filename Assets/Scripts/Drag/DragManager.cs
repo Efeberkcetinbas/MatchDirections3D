@@ -85,8 +85,13 @@ public class DragManager : MonoBehaviour
                     CurrentProduct.Collider.isTrigger=false;
                     CurrentProduct.rb.useGravity=true;
                     CurrentProduct.rb.isKinematic=false;
-                   
+                }
 
+                else
+                {
+                    CurrentProduct.Reset();
+                    CurrentProduct=null;
+                    return;
                 }
 
                 CurrentProduct.OutlineMesh.RemoveOutline();

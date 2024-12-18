@@ -22,7 +22,20 @@ public class ProductDrag : MonoBehaviour
     private void OnRestart()
     {
         IsPlaced=false;
-    }   
+    }
+
+    internal void Reset()
+    {
+        transform.position=new Vector3(0,7,-7);
+        Collider.isTrigger=false;
+        rb.useGravity=true;
+        rb.isKinematic=false;
+        OutlineMesh.RemoveOutline();
+        OutlineMesh.enabled=false;                    
+        IsBeingDragged=false;
+    }
+
+    
 
    
     

@@ -1311,6 +1311,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   progressImage: {fileID: 1222364263634090448}
+  normalImage: {fileID: 2558537831534781334}
   playerWaitSettings1: {fileID: 11400000, guid: e84bed59acaaa7f4f8db1a56cd991f97, type: 2}
   gameData: {fileID: 11400000, guid: 6f4f5a97a52dbab4eaa60efa1f850580, type: 2}
 --- !u!114 &9008570293522978425
@@ -5443,7 +5444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.41044202, b: 0.3754716, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

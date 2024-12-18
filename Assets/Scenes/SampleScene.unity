@@ -1031,7 +1031,7 @@ GameObject:
   - component: {fileID: 491673443}
   - component: {fileID: 491673442}
   m_Layer: 6
-  m_Name: Plane
+  m_Name: DropzoneArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1119,7 +1119,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1.22}
-  m_LocalScale: {x: 5, y: 1, z: 3}
+  m_LocalScale: {x: 3, y: 1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 457191613}
@@ -4047,6 +4047,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5400400066662251270, guid: 332f28774cfcaa24cbc08d1f9aed1099, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5528649535811224913, guid: 332f28774cfcaa24cbc08d1f9aed1099, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

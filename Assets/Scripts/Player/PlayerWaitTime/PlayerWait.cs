@@ -9,7 +9,7 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
     private float timer=0f;
     
     [SerializeField] private Gradient progressGradient;
-    [SerializeField] private Image progressImage;
+    [SerializeField] private Image progressImage,normalImage;
     [SerializeField] private PlayerWaitSettings playerWaitSettings1;
     
     [SerializeField] private GameData gameData;
@@ -34,7 +34,7 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
 
         var val=timer/waitTime;
         progressImage.fillAmount=val;
-        progressImage.color=GetColorForProgress(val);
+        normalImage.color=GetColorForProgress(val);
 
         if (timer >= waitTime)
         {

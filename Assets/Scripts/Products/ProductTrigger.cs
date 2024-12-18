@@ -101,6 +101,8 @@ public class ProductTrigger : Obstacleable
         {
             Debug.Log("No match found.");
             player.GetComponent<PeopleSelect>().peoples[player.GetComponent<PeopleSelect>().index].GetComponent<Animator>().SetTrigger("FalseProduct");
+            productDrag.Reset();
+            dragManager.CurrentProduct=null;
             //Decrease Satisfaction Bar
             EventManager.Broadcast(GameEvent.OnDismatch);
         }
