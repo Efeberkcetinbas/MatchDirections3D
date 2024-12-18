@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int productNumber;
 
     internal PeopleSelect peopleSelect;
+    internal Destination destination;
     
     public int requirementProduct;
     public Mesh placeholderMesh;
@@ -72,6 +73,8 @@ public class Player : MonoBehaviour
         {
             Debug.Log("FULL");
             EventManager.Broadcast(GameEvent.OnMatchFullPlayer);
+            destination.ResetDestination();
+            destination=null;
             if(!UnRegister)
                 PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
             //Turn back

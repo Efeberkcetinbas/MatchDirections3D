@@ -134,6 +134,7 @@ public class PlayerManager : MonoBehaviour
             player.UpdateCounterText();
             player.GetComponent<PlayerTrigger>().ProductEnter=destination.GetComponent<Destination>().ProductEnter;
             player.peopleSelect.peoples[player.peopleSelect.index].GetComponent<Animator>().SetTrigger("Hold");
+            player.destination=destination.GetComponent<Destination>();
             PlayerWaitManager.Instance.RegisterWaiter(player.GetComponent<PlayerWait>());
         });
         

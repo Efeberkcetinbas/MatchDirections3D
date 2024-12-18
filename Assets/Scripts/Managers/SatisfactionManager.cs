@@ -15,6 +15,8 @@ public class SatisfactionManager : MonoBehaviour
 
     [SerializeField] private GameData gameData;
     
+    private Gradient progressGradient;
+
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnMatchFound, OnMatchFound);
@@ -31,6 +33,10 @@ public class SatisfactionManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnPlayerWaitTooMuch, OnPlayerWaitTooMuch);
     }
 
+    private void Start()
+    {
+        InitializeColorGradientList();
+    }
     
     private void Update()
     {
@@ -98,25 +104,21 @@ public class SatisfactionManager : MonoBehaviour
         gameData.dissatisfy=true;
     }
 
+    private void InitializeColorGradientList()
+    {
+        progressGradient = new Gradient
+        {
+            colorKeys = new[]
+            {
+                new GradientColorKey(Color.red, 0f),   // Start at 0
+                new GradientColorKey(new Color(1f, 0.5f, 0f), 0.33f), // Orange
+                new GradientColorKey(Color.yellow, 0.66f), // Yellow
+                new GradientColorKey(Color.green, 1f)  // End at 1
+            }
+        };
+    }        
     private Color GetColorForProgress(float progress)
     {
-        // Define the colors
-        Color green = Color.green;
-        Color yellow = Color.yellow;
-        Color orange = new Color(1f, 0.5f, 0f); // Orange
-        Color red = Color.red;
-
-        if (progress < 0.33f)
-        {
-            return Color.Lerp(red, orange, progress / 0.33f);
-        }
-        else if (progress < 0.66f)
-        {
-            return Color.Lerp(orange, yellow, (progress - 0.33f) / 0.33f);
-        }
-        else
-        {
-            return Color.Lerp(yellow, green, (progress - 0.66f) / 0.34f);
-        }
+        return progressGradient.Evaluate(progress);
     }
 }

@@ -12,6 +12,19 @@ public class Destination : MonoBehaviour
 
     private void Awake()
     {
+        ResetText();
+    }
+
+    internal void ResetDestination()
+    {
+        ResetText();
+        meshRenderer.material=null;
+        meshFilter.mesh=null;
+    }
+
+
+    private void ResetText()
+    {
         CounterText.SetText("0/0");
     }
     

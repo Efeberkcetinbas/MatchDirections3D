@@ -8,6 +8,7 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
     private float waitTime;
     private float timer=0f;
     
+    [SerializeField] private Gradient progressGradient;
     [SerializeField] private Image progressImage;
     [SerializeField] private PlayerWaitSettings playerWaitSettings1;
     
@@ -20,6 +21,7 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
     {
         player = GetComponent<Player>();
         ApplyWaitSettings(playerWaitSettings1);
+        InitializeColorGradientList();
     }   
 
     public void ApplyWaitSettings(PlayerWaitSettings playerWaitSettings)
@@ -32,7 +34,7 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
 
         var val=timer/waitTime;
         progressImage.fillAmount=val;
-
+        progressImage.color=GetColorForProgress(val);
 
         if (timer >= waitTime)
         {
@@ -52,6 +54,24 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
         gameData.dissatisfyPeople++;
 
         
+    }
+
+    private void InitializeColorGradientList()
+    {
+        progressGradient = new Gradient
+        {
+            colorKeys = new[]
+            {
+                new GradientColorKey(Color.green, 0f),   // Start at 0
+                new GradientColorKey(Color.yellow, 0.33f), // Yellow
+                new GradientColorKey(new Color(1f, 0.5f, 0f), 0.66f), // Orange
+                new GradientColorKey(Color.red, 1f)  // End at 1
+            }
+        };
+    }        
+    private Color GetColorForProgress(float progress)
+    {
+        return progressGradient.Evaluate(progress);
     }
 
 
