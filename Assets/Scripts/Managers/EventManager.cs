@@ -13,6 +13,9 @@ public enum GameEvent
     OnMatchFound,
     OnDismatch,
     OnPlayerWaitTooMuch,
+    OnProductDragStart,
+    OnProductDragStop,
+    OnProductReset,
     
     //Game Management
     OnGameStart,

@@ -55,6 +55,8 @@ public class DragManager : MonoBehaviour
                         CurrentProduct.OutlineMesh.OutlineColor = Color.yellow;
                         CurrentProduct.OutlineMesh.OutlineWidth = 5f;
                         CurrentProduct.OutlineMesh.UpdateMaterialProperties();
+
+                        EventManager.Broadcast(GameEvent.OnProductDragStart);
                         
                         
                         _dragPlane = new Plane(Vector3.up, CurrentProduct.transform.position);
@@ -91,6 +93,7 @@ public class DragManager : MonoBehaviour
                 {
                     CurrentProduct.Reset();
                     CurrentProduct=null;
+                    EventManager.Broadcast(GameEvent.OnProductReset);
                     return;
                 }
 
@@ -98,6 +101,8 @@ public class DragManager : MonoBehaviour
                 CurrentProduct.OutlineMesh.enabled=false;
                 CurrentProduct.IsBeingDragged = false;
                 CurrentProduct = null;
+
+                EventManager.Broadcast(GameEvent.OnProductDragStop);
             }
         }
     }
