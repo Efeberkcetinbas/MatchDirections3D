@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject xP;
     [SerializeField] private Transform xPSpawnPos;
     [SerializeField] private int productNumber;
+    [SerializeField] private Vector3 startPos;
 
     internal PeopleSelect peopleSelect;
     internal Destination destination;
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
     {
         playerAttributes = GetComponent<PlayerAttributes>();
         peopleSelect = GetComponent<PeopleSelect>();
+        
     }
 
     
@@ -53,7 +55,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //Set it to Money UI or Moneycase. Whereever you want!
+    //Set it to Money UI or Moneycase. 
     internal void CoinUp()
     {
         GameObject xPeffect=Instantiate(xP,xPSpawnPos.position,xP.transform.rotation);
@@ -77,9 +79,14 @@ public class Player : MonoBehaviour
             destination=null;
             if(!UnRegister)
                 PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
-            //Turn back
+            //Turn back 
             
-            gameObject.SetActive(false);
+            peopleSelect.peoples[peopleSelect.index].GetComponent<Animator>().SetTrigger("Completed");
+            transform.Rotate(0, 180, 0);
+            EventManager.Broadcast(GameEvent.OnPlayerLeaving);
+            transform.DOMove(startPos,2).OnComplete(()=>{
+                gameObject.SetActive(false);
+            });
         }
     }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class AudioClipsGameManagement
@@ -45,7 +46,6 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = GameLoop;
         //musicSource.Play();
         effectSource = gameObject.AddComponent<AudioSource>();
-        
     }
 
     private void OnEnable() 
@@ -139,16 +139,19 @@ public class AudioManager : MonoBehaviour
     
     private void OnMatchFound()
     {
+        effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsPlayer.MatchSound);
     }
 
     private void OnDismatch()
     {
+        effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsPlayer.DismatchSound);
     }
 
     private void OnMatchFullPlayer()
     {
+        effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsPlayer.CompletedMatchSound);
     }
 
@@ -159,16 +162,19 @@ public class AudioManager : MonoBehaviour
 
     private void OnProductDragStart()
     {
+        effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsPlayer.ProductDragSound);
     }
 
     private void OnProductDragStop()
     {
+        effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsPlayer.ProductDropSound);
     }
 
     private void OnProductReset()
     {
+        effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsPlayer.ProductResetSound);
     }
 

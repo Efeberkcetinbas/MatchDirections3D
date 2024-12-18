@@ -979,11 +979,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: e780870261e16db4b803adf54395a73d, type: 2}
     - target: {fileID: 1073930370030449708, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
+      propertyPath: specifiedPeoples.Array.data[1].mat
+      value: 
+      objectReference: {fileID: 2100000, guid: e780870261e16db4b803adf54395a73d, type: 2}
+    - target: {fileID: 1073930370030449708, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
       propertyPath: specifiedPeoples.Array.data[0].placeholderMesh
       value: 
       objectReference: {fileID: -8545447256379345787, guid: 5edc012366910d14185f3a166fa9e0ef, type: 3}
     - target: {fileID: 1073930370030449708, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
+      propertyPath: specifiedPeoples.Array.data[1].placeholderMesh
+      value: 
+      objectReference: {fileID: -8545447256379345787, guid: 5edc012366910d14185f3a166fa9e0ef, type: 3}
+    - target: {fileID: 1073930370030449708, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
+      propertyPath: specifiedPeoples.Array.data[0].playerWaitSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a85d09aee97c494e8985508965332c5, type: 2}
+    - target: {fileID: 1073930370030449708, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
+      propertyPath: specifiedPeoples.Array.data[1].playerWaitSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a85d09aee97c494e8985508965332c5, type: 2}
+    - target: {fileID: 1073930370030449708, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
       propertyPath: specifiedPeoples.Array.data[0].RequirementProductNumber
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073930370030449708, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
+      propertyPath: specifiedPeoples.Array.data[1].RequirementProductNumber
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1594780898119427294, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
@@ -1680,7 +1700,7 @@ GameObject:
   - component: {fileID: 786530958}
   - component: {fileID: 786530959}
   m_Layer: 0
-  m_Name: PlayerManager
+  m_Name: LevelPlayerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1743,6 +1763,10 @@ PrefabInstance:
       propertyPath: specifiedPeoples.Array.data[0].placeholderMesh
       value: 
       objectReference: {fileID: -8545447256379345787, guid: 5edc012366910d14185f3a166fa9e0ef, type: 3}
+    - target: {fileID: 1073930370030449708, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
+      propertyPath: specifiedPeoples.Array.data[0].playerWaitSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a85d09aee97c494e8985508965332c5, type: 2}
     - target: {fileID: 1073930370030449708, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
       propertyPath: specifiedPeoples.Array.data[0].RequirementProductNumber
       value: 5
@@ -1848,6 +1872,10 @@ PrefabInstance:
       propertyPath: specifiedPeoples.Array.data[0].placeholderMesh
       value: 
       objectReference: {fileID: -8545447256379345787, guid: 5edc012366910d14185f3a166fa9e0ef, type: 3}
+    - target: {fileID: 1073930370030449708, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
+      propertyPath: specifiedPeoples.Array.data[0].playerWaitSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a85d09aee97c494e8985508965332c5, type: 2}
     - target: {fileID: 1073930370030449708, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
       propertyPath: specifiedPeoples.Array.data[0].RequirementProductNumber
       value: 25
@@ -4285,6 +4313,10 @@ PrefabInstance:
       propertyPath: specifiedPeoples.Array.data[0].placeholderMesh
       value: 
       objectReference: {fileID: -8545447256379345787, guid: 5edc012366910d14185f3a166fa9e0ef, type: 3}
+    - target: {fileID: 1073930370030449708, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
+      propertyPath: specifiedPeoples.Array.data[0].playerWaitSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a85d09aee97c494e8985508965332c5, type: 2}
     - target: {fileID: 1073930370030449708, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
       propertyPath: specifiedPeoples.Array.data[0].RequirementProductNumber
       value: 10

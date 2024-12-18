@@ -10,8 +10,6 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
     
     [SerializeField] private Gradient progressGradient;
     [SerializeField] private Image progressImage,normalImage;
-    [SerializeField] private PlayerWaitSettings playerWaitSettings1;
-    
     [SerializeField] private GameData gameData;
 
     private Player player;
@@ -20,7 +18,6 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
     private void Start()
     {
         player = GetComponent<Player>();
-        ApplyWaitSettings(playerWaitSettings1);
         InitializeColorGradientList();
     }   
 
