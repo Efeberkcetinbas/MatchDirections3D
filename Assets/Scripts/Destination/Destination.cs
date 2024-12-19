@@ -9,7 +9,8 @@ public class Destination : MonoBehaviour
     public MeshFilter meshFilter;
     public MeshRenderer meshRenderer;
     public Transform ProductEnter;
-
+    
+    private Vector3 initialScale;
     private void Awake()
     {
         ResetText();
@@ -20,12 +21,14 @@ public class Destination : MonoBehaviour
         ResetText();
         meshRenderer.material=null;
         meshFilter.mesh=null;
+        transform.localScale=initialScale;
     }
 
 
     private void ResetText()
     {
         CounterText.SetText("0/0");
+        initialScale=transform.localScale;
     }
     
 }

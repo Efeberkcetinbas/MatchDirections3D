@@ -7,6 +7,7 @@ using UnityEngine;
 public class SpecifiedPeople
 {
     public int RequirementProductNumber;
+    public int MultiplyPlaceHolder;
     public Mesh placeholderMesh;
     public Material mat;
     public PlayerWaitSettings playerWaitSettings;
@@ -32,6 +33,7 @@ public class PeopleLevel : MonoBehaviour
         {
             player.requirementProduct=specifiedPeoples[gameData.levelIndex].RequirementProductNumber;
             player.placeholderMesh=specifiedPeoples[gameData.levelIndex].placeholderMesh;
+            player.multiply=specifiedPeoples[gameData.levelIndex].MultiplyPlaceHolder;
             player.mat=specifiedPeoples[gameData.levelIndex].mat;
             playerWait.ApplyWaitSettings(specifiedPeoples[gameData.levelIndex].playerWaitSettings);
         }

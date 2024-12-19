@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b986d9df00ac5df4185f724d0c4ca366, type: 3}
+  m_Name: Level4
+  m_EditorClassIdentifier: 
+  levelName: Level4
+  productSpawnConfigs:
+  - productPrefab: {fileID: 6018625784182009328, guid: 781f008cedd0cb74ca0c6e2eaede798f, type: 3}
+    spawnCount: 8
+  - productPrefab: {fileID: 4386153749143792320, guid: c696f4beb3630414d8de75f754d9e8ac, type: 3}
+    spawnCount: 8
+  - productPrefab: {fileID: 5164001911531519029, guid: 721432cc82c4f5d4c91f3c79d3af0b94, type: 3}
+    spawnCount: 8
+  - productPrefab: {fileID: 1031571712365030427, guid: a0b86f24e61880c4b9fb2fb3e4ee7cdb, type: 3}
+    spawnCount: 8
+  spawnAreaCenter: {x: 0, y: 0, z: 0}
+  spawnAreaSize: {x: 0, y: 0, z: 5}

@@ -39,10 +39,12 @@ public enum Emojis
 
 public enum Food
 {
-    Fruit,
-    Drink,
-    FastFood,
-    Vegetables
+    Apple,
+    Cake,
+    Donut,
+    Meat,
+    Salad,
+    Watermelon
 }
 
 public enum Toys

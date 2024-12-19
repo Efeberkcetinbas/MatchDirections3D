@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00594cbe4d5e7ab4bbe8f9af168880b9, type: 3}
+  m_Name: Level5MovementOrder
+  m_EditorClassIdentifier: 
+  movementOrder: 010000000200000002000000
+  playerAttributes:
+  - {fileID: 11400000, guid: a1b678e1d75a53440904c23b7389a546, type: 2}
+  - {fileID: 11400000, guid: 200e6a0eaf22e3d47947065ae412059c, type: 2}
+  - {fileID: 11400000, guid: b02b07509715f9a47a4e12da36b7e586, type: 2}
+  - {fileID: 11400000, guid: 5436a05cb9a30b44ebc48cde71ae4454, type: 2}
+  - {fileID: 11400000, guid: 129aa007994caae44975c7e1e4f99e71, type: 2}

@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
-    private PlayerAttributes playerAttributes;
+   
     private PlayerWait playerWait;
     
     
@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     internal Destination destination;
     
     public int requirementProduct;
+    public int multiply=1;
     public Mesh placeholderMesh;
     public Material mat;
     public TextMeshPro counterText;
@@ -30,7 +31,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        playerAttributes = GetComponent<PlayerAttributes>();
         peopleSelect = GetComponent<PeopleSelect>();
         playerWait=GetComponent<PlayerWait>();
 
