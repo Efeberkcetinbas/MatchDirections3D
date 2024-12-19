@@ -20,7 +20,6 @@ public enum GameEvent
     
     //Game Management
     OnGameStart,
-    OnGameOver,
     OnIncreaseScore,
    
     //UI
@@ -34,10 +33,10 @@ public enum GameEvent
     
     OnNextLevel,
     OnSuccess,
+    OnFail,
     OnSuccessUI,
     OnFailUI,
     OnRestartLevel,
-    OnRestartGame,
 
 }
 public class EventManager

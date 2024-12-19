@@ -82,6 +82,7 @@ public class PlayerManager : MonoBehaviour
         if (currentMovementIndex >= movementOrderConfig.movementOrder.Count)
         {
             Debug.Log("All players have moved according to the movement order.");
+            EventManager.Broadcast(GameEvent.OnSuccess);
             return;
         }
 
