@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private PlayerAttributes playerAttributes;
     private PlayerWait playerWait;
     
+    private WaitForSeconds waitForSeconds;
     
 
 
@@ -33,6 +34,8 @@ public class Player : MonoBehaviour
         playerAttributes = GetComponent<PlayerAttributes>();
         peopleSelect = GetComponent<PeopleSelect>();
         playerWait=GetComponent<PlayerWait>();
+
+        waitForSeconds=new WaitForSeconds(0.4f);
         
     }
 
@@ -82,15 +85,21 @@ public class Player : MonoBehaviour
             if(!UnRegister)
                 PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
             //Turn back 
-            
+            StartCoroutine(SetMove());
             playerWait.SetActivityProgress(false);
             peopleSelect.peoples[peopleSelect.index].GetComponent<Animator>().SetTrigger("Completed");
-            transform.Rotate(0, 180, 0);
-            EventManager.Broadcast(GameEvent.OnPlayerLeaving);
-            transform.DOMove(startPos,2).OnComplete(()=>{
-                gameObject.SetActive(false);
-            });
+            
         }
+    }
+
+    private IEnumerator SetMove()
+    {
+        yield return waitForSeconds;
+        transform.Rotate(0, 180, 0);
+        EventManager.Broadcast(GameEvent.OnPlayerLeaving);
+        transform.DOMove(startPos,2).OnComplete(()=>{
+            gameObject.SetActive(false);
+        });
     }
 
     internal void UpdateCounterText()

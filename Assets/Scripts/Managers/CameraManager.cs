@@ -45,7 +45,10 @@ public class CameraManager : MonoBehaviour
 
     }
 
-    
+    private void OnMatchFound()
+    {
+        Noise(amplitudeGain,frequencyGain,shakeTime);
+    }
     
     
 
