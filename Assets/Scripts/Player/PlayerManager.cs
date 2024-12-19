@@ -67,6 +67,7 @@ public class PlayerManager : MonoBehaviour
     {
         for (int i = 0; i < players.Length; i++)
         {
+            players[i].GetComponent<PlayerAttributes>().CleanAttributes();
             if (i < movementOrderConfig.playerAttributes.Length)
             {
                 var playerAttributes = players[i].GetComponent<PlayerAttributes>();

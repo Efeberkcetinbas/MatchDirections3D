@@ -11,19 +11,20 @@ public class PlayerAttributes : MonoBehaviour
     public void AddAttribute(EnumAttribute attribute)
     {
         var type = attribute.GetType();
-    
-        // Clean any existing attributes of the same type
-        if (attributes.ContainsKey(type))
+        if (!attributes.ContainsKey(type))
         {
-            attributes.Remove(type);
-            Debug.Log($"Removed existing attribute of type {type} before adding the new one.");
+            attributes[type] = attribute;
         }
-        
-        // Add the new attribute
-        attributes[type] = attribute;
-        Debug.Log($"Added attribute of type {type}.");
+        else
+        {
+            Debug.LogWarning($"Attribute of type {type} already exists!");
+        }
 
-    }
+        foreach (var kvp in attributes)
+        {
+            Debug.Log($"Type: {kvp.Key}, Attribute: {kvp.Value},Player: {transform.name} ");
+        }
+    } 
 
     internal void CleanAttributes()
     {
