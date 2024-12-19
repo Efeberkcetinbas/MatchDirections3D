@@ -14,22 +14,29 @@ public class PlayerManager : MonoBehaviour
     private int counter;
     private int index;
 
-    private void Start()
-    {
-        InitializePlayerQueue();
-        AssignAttributes();
-        OnNextPlayer();
-    }
+   
 
+    
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnMatchFullPlayer, OnMatchFullPlayer);
+        EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnMatchFullPlayer, OnMatchFullPlayer);
+        EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
     }
+
+    private void OnGameStart()
+    {
+        InitializePlayerQueue();
+        AssignAttributes();
+        OnNextPlayer();    
+    }
+
+    
 
     private void InitializePlayerQueue()
     {
@@ -66,7 +73,7 @@ public class PlayerManager : MonoBehaviour
                 var configuration = movementOrderConfig.playerAttributes[i];
 
                 foreach (var attribute in configuration.attributes)
-                {
+                {   
                     playerAttributes.AddAttribute(attribute);
                 }
             }
@@ -75,6 +82,8 @@ public class PlayerManager : MonoBehaviour
                 Debug.LogWarning($"No configuration assigned for Player {i + 1}");
             }
         }
+
+    
     }
 
     public void OnNextPlayer()
@@ -109,6 +118,12 @@ public class PlayerManager : MonoBehaviour
                 var player = playerQueue.Dequeue();
                 player.gameObject.SetActive(true);
 
+                //ResetPlayer
+                player.GetComponent<PeopleSelect>().SelectPeople();
+                player.GetComponent<PeopleLevel>().OnAssignPeople();
+                player.GetComponent<PlayerWait>().ResetTimer();
+                player.transform.rotation=Quaternion.Euler(0f, 0f, 0f);
+
                 // Assign a random destination from the available ones
                 int randomIndex = Random.Range(0, availableDestinations.Count);
                 Transform target = availableDestinations[randomIndex];
@@ -132,6 +147,7 @@ public class PlayerManager : MonoBehaviour
             destination.GetComponent<Destination>().meshFilter.mesh=player.placeholderMesh;
             destination.GetComponent<Destination>().meshRenderer.material=player.mat;
             player.counterText=destination.GetComponent<Destination>().CounterText;
+            player.GetComponent<Player>().Reset();
             player.GetComponent<PlayerWait>().SetActivityProgress(true);
             player.UpdateCounterText();
             player.GetComponent<PlayerTrigger>().ProductEnter=destination.GetComponent<Destination>().ProductEnter;

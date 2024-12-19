@@ -27,6 +27,10 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
         normalImage.gameObject.SetActive(val);
     }
 
+    internal void ResetTimer()
+    {
+        timer=0;
+    }
     public void ApplyWaitSettings(PlayerWaitSettings playerWaitSettings)
     {
         waitTime=playerWaitSettings.WaitTime;

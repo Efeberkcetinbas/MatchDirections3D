@@ -620,3 +620,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributes:
   - {fileID: 11400000, guid: 2b28ca326330c804cba85890992a0b23, type: 2}
+  - {fileID: 11400000, guid: 70a59c11bec80fe42951a225b5e1bc71, type: 2}

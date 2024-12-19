@@ -21,10 +21,12 @@ public class PeopleLevel : MonoBehaviour
 
     private void Start()
     {
-        OnNextLevel();
+        OnAssignPeople();
     }
 
-    private void OnNextLevel()
+    
+
+    internal void OnAssignPeople()
     {
         if (player != null)
         {

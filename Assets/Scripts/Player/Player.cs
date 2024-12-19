@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     private PlayerAttributes playerAttributes;
     private PlayerWait playerWait;
     
-    private WaitForSeconds waitForSeconds;
     
 
 
@@ -35,31 +34,15 @@ public class Player : MonoBehaviour
         peopleSelect = GetComponent<PeopleSelect>();
         playerWait=GetComponent<PlayerWait>();
 
-        waitForSeconds=new WaitForSeconds(0.4f);
         
     }
 
     
+    
 
    
 
-    public void Initialize()
-    {
-        // Example: Access ColorEnumAttribute
-        var colorAttribute = playerAttributes.GetAttribute<ColorEnumAttribute>();
-        if (colorAttribute != null)
-        {
-            Debug.Log($"Player's color is {colorAttribute.value}");
-        }
-
-        // Example: Access DirectionEnumAttribute
-        var directionAttribute = playerAttributes.GetAttribute<DirectionEnumAttribute>();
-        if (directionAttribute != null)
-        {
-            Debug.Log($"Player's direction is {directionAttribute.value}");
-        }
-    }
-
+    
     //Set it to Money UI or Moneycase. 
     internal void CoinUp()
     {
@@ -85,21 +68,22 @@ public class Player : MonoBehaviour
             if(!UnRegister)
                 PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
             //Turn back 
-            StartCoroutine(SetMove());
+            transform.Rotate(0, 180, 0);
+            EventManager.Broadcast(GameEvent.OnPlayerLeaving);
+            transform.DOMove(startPos,2).OnComplete(()=>{
+                gameObject.SetActive(false);
+            });
             playerWait.SetActivityProgress(false);
             peopleSelect.peoples[peopleSelect.index].GetComponent<Animator>().SetTrigger("Completed");
             
         }
     }
 
-    private IEnumerator SetMove()
+
+    internal void Reset()
     {
-        yield return waitForSeconds;
-        transform.Rotate(0, 180, 0);
-        EventManager.Broadcast(GameEvent.OnPlayerLeaving);
-        transform.DOMove(startPos,2).OnComplete(()=>{
-            gameObject.SetActive(false);
-        });
+        productNumber=0;
+        counterText.SetText(productNumber.ToString() + " / " + requirementProduct.ToString());
     }
 
     internal void UpdateCounterText()

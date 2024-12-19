@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attributes:
+  - {fileID: 11400000, guid: 70a59c11bec80fe42951a225b5e1bc71, type: 2}
   - {fileID: 11400000, guid: 3589db237f2c5be49a99f91a26779150, type: 2}
 --- !u!1 &7083454644461790108
 GameObject:

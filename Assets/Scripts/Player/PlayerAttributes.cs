@@ -11,22 +11,26 @@ public class PlayerAttributes : MonoBehaviour
     public void AddAttribute(EnumAttribute attribute)
     {
         var type = attribute.GetType();
-        if (!attributes.ContainsKey(type))
+    
+        // Clean any existing attributes of the same type
+        if (attributes.ContainsKey(type))
         {
-            attributes[type] = attribute;
+            attributes.Remove(type);
+            Debug.Log($"Removed existing attribute of type {type} before adding the new one.");
         }
-        else
-        {
-            Debug.LogWarning($"Attribute of type {type} already exists!");
-        }
+        
+        // Add the new attribute
+        attributes[type] = attribute;
+        Debug.Log($"Added attribute of type {type}.");
+
     }
 
-    // Get an attribute of a specific type
-    public T GetAttribute<T>() where T : EnumAttribute
+    internal void CleanAttributes()
     {
-        var type = typeof(T);
-        return attributes.ContainsKey(type) ? (T)attributes[type] : null;
+        attributes.Clear();
     }
+
+    
 
     // Get an attribute by its type
     public EnumAttribute GetAttributeByType(Type type)
@@ -41,9 +45,5 @@ public class PlayerAttributes : MonoBehaviour
         return attributes.Keys;
     }
 
-    // Check if a specific type of attribute exists
-    public bool HasAttribute<T>() where T : EnumAttribute
-    {
-        return attributes.ContainsKey(typeof(T));
-    }
+    
 }

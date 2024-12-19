@@ -23,6 +23,7 @@ public class SatisfactionManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnMatchFullPlayer, OnMatchFullPlayer);
         EventManager.AddHandler(GameEvent.OnDismatch, OnDismatch);
         EventManager.AddHandler(GameEvent.OnPlayerWaitTooMuch, OnPlayerWaitTooMuch);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnDisable()
@@ -31,6 +32,7 @@ public class SatisfactionManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnMatchFullPlayer, OnMatchFullPlayer);
         EventManager.RemoveHandler(GameEvent.OnDismatch, OnDismatch);
         EventManager.RemoveHandler(GameEvent.OnPlayerWaitTooMuch, OnPlayerWaitTooMuch);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void Start()
@@ -40,17 +42,24 @@ public class SatisfactionManager : MonoBehaviour
     
     private void Update()
     {
-        DecreaseSatisfaction(DecreaseRate * Time.deltaTime);
-        
-        if(gameData.dissatisfy)
+        if(!gameData.isGameEnd)
         {
-            DecreaseSatisfaction(TimeoutPenalty*Time.deltaTime * gameData.dissatisfyPeople);
-        }
+            DecreaseSatisfaction(DecreaseRate * Time.deltaTime);
+            
+            if(gameData.dissatisfy)
+            {
+                DecreaseSatisfaction(TimeoutPenalty*Time.deltaTime * gameData.dissatisfyPeople);
+            }
 
-        float val=Satisfaction/100;
-        satisfactionProgress.fillAmount=val;
-        satisfactionProgress.color=GetColorForProgress(val);
-        
+            float val=Satisfaction/100;
+            satisfactionProgress.fillAmount=val;
+            satisfactionProgress.color=GetColorForProgress(val);
+        }
+    }
+
+    private void OnNextLevel()
+    {
+        Satisfaction=100;
     }
 
     private void OnMatchFound()

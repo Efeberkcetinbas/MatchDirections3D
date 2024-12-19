@@ -19,7 +19,7 @@ public class PeopleSelect : MonoBehaviour
         index = Random.Range(0,peoples.Count);
     }
 
-    private void SelectPeople()
+    internal void SelectPeople()
     {
         RandomizePeople();
         for (int i = 0; i < peoples.Count; i++)

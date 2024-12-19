@@ -49,5 +49,6 @@ public enum Toys
 {
     Cars,
     Bears,
-    Balls
+    Balls,
+    Houses
 }

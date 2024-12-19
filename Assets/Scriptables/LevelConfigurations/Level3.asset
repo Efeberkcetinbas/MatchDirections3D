@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b986d9df00ac5df4185f724d0c4ca366, type: 3}
-  m_Name: Level2
+  m_Name: Level3
   m_EditorClassIdentifier: 
-  levelName: Level2
+  levelName: Level3
   productSpawnConfigs:
-  - productPrefab: {fileID: 7856159840223764565, guid: 45a479bbffe2a6040adc97c94619f025, type: 3}
+  - productPrefab: {fileID: 8991224525263163594, guid: 872a2485167c36745bb9285c81d5ff4b, type: 3}
     spawnCount: 10
-  - productPrefab: {fileID: 5757699450568324426, guid: ebe11e4b74950004e9ab314f612c667c, type: 3}
+  - productPrefab: {fileID: 3511918557946845122, guid: 2004c5db0ff56ed4f962a9cdb5535d2d, type: 3}
     spawnCount: 10
-  - productPrefab: {fileID: 5966416049494237097, guid: 375a985f1bc913349a2a78cf144b6d99, type: 3}
+  - productPrefab: {fileID: 3226800460208414272, guid: 6ed569d0c45481e4cb1dade95f8899ac, type: 3}
+    spawnCount: 10
+  - productPrefab: {fileID: 1537833821755940361, guid: dee76383a34ca0643b2d6dcd53056269, type: 3}
     spawnCount: 10
   spawnAreaCenter: {x: 0, y: 0, z: 0}
   spawnAreaSize: {x: 0, y: 0, z: 5}

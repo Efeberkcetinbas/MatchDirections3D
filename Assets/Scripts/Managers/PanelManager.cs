@@ -15,7 +15,9 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private float sceneX,sceneY,oldSceneX,oldSceneY,duration;
 
     //TEMP. THIS WILL BE REMOVED
-    public GameObject NextButton,RestartButton;
+    public GameObject NextButton,RestartButton,StartButton;
+
+    //
 
     public GameData gameData;
 
@@ -73,11 +75,19 @@ public class PanelManager : MonoBehaviour
     private void OnNextLevel()
     {
         NextButton.SetActive(false);
+        StartButton.SetActive(true);
     }
 
     private void OnRestartLevel()
     {
         RestartButton.SetActive(false);
+    }
+
+    public void StartGame()
+    {
+        StartButton.SetActive(false);
+        gameData.isGameEnd=false;
+        EventManager.Broadcast(GameEvent.OnGameStart);
     }
     #endregion
     

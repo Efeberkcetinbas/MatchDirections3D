@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1de0f07fe1bfc9c478fadaf96c55c71c, type: 3}
-  m_Name: Green
+  m_Name: OrangeHouse
   m_EditorClassIdentifier: 
   attributes:
-  - {fileID: 11400000, guid: 51e029621b2f8424aaa995b136a7b842, type: 2}
+  - {fileID: 11400000, guid: 778e054631889604882e3b1e9e54c45a, type: 2}
+  - {fileID: 11400000, guid: 36965a6e973408549b52835b3b7383ea, type: 2}

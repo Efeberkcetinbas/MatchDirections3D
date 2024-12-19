@@ -9,16 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e14db6eb11dc14d4a9aadc380891c5fd, type: 3}
-  m_Name: GameData
+  m_Script: {fileID: 11500000, guid: 1de0f07fe1bfc9c478fadaf96c55c71c, type: 3}
+  m_Name: RedCars
   m_EditorClassIdentifier: 
-  score: 0
-  increaseScore: 0
-  levelIndex: 1
-  levelNumber: 1
-  dissatisfyPeople: 1
-  comboCount: 0
-  currentInterval: 3
-  elapsedTime: 0
-  isGameEnd: 0
-  dissatisfy: 1
+  attributes:
+  - {fileID: 11400000, guid: 3589db237f2c5be49a99f91a26779150, type: 2}
+  - {fileID: 11400000, guid: 70a59c11bec80fe42951a225b5e1bc71, type: 2}

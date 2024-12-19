@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00594cbe4d5e7ab4bbe8f9af168880b9, type: 3}
-  m_Name: NewMovementOrderConfig
+  m_Name: Level1MovementOrder
   m_EditorClassIdentifier: 
   movementOrder: 020000000100000001000000
   playerAttributes:

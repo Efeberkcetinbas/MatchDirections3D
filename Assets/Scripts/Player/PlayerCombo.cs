@@ -49,12 +49,14 @@ public class PlayerCombo : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnMatchFound, OnMatchFound);
         EventManager.AddHandler(GameEvent.OnDismatch, OnDismatch);
+        EventManager.AddHandler(GameEvent.OnSuccess,OnSuccess);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnMatchFound, OnMatchFound);
         EventManager.RemoveHandler(GameEvent.OnDismatch, OnDismatch);
+        EventManager.RemoveHandler(GameEvent.OnSuccess,OnSuccess);
     }
 
     private void OnMatchFound()
@@ -74,6 +76,16 @@ public class PlayerCombo : MonoBehaviour
         {
             gameData.currentInterval -= intervalDecrement;
         }
+    }
+
+    private void OnSuccess()
+    {
+        ResetCombo();
+    }
+
+    private void OnFail()
+    {
+        ResetCombo();
     }
 
     private void OnDismatch()

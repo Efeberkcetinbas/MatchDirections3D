@@ -9,16 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e14db6eb11dc14d4a9aadc380891c5fd, type: 3}
-  m_Name: GameData
+  m_Script: {fileID: 11500000, guid: e279ba4f399528749a87b054f020e917, type: 3}
+  m_Name: House
   m_EditorClassIdentifier: 
-  score: 0
-  increaseScore: 0
-  levelIndex: 1
-  levelNumber: 1
-  dissatisfyPeople: 1
-  comboCount: 0
-  currentInterval: 3
-  elapsedTime: 0
-  isGameEnd: 0
-  dissatisfy: 1
+  value: 3
