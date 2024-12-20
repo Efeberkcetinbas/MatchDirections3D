@@ -13,6 +13,7 @@ public class ProductTrigger : Obstacleable
     private Vector3 initialScale;
 
     [SerializeField] private GameObject subProduct;
+    [SerializeField] private ParticleSystem placeParticle;
 
     private void Start()
     {
@@ -84,11 +85,11 @@ public class ProductTrigger : Obstacleable
         {
             Debug.Log("Match found.");
             
-            //player.GetComponent<PlayerTrigger>().ProductParticle.Play();
             player.GetComponent<PeopleSelect>().peoples[player.GetComponent<PeopleSelect>().index].GetComponent<Animator>().SetTrigger("TrueProduct");
             player.GetComponent<PlayerTrigger>().ProductEnter.transform.DOPunchScale(Vector3.one,0.1f);
             subProduct.transform.DOScale(player.GetComponent<PlayerTrigger>().ProductEnter.localScale,.25f);
             transform.DORotate(player.GetComponent<PlayerTrigger>().ProductEnter.rotation.eulerAngles,.25f).OnComplete(()=>{
+                //placeParticle.Play();
                 //Add event for sound
             });
             transform.DOJump(player.GetComponent<PlayerTrigger>().ProductEnter.position,1,1,.5f).OnComplete(()=>{

@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
 {
    
     private PlayerWait playerWait;
-    
+    private int randomIndex;
+    private WaitForSeconds waitForSeconds;
     
 
 
@@ -17,6 +18,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform xPSpawnPos;
     [SerializeField] private int productNumber;
     [SerializeField] private Vector3 startPos;
+
+    [SerializeField] private ParticleSystem successParticle;
+    [SerializeField] private List<Material> particleMaterials=new List<Material>();
+    
 
     internal PeopleSelect peopleSelect;
     internal Destination destination;
@@ -33,6 +38,7 @@ public class Player : MonoBehaviour
     {
         peopleSelect = GetComponent<PeopleSelect>();
         playerWait=GetComponent<PlayerWait>();
+        waitForSeconds=new WaitForSeconds(2f);
 
         
     }
@@ -61,23 +67,33 @@ public class Player : MonoBehaviour
         if(requirementProduct==productNumber)
         {
             Debug.Log("FULL");
-            EventManager.Broadcast(GameEvent.OnMatchFullPlayer);
             destination.ResetDestination();
             destination=null;
-            if(!Unregister)
-                PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
-            //Turn back 
-            transform.Rotate(0, 180, 0);
-            EventManager.Broadcast(GameEvent.OnPlayerLeaving);
-            transform.DOMove(startPos,2).OnComplete(()=>{
-                gameObject.SetActive(false);
-            });
+            GetRandomMaterialForParticle();
             playerWait.SetActivityProgress(false);
-            peopleSelect.peoples[peopleSelect.index].GetComponent<Animator>().SetTrigger("Completed");
+            peopleSelect.peoples[peopleSelect.index].GetComponent<Animator>().SetTrigger("Thanks");
+            StartCoroutine(OnSuccessCompleted());
             
         }
     }
 
+    private IEnumerator OnSuccessCompleted()
+    {
+        yield return waitForSeconds;
+        EventManager.Broadcast(GameEvent.OnMatchFullPlayer);
+        if(!Unregister)
+                PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
+        transform.Rotate(0, 180, 0);
+        EventManager.Broadcast(GameEvent.OnPlayerLeaving);
+        transform.DOMove(startPos,2).OnComplete(()=>{
+                gameObject.SetActive(false);
+            });
+        peopleSelect.peoples[peopleSelect.index].GetComponent<Animator>().SetTrigger("Completed");
+
+            
+
+
+    }
 
     internal void Reset()
     {
@@ -97,15 +113,28 @@ public class Player : MonoBehaviour
         CheckAllMatch();
     }
 
+    
+
+    private void GetRandomIndex()
+    {
+        randomIndex=Random.Range(0,particleMaterials.Count);
+    }
+
+    private void GetRandomMaterialForParticle()
+    {
+        GetRandomIndex();
+        var Renderer=successParticle.GetComponent<Renderer>();
+        Renderer.material=particleMaterials[randomIndex];
+        successParticle.Play();
+    }
+
+
+    
     private void OnRestart()
     {
         productNumber=0;
         counterText.SetText(productNumber.ToString() + " / " + requirementProduct.ToString());
     }
-
-
-    
-
 
 
 

@@ -11,7 +11,7 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
     [SerializeField] private Gradient progressGradient;
     [SerializeField] private Image progressImage,normalImage;
     [SerializeField] private GameData gameData;
-
+    [SerializeField] private ParticleSystem warningParticle;
     private Player player;
 
 
@@ -54,6 +54,7 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
     {
         Debug.Log("WAITED SO LONG AND ANGRY");
         player.Unregister=true;
+        warningParticle.Play();
         PlayerWaitManager.Instance.UnRegisterWaiter(this);
         EventManager.Broadcast(GameEvent.OnPlayerWaitTooMuch);
         
