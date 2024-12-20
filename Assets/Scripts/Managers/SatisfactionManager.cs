@@ -7,6 +7,8 @@ public class SatisfactionManager : MonoBehaviour
 {   
     [Header("Satisfaction Settings")]
     [SerializeField] private Image satisfactionProgress;
+    [SerializeField] private Image satisfactionImage;
+    [SerializeField] private List<Sprite> satisfactionSprites=new List<Sprite>();
     [Range(0, 100)] public float Satisfaction = 100f;
     public float DecreaseRate = 0.1f; // Automatic decrease rate per second
     public float CorrectProductBoost = 10f;
@@ -54,6 +56,7 @@ public class SatisfactionManager : MonoBehaviour
             float val=Satisfaction/100;
             satisfactionProgress.fillAmount=val;
             satisfactionProgress.color=GetColorForProgress(val);
+            UpdateSatisfactionImage(val);
         }
     }
 
@@ -111,6 +114,17 @@ public class SatisfactionManager : MonoBehaviour
     private void OnTimeout()
     {
         gameData.dissatisfy=true;
+    }
+
+    private void UpdateSatisfactionImage(float progress)
+    {
+        if (satisfactionSprites == null || satisfactionSprites.Count == 0) return;
+
+        int spriteCount = satisfactionSprites.Count;
+        float step = 1f / spriteCount; // Progress step per sprite
+        int index = Mathf.Clamp((int)((1f - progress) / step), 0, spriteCount - 1); // Calculate index
+
+        satisfactionImage.sprite = satisfactionSprites[index];
     }
 
     private void InitializeColorGradientList()

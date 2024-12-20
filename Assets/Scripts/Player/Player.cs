@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     internal Destination destination;
     
     public int requirementProduct;
-    public int multiply=1;
+    public Vector3 NewScale=Vector3.one;
     public Mesh placeholderMesh;
     public Material mat;
     public TextMeshPro counterText;

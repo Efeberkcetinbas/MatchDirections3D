@@ -145,7 +145,7 @@ public class PlayerManager : MonoBehaviour
         // Replace with your preferred movement logic
         Debug.Log($"{player.name} moving to {destination}");
         player.transform.DOMove(destination.position,1f).OnComplete(()=>{
-            //destination.GetComponent<Destination>().meshRenderer.transform.localScale*=player.multiply;
+            destination.GetComponent<Destination>().meshRenderer.transform.localScale=player.NewScale;
             destination.GetComponent<Destination>().meshFilter.mesh=player.placeholderMesh;
             destination.GetComponent<Destination>().meshRenderer.material=player.mat;
             player.counterText=destination.GetComponent<Destination>().CounterText;

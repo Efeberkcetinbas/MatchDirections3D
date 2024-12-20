@@ -10,7 +10,7 @@ public class Destination : MonoBehaviour
     public MeshRenderer meshRenderer;
     public Transform ProductEnter;
     
-    private Vector3 initialScale;
+    public Vector3 initialScale;
     private void Awake()
     {
         ResetText();

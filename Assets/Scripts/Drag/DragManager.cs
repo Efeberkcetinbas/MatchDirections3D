@@ -97,6 +97,8 @@ public class DragManager : MonoBehaviour
                     return;
                 }
 
+                
+
                 CurrentProduct.OutlineMesh.RemoveOutline();
                 CurrentProduct.OutlineMesh.enabled=false;
                 CurrentProduct.IsBeingDragged = false;
