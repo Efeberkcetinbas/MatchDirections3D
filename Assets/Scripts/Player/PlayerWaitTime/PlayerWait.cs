@@ -53,7 +53,7 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
     private void WaitTooMuch()
     {
         Debug.Log("WAITED SO LONG AND ANGRY");
-        player.UnRegister=true;
+        player.Unregister=true;
         PlayerWaitManager.Instance.UnRegisterWaiter(this);
         EventManager.Broadcast(GameEvent.OnPlayerWaitTooMuch);
         

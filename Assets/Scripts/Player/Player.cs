@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     public Material mat;
     public TextMeshPro counterText;
 
-    public bool UnRegister=false;
+    public bool Unregister=false;
 
     private void Awake()
     {
@@ -37,7 +37,6 @@ public class Player : MonoBehaviour
         
     }
 
-    
     
 
    
@@ -65,7 +64,7 @@ public class Player : MonoBehaviour
             EventManager.Broadcast(GameEvent.OnMatchFullPlayer);
             destination.ResetDestination();
             destination=null;
-            if(!UnRegister)
+            if(!Unregister)
                 PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
             //Turn back 
             transform.Rotate(0, 180, 0);
