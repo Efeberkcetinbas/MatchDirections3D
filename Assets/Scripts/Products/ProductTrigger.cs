@@ -10,12 +10,16 @@ public class ProductTrigger : Obstacleable
     private ProductDrag productDrag;
 
     private bool matched=false;
+    private Vector3 initialScale;
+
+    [SerializeField] private GameObject subProduct;
 
     private void Start()
     {
         productAttributes = GetComponent<ProductAttributes>();
         dragManager=FindAnyObjectByType<DragManager>();
         productDrag=GetComponent<ProductDrag>();
+        initialScale=subProduct.transform.localScale;
     }
 
     public ProductTrigger()
@@ -83,6 +87,7 @@ public class ProductTrigger : Obstacleable
             //player.GetComponent<PlayerTrigger>().ProductParticle.Play();
             player.GetComponent<PeopleSelect>().peoples[player.GetComponent<PeopleSelect>().index].GetComponent<Animator>().SetTrigger("TrueProduct");
             player.GetComponent<PlayerTrigger>().ProductEnter.transform.DOPunchScale(Vector3.one,0.1f);
+            subProduct.transform.DOScale(player.GetComponent<PlayerTrigger>().ProductEnter.localScale,.25f);
             transform.DORotate(player.GetComponent<PlayerTrigger>().ProductEnter.rotation.eulerAngles,.25f).OnComplete(()=>{
                 //Add event for sound
             });
@@ -90,7 +95,9 @@ public class ProductTrigger : Obstacleable
                 player.GetComponent<Player>().CoinUp();
                 player.GetComponent<Player>().IncreaseProductNumber();
                 EventManager.Broadcast(GameEvent.OnMatchFound);
+                subProduct.transform.localScale=initialScale;
                 transform.gameObject.SetActive(false);
+                player.GetComponent<PlayerTrigger>().ProductEnter.transform.DOPunchScale(Vector3.one,0.5f);
             });
             productDrag.IsPlaced=true;
             //Increase Satisfaction Bar
@@ -139,5 +146,6 @@ public class ProductTrigger : Obstacleable
     private void OnRestart()
     {
         matched=false;
+        subProduct.transform.localScale=initialScale;
     }
 }
