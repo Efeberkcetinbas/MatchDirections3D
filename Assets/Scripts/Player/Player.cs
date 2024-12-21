@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     public TextMeshPro counterText;
 
     public bool Unregister=false;
+    public bool Full=false;
 
     private void Awake()
     {
@@ -67,6 +68,7 @@ public class Player : MonoBehaviour
         if(requirementProduct==productNumber)
         {
             Debug.Log("FULL");
+            Full=true;
             destination.ResetDestination();
             destination=null;
             GetRandomMaterialForParticle();

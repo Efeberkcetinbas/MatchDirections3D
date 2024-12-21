@@ -36,6 +36,12 @@ public class ProductTrigger : Obstacleable
             return;
         }
 
+        if(player.GetComponent<Player>().Full)
+        {
+            Debug.Log("Player is full");
+            return;
+        }
+
         bool isMatch = true;  // Assume match unless proven otherwise
 
         // Get all the types of attributes in the product and player

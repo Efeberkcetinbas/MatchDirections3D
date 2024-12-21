@@ -997,6 +997,11 @@ Transform:
   - {fileID: 856323971}
   m_Father: {fileID: 1754096861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &240635455 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6792929037316361329, guid: 332f28774cfcaa24cbc08d1f9aed1099, type: 3}
+  m_PrefabInstance: {fileID: 5237982917776445746}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &258214261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2656,6 +2661,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556169355}
   m_CullTransparentMesh: 1
+--- !u!4 &612020728 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5543959976341578782, guid: 332f28774cfcaa24cbc08d1f9aed1099, type: 3}
+  m_PrefabInstance: {fileID: 5237982917776445746}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &663869079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7373,6 +7383,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 141760505323329374, guid: 332f28774cfcaa24cbc08d1f9aed1099, type: 3}
+      propertyPath: ease
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 141760505323329374, guid: 332f28774cfcaa24cbc08d1f9aed1099, type: 3}
+      propertyPath: door1
+      value: 
+      objectReference: {fileID: 612020728}
+    - target: {fileID: 141760505323329374, guid: 332f28774cfcaa24cbc08d1f9aed1099, type: 3}
+      propertyPath: door2
+      value: 
+      objectReference: {fileID: 240635455}
+    - target: {fileID: 141760505323329374, guid: 332f28774cfcaa24cbc08d1f9aed1099, type: 3}
+      propertyPath: door1X
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 141760505323329374, guid: 332f28774cfcaa24cbc08d1f9aed1099, type: 3}
+      propertyPath: door2X
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 141760505323329374, guid: 332f28774cfcaa24cbc08d1f9aed1099, type: 3}
+      propertyPath: duration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 141760505323329374, guid: 332f28774cfcaa24cbc08d1f9aed1099, type: 3}
+      propertyPath: door1Initial
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 141760505323329374, guid: 332f28774cfcaa24cbc08d1f9aed1099, type: 3}
+      propertyPath: door2Initial
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1835100150179967161, guid: 332f28774cfcaa24cbc08d1f9aed1099, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

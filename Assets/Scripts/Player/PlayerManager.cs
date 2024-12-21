@@ -43,6 +43,7 @@ public class PlayerManager : MonoBehaviour
         foreach (var player in players)
         {
             player.Unregister=false;
+            player.Full=false;
             player.gameObject.SetActive(false); // Deactivate all players at the start
             playerQueue.Enqueue(player);
         }
