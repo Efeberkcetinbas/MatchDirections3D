@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7999515020830582601}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: IncreaseScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
