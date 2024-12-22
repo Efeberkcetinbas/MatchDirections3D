@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
    
     private PlayerWait playerWait;
     private int randomIndex;
+    private int coincounter;
     private WaitForSeconds waitForSeconds;
     private Renderer successRenderer;
     
@@ -19,7 +20,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform xPSpawnPos;
     [SerializeField] private int productNumber;
     [SerializeField] private Vector3 startPos;
-
+    [SerializeField] private GameData gameData;
+    [SerializeField] private CollectCoin collectCoin;
     [SerializeField] private ParticleSystem successParticle;
     [SerializeField] private List<Material> particleMaterials=new List<Material>();
     
@@ -74,8 +76,11 @@ public class Player : MonoBehaviour
             Full=true;
             destination.ResetDestination();
             destination=null;
+            coincounter=Mathf.Max(1,gameData.comboCount);
+            gameData.increaseScore=coincounter;
             playerWait.SetActivityProgress(false);
             peopleSelect.peoples[peopleSelect.index].GetComponent<Animator>().SetTrigger("Thanks");
+            collectCoin.StartCollectCoin(coincounter);
             EventManager.Broadcast(GameEvent.OnPlayerThanks);
             StartCoroutine(OnSuccessCompleted());
             
@@ -102,6 +107,7 @@ public class Player : MonoBehaviour
 
     internal void Reset()
     {
+        coincounter=0;
         productNumber=0;
         counterText.SetText(productNumber.ToString() + " / " + requirementProduct.ToString());
     }
@@ -136,10 +142,12 @@ public class Player : MonoBehaviour
     
     private void OnRestart()
     {
+        coincounter=0;
         productNumber=0;
         counterText.SetText(productNumber.ToString() + " / " + requirementProduct.ToString());
     }
 
+    
 
 
 }

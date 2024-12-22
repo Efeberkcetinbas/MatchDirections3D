@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class CollectCoin : MonoBehaviour
 {
-    public Transform WorldPoint;
-    public CoinAnimation coinAnimation;
+    [SerializeField] private Transform WorldPoint;
+    private CoinAnimation coinAnimation;
 
-
-    public void StartCollectCoin()
+    private void Start()
     {
-        int randomCoin=Random.Range(0,coinAnimation.MaxCoinsCount);
-        coinAnimation.PlayAnim(randomCoin,WorldPoint.position);
+        coinAnimation=FindObjectOfType<CoinAnimation>();
     }
+
+
+
+    internal void StartCollectCoin(int coincount)
+    {
+        coinAnimation.PlayAnim(coincount,WorldPoint.position);
+    }
+
 }

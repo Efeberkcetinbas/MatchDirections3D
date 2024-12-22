@@ -25,10 +25,11 @@ public enum GameEvent
     OnIncreaseScore,
    
     //UI
-    OnUIUpdate,
+    OnScoreUIUpdate,
     OnLevelUIUpdate,
     OnComboUIUpdate,
     OnComboProgress,
+    OnCoinIncreaseSound,
 
 
 

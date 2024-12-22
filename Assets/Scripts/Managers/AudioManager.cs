@@ -13,6 +13,7 @@ public class AudioClipsGameManagement
     public AudioClip NextLevelSound;
     public AudioClip StartSound;
     public AudioClip FailUISound;
+    public AudioClip IncreaseScoreSound;
     
 }
 
@@ -59,6 +60,7 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.AddHandler(GameEvent.OnCoinIncreaseSound,OnCoinIncreaseSound);
         #endregion
 
         //Player
@@ -84,6 +86,7 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.RemoveHandler(GameEvent.OnCoinIncreaseSound,OnCoinIncreaseSound);
         #endregion
 
         //Player
@@ -134,6 +137,12 @@ public class AudioManager : MonoBehaviour
     private void OnFailUI()
     {
         effectSource.PlayOneShot(audioClipsGameManagement.FailUISound);
+    }
+
+    private void OnCoinIncreaseSound()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsGameManagement.IncreaseScoreSound);
     }
 
     #endregion

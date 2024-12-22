@@ -1291,6 +1291,7 @@ Transform:
   - {fileID: 2133683686376487097}
   - {fileID: 5082676801189638624}
   - {fileID: 556110681538792524}
+  - {fileID: 3695881871690313220}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &280034546016288537
@@ -1330,6 +1331,8 @@ MonoBehaviour:
   xPSpawnPos: {fileID: 7358561561956776184}
   productNumber: 0
   startPos: {x: 0, y: 3, z: 50}
+  gameData: {fileID: 11400000, guid: 6f4f5a97a52dbab4eaa60efa1f850580, type: 2}
+  collectCoin: {fileID: 1334906018387380696}
   successParticle: {fileID: 3613923669999711603}
   particleMaterials:
   - {fileID: 2100000, guid: ca6271d0f0946624484298cc419a1a9d, type: 2}
@@ -1346,6 +1349,7 @@ MonoBehaviour:
   mat: {fileID: 0}
   counterText: {fileID: 0}
   Unregister: 0
+  Full: 0
 --- !u!114 &117683512709637138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2172,6 +2176,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9033450043027677356}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3225505154092921982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3695881871690313220}
+  - component: {fileID: 1334906018387380696}
+  m_Layer: 0
+  m_Name: WorldPositionCoin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3695881871690313220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225505154092921982}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6275047112262375858}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1334906018387380696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225505154092921982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1025dd6038e7ff4b88b632eda82f8e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorldPoint: {fileID: 3695881871690313220}
 --- !u!1 &3326433974005205909
 GameObject:
   m_ObjectHideFlags: 0

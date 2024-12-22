@@ -7,21 +7,22 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("Scene Texts")]
-    [SerializeField] private TextMeshProUGUI score;
+    [Header("Level")]
     [SerializeField] private TextMeshProUGUI levelText;
 
     [Header("Combo Part")]
     [SerializeField] private TextMeshProUGUI comboText;
     [SerializeField] private Image progressBar;
 
+    [Header("Coin Amount")]
+    [SerializeField] private TextMeshProUGUI coinText;
+
     [Header("DATA'S")]
     public GameData gameData;
-    public PlayerData playerData;
 
     private void OnEnable()
     {
-        EventManager.AddHandler(GameEvent.OnUIUpdate, OnUIUpdate);
+        EventManager.AddHandler(GameEvent.OnScoreUIUpdate, OnUIUpdate);
         EventManager.AddHandler(GameEvent.OnLevelUIUpdate,OnLevelUIUpdate);
         EventManager.AddHandler(GameEvent.OnComboProgress,OnComboProgress);
         EventManager.AddHandler(GameEvent.OnComboUIUpdate,OnComboUIUpdate);
@@ -30,7 +31,7 @@ public class UIManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        EventManager.RemoveHandler(GameEvent.OnUIUpdate, OnUIUpdate);
+        EventManager.RemoveHandler(GameEvent.OnScoreUIUpdate, OnUIUpdate);
         EventManager.RemoveHandler(GameEvent.OnLevelUIUpdate,OnLevelUIUpdate);
         EventManager.RemoveHandler(GameEvent.OnComboProgress,OnComboProgress);
         EventManager.RemoveHandler(GameEvent.OnComboUIUpdate,OnComboUIUpdate);
@@ -39,8 +40,7 @@ public class UIManager : MonoBehaviour
     
     private void OnUIUpdate()
     {
-        score.SetText(gameData.score.ToString());
-        score.transform.DOScale(new Vector3(1.5f,1.5f,1.5f),0.2f).OnComplete(()=>score.transform.DOScale(new Vector3(1,1f,1f),0.2f));
+        coinText.SetText(gameData.score.ToString());
     }
 
     private void OnLevelUIUpdate()
@@ -58,6 +58,8 @@ public class UIManager : MonoBehaviour
     {
         comboText.SetText("x " + gameData.comboCount);
     }
+
+    
     
 
     

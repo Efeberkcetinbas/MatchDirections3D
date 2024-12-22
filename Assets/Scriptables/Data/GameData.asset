@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   increaseScore: 0
-  levelIndex: 1
-  levelNumber: 1
-  dissatisfyPeople: 1
+  levelIndex: 0
+  levelNumber: 0
+  dissatisfyPeople: 0
   comboCount: 0
   currentInterval: 3
   elapsedTime: 0
   isGameEnd: 0
-  dissatisfy: 1
+  dissatisfy: 0
