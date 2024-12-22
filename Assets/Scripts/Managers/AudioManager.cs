@@ -27,6 +27,8 @@ public class AudioClipsPlayer
     public AudioClip ProductDropSound;
     public AudioClip ProductResetSound;
     public AudioClip CompletedMatchSound;
+    public AudioClip ProductPlacedSound;
+    public AudioClip PlayerThanksSound;
 }
 public class AudioManager : MonoBehaviour
 {
@@ -65,11 +67,13 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnDismatch,OnDismatch);
         EventManager.AddHandler(GameEvent.OnMatchFullPlayer,OnMatchFullPlayer);
         EventManager.AddHandler(GameEvent.OnPlayerWaitTooMuch,OnPlayerWaitTooMuch);
+        EventManager.AddHandler(GameEvent.OnPlayerThanks,OnPlayerThanks);
 
         //Product
         EventManager.AddHandler(GameEvent.OnProductDragStart,OnProductDragStart);
         EventManager.AddHandler(GameEvent.OnProductDragStop,OnProductDragStop);
         EventManager.AddHandler(GameEvent.OnProductReset,OnProductReset);
+        EventManager.AddHandler(GameEvent.OnProductPlaced,OnProductPlaced);
     }
     private void OnDisable() 
     {
@@ -88,11 +92,13 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnDismatch,OnDismatch);
         EventManager.RemoveHandler(GameEvent.OnMatchFullPlayer,OnMatchFullPlayer);
         EventManager.RemoveHandler(GameEvent.OnPlayerWaitTooMuch,OnPlayerWaitTooMuch);
+        EventManager.RemoveHandler(GameEvent.OnPlayerThanks,OnPlayerThanks);
 
         //Product
         EventManager.RemoveHandler(GameEvent.OnProductDragStart,OnProductDragStart);
         EventManager.RemoveHandler(GameEvent.OnProductDragStop,OnProductDragStop);
         EventManager.RemoveHandler(GameEvent.OnProductReset,OnProductReset);
+        EventManager.RemoveHandler(GameEvent.OnProductPlaced,OnProductPlaced);
 
     }
 
@@ -160,6 +166,12 @@ public class AudioManager : MonoBehaviour
         effectSource.PlayOneShot(audioClipsPlayer.PlayerWaitTooMuchSound);
     }
 
+    private void OnPlayerThanks()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsPlayer.PlayerThanksSound);
+    }
+
     private void OnProductDragStart()
     {
         effectSource.pitch=Random.Range(1,1.5f);
@@ -176,6 +188,12 @@ public class AudioManager : MonoBehaviour
     {
         effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsPlayer.ProductResetSound);
+    }
+
+    private void OnProductPlaced()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsPlayer.ProductPlacedSound);
     }
 
 }

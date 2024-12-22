@@ -7,10 +7,12 @@ public enum GameEvent
     //Player
     OnPlayerStartMove,
     OnMatchFullPlayer,
+    OnPlayerThanks,
     OnPlayerLeaving,
 
     //Player-Product
     
+    OnProductPlaced,
     OnMatchFound,
     OnDismatch,
     OnPlayerWaitTooMuch,

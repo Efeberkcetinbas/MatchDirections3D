@@ -94,12 +94,13 @@ public class ProductTrigger : Obstacleable
             player.GetComponent<PeopleSelect>().peoples[player.GetComponent<PeopleSelect>().index].GetComponent<Animator>().SetTrigger("TrueProduct");
             player.GetComponent<PlayerTrigger>().ProductEnter.transform.DOPunchScale(Vector3.one,0.1f);
             subProduct.transform.DOScale(player.GetComponent<PlayerTrigger>().ProductEnter.localScale,.25f);
+            EventManager.Broadcast(GameEvent.OnProductPlaced);
             transform.DORotate(player.GetComponent<PlayerTrigger>().ProductEnter.rotation.eulerAngles,.25f).OnComplete(()=>{
                 //placeParticle.Play();
                 //Add event for sound
             });
             transform.DOJump(player.GetComponent<PlayerTrigger>().ProductEnter.position,1,1,.5f).OnComplete(()=>{
-                player.GetComponent<Player>().CoinUp();
+                //player.GetComponent<Player>().CoinUp();
                 player.GetComponent<Player>().IncreaseProductNumber();
                 EventManager.Broadcast(GameEvent.OnMatchFound);
                 subProduct.transform.localScale=initialScale;

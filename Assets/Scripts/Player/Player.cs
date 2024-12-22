@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private PlayerWait playerWait;
     private int randomIndex;
     private WaitForSeconds waitForSeconds;
+    private Renderer successRenderer;
     
 
 
@@ -39,8 +40,8 @@ public class Player : MonoBehaviour
     {
         peopleSelect = GetComponent<PeopleSelect>();
         playerWait=GetComponent<PlayerWait>();
-        waitForSeconds=new WaitForSeconds(2f);
-
+        waitForSeconds=new WaitForSeconds(1f);
+        successRenderer=successParticle.GetComponent<Renderer>();
         
     }
 
@@ -65,15 +66,17 @@ public class Player : MonoBehaviour
 
     internal void CheckAllMatch()
     {
+        PlaySuccessParticle();
+
         if(requirementProduct==productNumber)
         {
             Debug.Log("FULL");
             Full=true;
             destination.ResetDestination();
             destination=null;
-            GetRandomMaterialForParticle();
             playerWait.SetActivityProgress(false);
             peopleSelect.peoples[peopleSelect.index].GetComponent<Animator>().SetTrigger("Thanks");
+            EventManager.Broadcast(GameEvent.OnPlayerThanks);
             StartCoroutine(OnSuccessCompleted());
             
         }
@@ -122,11 +125,10 @@ public class Player : MonoBehaviour
         randomIndex=Random.Range(0,particleMaterials.Count);
     }
 
-    private void GetRandomMaterialForParticle()
+    private void PlaySuccessParticle()
     {
         GetRandomIndex();
-        var Renderer=successParticle.GetComponent<Renderer>();
-        Renderer.material=particleMaterials[randomIndex];
+        successRenderer.material=particleMaterials[randomIndex];
         successParticle.Play();
     }
 
