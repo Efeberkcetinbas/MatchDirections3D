@@ -23,8 +23,9 @@ public class ScoreManager : MonoBehaviour
     }
     private void OnIncreaseScore()
     {
-        DOTween.To(GetScore,ChangeScore,gameData.score+gameData.increaseScore,.5f).OnUpdate(UpdateUI);
+        DOTween.To(GetScore,ChangeScore,gameData.score+gameData.increaseScore,.5f).OnUpdate(UpdateUI).OnComplete(()=>EventManager.Broadcast(GameEvent.OnCheckHelpers));
     }
+
 
     private int GetScore()
     {

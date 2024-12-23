@@ -9,6 +9,7 @@ public class GameData : ScriptableObject
 
     public int score;
     public int increaseScore;
+    public int decreaseScore;
     public int levelIndex;
     public int levelNumber;
     public int dissatisfyPeople;
@@ -21,5 +22,6 @@ public class GameData : ScriptableObject
 
     public bool isGameEnd=false;
     public bool dissatisfy=false;
+    public bool isFreezer=false;
 
 }

@@ -6,6 +6,8 @@ public class PlayerWaitManager : MonoBehaviour
 {
     public static PlayerWaitManager Instance { get; private set; }
 
+    [SerializeField] private GameData gameData;
+
     private readonly List<IPlayerWait> players = new();
     private readonly List<IPlayerWait> playersToRemove = new(); // Temporary list to track players to remove
 
@@ -22,10 +24,14 @@ public class PlayerWaitManager : MonoBehaviour
 
     private void Update()
     {
-        foreach (var player in players)
+        if(!gameData.isFreezer)
         {
-            player.UpdateBehavior(Time.deltaTime);
+            foreach (var player in players)
+            {
+                player.UpdateBehavior(Time.deltaTime);
+            }
         }
+        
 
         // Remove players after iteration
         if (playersToRemove.Count > 0)

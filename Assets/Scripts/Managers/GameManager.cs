@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject minigame;
 
     private WaitForSeconds waitForSeconds;
+    private WaitForSeconds freezerWaitForSeconds;
 
 
     private void Awake() 
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         waitForSeconds=new WaitForSeconds(2);
+        freezerWaitForSeconds=new WaitForSeconds(5);
         minigame.SetActive(false);
     }
 
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.AddHandler(GameEvent.OnFail,OnFail);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.AddHandler(GameEvent.OnFreezerIn,OnFreezerIn);
 
     }
 
@@ -41,6 +44,7 @@ public class GameManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.RemoveHandler(GameEvent.OnFail,OnFail);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.RemoveHandler(GameEvent.OnFreezerIn,OnFreezerIn);
     }
 
     
@@ -58,14 +62,33 @@ public class GameManager : MonoBehaviour
     }
 
    
+    #region Helpers
+    private void OnFreezerIn()
+    {
+        gameData.isFreezer=true;
+        StartCoroutine(SetFreezeOut());
+    }
+
+    private IEnumerator SetFreezeOut()
+    {
+        yield return freezerWaitForSeconds;
+        gameData.isFreezer=false;
+        //EventManager.Broadcast(GameEvent.OnFreezerOut);
+    }
+
+    private void OnSetMaxSatisfaction()
+    {
+        //Snowman Active!
+    }
 
    
-    
+    #endregion
 
     private void ClearData()
     {
         gameData.isGameEnd=true;
         gameData.dissatisfy=false;
+        gameData.isFreezer=false;
 
         gameData.dissatisfyPeople=0;
         gameData.comboCount=0;

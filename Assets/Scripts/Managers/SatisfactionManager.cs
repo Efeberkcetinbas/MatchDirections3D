@@ -27,6 +27,7 @@ public class SatisfactionManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnPlayerWaitTooMuch, OnPlayerWaitTooMuch);
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.AddHandler(GameEvent.OnSetMaxSatisfaction,OnSetMaxSatisfaction);
     }
 
     private void OnDisable()
@@ -37,6 +38,7 @@ public class SatisfactionManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnPlayerWaitTooMuch, OnPlayerWaitTooMuch);
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.RemoveHandler(GameEvent.OnSetMaxSatisfaction,OnSetMaxSatisfaction);
     }
 
     private void Start()
@@ -46,7 +48,7 @@ public class SatisfactionManager : MonoBehaviour
     
     private void Update()
     {
-        if(!gameData.isGameEnd)
+        if(!gameData.isGameEnd && !gameData.isFreezer)
         {
             DecreaseSatisfaction(DecreaseRate * Time.deltaTime);
             
@@ -78,6 +80,11 @@ public class SatisfactionManager : MonoBehaviour
     }
 
     private void OnNextLevel()
+    {
+        Satisfaction=100;
+    }
+
+    private void OnSetMaxSatisfaction()
     {
         Satisfaction=100;
     }

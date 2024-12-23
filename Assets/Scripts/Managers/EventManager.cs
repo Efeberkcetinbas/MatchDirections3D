@@ -24,10 +24,17 @@ public enum GameEvent
     OnUpdateMiniMap,
     OnUpdateBuilding,
     OnUpdateStuff,
+
+    //Helpers
+    OnCheckHelpers,
+    OnFreezerIn,
+    OnFreezerOut,
+    OnSetMaxSatisfaction,
     
     //Game Management
     OnGameStart,
     OnIncreaseScore,
+    OnDecreaseScore,
    
     //UI
     OnScoreUIUpdate,
