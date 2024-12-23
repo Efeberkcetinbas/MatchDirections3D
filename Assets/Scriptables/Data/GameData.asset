@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   score: 0
-  increaseScore: 0
-  levelIndex: 0
-  levelNumber: 0
+  increaseScore: 14
+  levelIndex: 1
+  levelNumber: 1
   dissatisfyPeople: 0
   comboCount: 0
   currentInterval: 3
   elapsedTime: 0
-  isGameEnd: 0
+  isGameEnd: 1
   dissatisfy: 0

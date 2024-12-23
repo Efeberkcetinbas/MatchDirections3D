@@ -37,6 +37,11 @@ public class UIManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnComboUIUpdate,OnComboUIUpdate);
     }
 
+    private void Start()
+    {
+        OnUIUpdate();
+    }
+
     
     private void OnUIUpdate()
     {

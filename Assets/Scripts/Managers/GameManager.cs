@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public GameData gameData;
 
+    [Header("Minigame")]
+    [SerializeField] private GameObject minigame;
 
     private WaitForSeconds waitForSeconds;
 
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         waitForSeconds=new WaitForSeconds(2);
+        minigame.SetActive(false);
     }
 
     private void OnEnable()
