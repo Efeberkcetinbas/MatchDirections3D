@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using Unity.VisualScripting;
+
 
 public class DragManager : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class DragManager : MonoBehaviour
 
     [SerializeField] private LayerMask productLayerMask;
     [SerializeField] private LayerMask dropAreaLayerMask;
+    [SerializeField] private GameData gameData;
 
 
     public ProductDrag CurrentProduct;
@@ -24,7 +25,8 @@ public class DragManager : MonoBehaviour
 
     private void Update()
     {
-        HandleDrag();
+        if(!gameData.isGameEnd)
+            HandleDrag();
     }
 
     private void HandleDrag()

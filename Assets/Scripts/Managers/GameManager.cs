@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
 
     private void OnFail()
     {
+        gameData.isGameEnd=true;
+        Debug.Log("SATISFACTION RUN OUT");
         StartCoroutine(OpenFail());
     }
 

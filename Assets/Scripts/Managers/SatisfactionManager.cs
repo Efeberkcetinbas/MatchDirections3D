@@ -57,6 +57,10 @@ public class SatisfactionManager : MonoBehaviour
             satisfactionProgress.fillAmount=val;
             satisfactionProgress.color=GetColorForProgress(val);
             UpdateSatisfactionImage(val);
+
+            if(IsSatisfactionRunOut())
+                EventManager.Broadcast(GameEvent.OnFail);
+
         }
     }
 
@@ -78,6 +82,14 @@ public class SatisfactionManager : MonoBehaviour
     private void OnPlayerWaitTooMuch()
     {
         OnTimeout();
+    }
+
+    private bool IsSatisfactionRunOut()
+    {
+        if(Satisfaction<=0)
+            return true;
+        else
+            return false;
     }
 
     private void OnMatchFullPlayer()
