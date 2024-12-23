@@ -19,6 +19,11 @@ public enum GameEvent
     OnProductDragStart,
     OnProductDragStop,
     OnProductReset,
+
+    //Mini Game
+    OnUpdateMiniMap,
+    OnUpdateBuilding,
+    OnUpdateStuff,
     
     //Game Management
     OnGameStart,
