@@ -108,6 +108,7 @@ public class ProductTrigger : Obstacleable
                 player.GetComponent<PlayerTrigger>().ProductEnter.transform.DOPunchScale(Vector3.one,0.5f);
             });
             productDrag.IsPlaced=true;
+            dragManager.productDrags.Add(productDrag);
             //Increase Satisfaction Bar
             dragManager.CurrentProduct=null;
             matched=true;
@@ -151,7 +152,7 @@ public class ProductTrigger : Obstacleable
         return productValue.Equals(playerValue);
     }
 
-    private void OnRestart()
+    internal void OnRestart()
     {
         matched=false;
         subProduct.transform.localScale=initialScale;

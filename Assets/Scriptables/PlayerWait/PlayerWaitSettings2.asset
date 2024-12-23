@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e046f8c2114e73c4bb77625aba640ed1, type: 3}
   m_Name: PlayerWaitSettings2
   m_EditorClassIdentifier: 
-  WaitTime: 10
+  WaitTime: 60

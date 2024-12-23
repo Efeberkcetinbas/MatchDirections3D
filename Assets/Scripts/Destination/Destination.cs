@@ -16,6 +16,21 @@ public class Destination : MonoBehaviour
         ResetText();
     }
 
+    private void OnEnable()
+    {
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+    }
+
+    private void OnRestartLevel()
+    {
+        ResetDestination();
+    }
+
     internal void ResetDestination()
     {
         ResetText();

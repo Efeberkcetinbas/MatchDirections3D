@@ -21,6 +21,16 @@ public class LevelSpawner : MonoBehaviour
         SpawnProducts();
     }
 
+    private void OnEnable()
+    {
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+    }
+
     private void InitializePool(List<ProductSpawnConfig> spawnConfigs)
     {
         foreach (var config in spawnConfigs)
@@ -33,7 +43,7 @@ public class LevelSpawner : MonoBehaviour
 
             for (int i = 0; i < config.spawnCount; i++)
             {
-                var product = Instantiate(config.productPrefab);
+                var product = Instantiate(config.productPrefab,transform);
                 product.SetActive(false);
                 productPool.Enqueue(product);
             }
@@ -72,8 +82,21 @@ public class LevelSpawner : MonoBehaviour
         );
     }
 
-    private void OnRestart()
+    private void ResetPool()
     {
+        // Find all products under this manager's transform
+        foreach (Transform child in transform)
+        {
+            if (!child.gameObject.activeSelf && !productPool.Contains(child.gameObject))
+            {
+                productPool.Enqueue(child.gameObject);
+            }
+        }
+    }
+
+    private void OnRestartLevel()
+    {
+        ResetPool(); // Return all inactive products to the pool
         SpawnProducts();
     }
 }

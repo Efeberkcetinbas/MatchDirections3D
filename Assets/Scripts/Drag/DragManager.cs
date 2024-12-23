@@ -10,12 +10,14 @@ public class DragManager : MonoBehaviour
     private Vector3 _offset;
     private Plane _dragPlane;
 
+
     [SerializeField] private LayerMask productLayerMask;
     [SerializeField] private LayerMask dropAreaLayerMask;
     [SerializeField] private GameData gameData;
 
 
     public ProductDrag CurrentProduct;
+    public List<ProductDrag> productDrags= new List<ProductDrag>();
 
 
     private void Awake()
@@ -27,6 +29,33 @@ public class DragManager : MonoBehaviour
     {
         if(!gameData.isGameEnd)
             HandleDrag();
+    }
+
+    private void OnEnable()
+    {
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
+    }
+
+    private void OnRestartLevel()
+    {
+        for (int i = 0; i < productDrags.Count; i++)
+        {
+            productDrags[i].Reset();
+            productDrags[i].IsPlaced=false;
+            productDrags[i].GetComponent<ProductTrigger>().OnRestart();
+        }
+    }
+
+    private void OnGameStart()
+    {
+        productDrags.Clear();
     }
 
     private void HandleDrag()

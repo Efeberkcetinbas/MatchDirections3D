@@ -140,12 +140,7 @@ public class Player : MonoBehaviour
 
 
     
-    private void OnRestart()
-    {
-        coincounter=0;
-        productNumber=0;
-        counterText.SetText(productNumber.ToString() + " / " + requirementProduct.ToString());
-    }
+    
 
     
 

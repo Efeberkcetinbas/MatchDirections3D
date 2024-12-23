@@ -872,7 +872,7 @@ MonoBehaviour:
     ProductDropSound: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
     ProductResetSound: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
     CompletedMatchSound: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
-    ProductPlacedSound: {fileID: 8300000, guid: 84e2c367e15d99c4688a7d82114ed40d, type: 3}
+    ProductPlacedSound: {fileID: 8300000, guid: a0dcd913c842c4b40b8e3d96b05e8ef5, type: 3}
     PlayerThanksSound: {fileID: 8300000, guid: 38a17a92b9d9748c6a1e67972041b833, type: 3}
 --- !u!82 &209671500
 AudioSource:
@@ -2362,7 +2362,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 477334912}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1896161377}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: RestartLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &477334912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3105,6 +3117,7 @@ MonoBehaviour:
   - {fileID: 943873619}
   - {fileID: 856323971}
   movementOrderConfig: {fileID: 11400000, guid: 80b1bed96ac4920488ae8f006d1ab56d, type: 2}
+  playerInitialPos: {fileID: 1171935865}
 --- !u!1 &704688720
 GameObject:
   m_ObjectHideFlags: 0
@@ -3382,6 +3395,7 @@ MonoBehaviour:
   - {fileID: 943873619}
   - {fileID: 856323971}
   movementOrderConfig: {fileID: 11400000, guid: 7c22868dda6e9d34786a1824b79f8ef7, type: 2}
+  playerInitialPos: {fileID: 1171935865}
 --- !u!1 &794627905
 GameObject:
   m_ObjectHideFlags: 0
@@ -3848,6 +3862,7 @@ MonoBehaviour:
   - {fileID: 943873619}
   - {fileID: 856323971}
   movementOrderConfig: {fileID: 11400000, guid: 618b96f712bf3f14aafecdab557eb22f, type: 2}
+  playerInitialPos: {fileID: 1171935865}
 --- !u!1001 &840074738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4323,6 +4338,7 @@ MonoBehaviour:
   - {fileID: 943873619}
   - {fileID: 856323971}
   movementOrderConfig: {fileID: 11400000, guid: cb510fcf2c0989648a61128e74ccedf4, type: 2}
+  playerInitialPos: {fileID: 1171935865}
 --- !u!1 &943873618
 GameObject:
   m_ObjectHideFlags: 0
@@ -5066,6 +5082,37 @@ Transform:
   - {fileID: 413691291}
   - {fileID: 134330247}
   - {fileID: 258214262}
+  m_Father: {fileID: 1754096861}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1171935864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1171935865}
+  m_Layer: 0
+  m_Name: PlayerInitialPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1171935865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171935864}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 40}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 1754096861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1206305086
@@ -6879,6 +6926,7 @@ Transform:
   - {fileID: 1473381815}
   - {fileID: 457191613}
   - {fileID: 225109365}
+  - {fileID: 1171935865}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1755958110
@@ -7453,6 +7501,7 @@ MonoBehaviour:
   - {fileID: 943873619}
   - {fileID: 856323971}
   movementOrderConfig: {fileID: 11400000, guid: ec8ca9ece48263d4083a4ba207da36ac, type: 2}
+  playerInitialPos: {fileID: 1171935865}
 --- !u!1001 &2100888693
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Player[] players; // List of players in the scene
     [SerializeField] private Transform[] destinationTargets; // Predefined destination points (max 3)
     [SerializeField] private MovementOrderConfig movementOrderConfig; // Movement order for this level
+    [SerializeField] private Transform playerInitialPos;
 
     private Queue<Player> playerQueue = new Queue<Player>(); // Queue to manage players
     private int currentMovementIndex = 0; // Tracks the current movement step
@@ -21,12 +22,14 @@ public class PlayerManager : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnMatchFullPlayer, OnMatchFullPlayer);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnMatchFullPlayer, OnMatchFullPlayer);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
     }
 
     private void OnGameStart()
@@ -34,6 +37,7 @@ public class PlayerManager : MonoBehaviour
         InitializePlayerQueue();
         AssignAttributes();
         OnNextPlayer();    
+        LogQueueContents();
     }
 
     
@@ -146,6 +150,7 @@ public class PlayerManager : MonoBehaviour
     {
         // Replace with your preferred movement logic
         Debug.Log($"{player.name} moving to {destination}");
+        player.transform.position=playerInitialPos.position;
         player.transform.DOMove(destination.position,1f).OnComplete(()=>{
             destination.GetComponent<Destination>().meshRenderer.transform.localScale=player.NewScale;
             destination.GetComponent<Destination>().meshFilter.mesh=player.placeholderMesh;
@@ -164,14 +169,23 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("INDEX " + index);
     }
 
-    public void OnRestartPlayers()
+    private void OnRestartLevel()
     {
         currentMovementIndex=0;
         counter=0;
         index=0;
+        playerQueue.Clear();
 
         InitializePlayerQueue();
         AssignAttributes();
-        OnNextPlayer();
+    }
+
+    private void LogQueueContents()
+    {
+        Debug.Log($"Queue size: {playerQueue.Count}");
+        foreach (var player in playerQueue)
+        {
+            Debug.Log($"Player: {player.name}");
+        }
     }
 }

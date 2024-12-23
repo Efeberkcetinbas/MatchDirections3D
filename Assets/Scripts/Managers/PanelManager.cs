@@ -81,6 +81,7 @@ public class PanelManager : MonoBehaviour
     private void OnRestartLevel()
     {
         RestartButton.SetActive(false);
+        StartButton.SetActive(true);
     }
 
     public void StartGame()

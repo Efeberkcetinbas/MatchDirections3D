@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.AddHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.AddHandler(GameEvent.OnFail,OnFail);
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
 
     }
 
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.RemoveHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.RemoveHandler(GameEvent.OnFail,OnFail);
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
     }
 
     
