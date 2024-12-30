@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using DG.Tweening;
+
 public class ProductTrigger : Obstacleable
 {
     private ProductAttributes productAttributes;
@@ -13,12 +14,11 @@ public class ProductTrigger : Obstacleable
     private Vector3 initialScale;
 
     [SerializeField] private GameObject subProduct;
-    [SerializeField] private ParticleSystem placeParticle;
 
     private void Start()
     {
         productAttributes = GetComponent<ProductAttributes>();
-        dragManager=FindAnyObjectByType<DragManager>();
+        dragManager=FindObjectOfType<DragManager>();
         productDrag=GetComponent<ProductDrag>();
         initialScale=subProduct.transform.localScale;
     }
@@ -96,7 +96,7 @@ public class ProductTrigger : Obstacleable
             subProduct.transform.DOScale(player.GetComponent<PlayerTrigger>().ProductEnter.localScale,.25f);
             EventManager.Broadcast(GameEvent.OnProductPlaced);
             transform.DORotate(player.GetComponent<PlayerTrigger>().ProductEnter.rotation.eulerAngles,.25f).OnComplete(()=>{
-                //placeParticle.Play();
+                
                 //Add event for sound
             });
             transform.DOJump(player.GetComponent<PlayerTrigger>().ProductEnter.position,1,1,.5f).OnComplete(()=>{

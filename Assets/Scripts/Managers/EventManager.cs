@@ -28,6 +28,7 @@ public enum GameEvent
     //Helpers
     OnCheckHelpers,
     OnFreezerIn,
+    OnSetSameProductsUp,
     OnFreezerOut,
     OnSetMaxSatisfaction,
     

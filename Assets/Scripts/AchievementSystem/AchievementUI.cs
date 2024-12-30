@@ -10,6 +10,7 @@ public class AchievementUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI successText;
     [SerializeField] private Toggle checkbox;
     [SerializeField] private TextMeshProUGUI progressText;
+    [SerializeField] private Image progressBar; // Progress bar image
 
     private AchievementData achievement;
 
@@ -35,5 +36,7 @@ public class AchievementUI : MonoBehaviour
     private void UpdateProgressUI()
     {
         progressText.text = $"{achievement.progress}/{achievement.targetProgress}";
+        float progressPercent = (float)achievement.progress / achievement.targetProgress;
+        progressBar.fillAmount = progressPercent; // Update fill amount
     }
 }
