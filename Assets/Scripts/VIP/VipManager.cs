@@ -110,6 +110,7 @@ public class VipManager : MonoBehaviour
             .OnComplete(() =>
             {
                 activeProduct = InstantiateRandomProduct();
+                EventManager.Broadcast(GameEvent.OnVipProductCreated);
                 SetVIPPreview(activeProduct);
                 gameData.isVipHere = true;
                 StartCoroutine(StartInteractionTimer());
@@ -137,11 +138,11 @@ public class VipManager : MonoBehaviour
 
     private void MoveProductToPreview()
     {
-        var previewPosition = activeVIP.GetComponentInChildren<VipPlayer>().transform.position;
+        var previewPosition = activeVIP.GetComponentInChildren<VipPlayer>().meshRenderer.transform.position;
 
         activeProduct.GetComponent<VipProduct>().Reset();
         //transform.DORotate(player.GetComponent<PlayerTrigger>().ProductEnter.rotation.eulerAngles,.25f)
-        activeProduct.transform.DORotate(previewPosition,0.25f);
+        activeProduct.transform.DORotate(Vector3.zero,0.25f);
         activeProduct.transform.DOMove(previewPosition, productMoveDuration).SetEase(Ease.InOutQuad).OnComplete(() =>
         {
             //Particle, Sound
