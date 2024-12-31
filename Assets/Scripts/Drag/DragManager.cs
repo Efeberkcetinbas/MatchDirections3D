@@ -13,6 +13,7 @@ public class DragManager : MonoBehaviour
 
     [SerializeField] private LayerMask productLayerMask;
     [SerializeField] private LayerMask dropAreaLayerMask;
+    [SerializeField] private LayerMask vipLayerMask;
     [SerializeField] private GameData gameData;
 
 
@@ -58,7 +59,7 @@ public class DragManager : MonoBehaviour
     {
         productDrags.Clear();
     }
-
+   
     private void HandleDrag()
     {
         if (Input.touchCount > 0)
@@ -97,6 +98,17 @@ public class DragManager : MonoBehaviour
 
                         Debug.Log("Started Drag");
                     }
+                }
+
+                else if(Physics.Raycast(ray, out hit, Mathf.Infinity, vipLayerMask))
+                {
+                    if(gameData.isVipHere)
+                    {
+                        Debug.Log("HIT VIP");
+                        gameData.isVipHere=false;
+                        EventManager.Broadcast(GameEvent.OnVipProductTouched);
+                    }
+                    
                 }
             }
             else if (touch.phase == TouchPhase.Moved && CurrentProduct != null) // Dragging

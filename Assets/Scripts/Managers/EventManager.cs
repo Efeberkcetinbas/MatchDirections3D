@@ -10,6 +10,9 @@ public enum GameEvent
     OnPlayerThanks,
     OnPlayerLeaving,
 
+    //VIP
+    OnVipProductTouched,
+
     //Player-Product
     
     OnProductPlaced,
@@ -29,6 +32,7 @@ public enum GameEvent
     OnCheckHelpers,
     OnFreezerIn,
     OnCollector,
+    OnCollectorMove,
     OnSetSameProductsUp,
     OnFreezerOut,
     OnSetMaxSatisfaction,

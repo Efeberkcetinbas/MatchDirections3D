@@ -31,6 +31,13 @@ public class AudioClipsPlayer
     public AudioClip ProductPlacedSound;
     public AudioClip PlayerThanksSound;
 }
+
+[Serializable]
+public class AudioClipsHelpers
+{
+    public AudioClip CollectorMoveSound;
+    
+}
 public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
@@ -39,6 +46,9 @@ public class AudioManager : MonoBehaviour
     public AudioClipsGameManagement audioClipsGameManagement;
     [Header("Player")]
     public AudioClipsPlayer audioClipsPlayer;
+
+    [Header("Helpers")]
+    public AudioClipsHelpers audioClipsHelpers;
     private AudioSource musicSource,effectSource;
     
 
@@ -76,6 +86,9 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnProductDragStop,OnProductDragStop);
         EventManager.AddHandler(GameEvent.OnProductReset,OnProductReset);
         EventManager.AddHandler(GameEvent.OnProductPlaced,OnProductPlaced);
+
+        //Helpers
+        EventManager.AddHandler(GameEvent.OnCollectorMove,OnCollectorMove);
     }
     private void OnDisable() 
     {
@@ -102,6 +115,9 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnProductDragStop,OnProductDragStop);
         EventManager.RemoveHandler(GameEvent.OnProductReset,OnProductReset);
         EventManager.RemoveHandler(GameEvent.OnProductPlaced,OnProductPlaced);
+
+        //Helpers
+        EventManager.RemoveHandler(GameEvent.OnCollectorMove,OnCollectorMove);
 
     }
 
@@ -146,7 +162,8 @@ public class AudioManager : MonoBehaviour
     }
 
     #endregion
-  
+    
+    #region Player
     private void OnPlayerStartMove()
     {
         effectSource.PlayOneShot(audioClipsPlayer.PlayersStartMoveSound);
@@ -204,5 +221,18 @@ public class AudioManager : MonoBehaviour
         effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsPlayer.ProductPlacedSound);
     }
+
+    #endregion
+
+    #region Helpers
+
+    private void OnCollectorMove()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsHelpers.CollectorMoveSound);
+    }
+
+    #endregion
+
 
 }

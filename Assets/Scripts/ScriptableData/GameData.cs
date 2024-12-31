@@ -23,5 +23,6 @@ public class GameData : ScriptableObject
     public bool isGameEnd=false;
     public bool dissatisfy=false;
     public bool isFreezer=false;
+    public bool isVipHere=false;
 
 }

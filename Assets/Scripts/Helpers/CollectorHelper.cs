@@ -127,6 +127,7 @@ public class CollectorHelper : MonoBehaviour
         product.transform.DOJump(targetPosition, jumpHeight, 1, duration / 2);
 
         Debug.Log($"Product {product.name} started moving to target position with jump");
+        EventManager.Broadcast(GameEvent.OnCollectorMove);
 
         // Wait for the jump to complete before finishing
         yield return new WaitForSeconds(duration / 2); // Duration of jump movement
