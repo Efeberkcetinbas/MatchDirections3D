@@ -7,6 +7,8 @@ public class PlayerAttributes : MonoBehaviour
 {
     private Dictionary<Type, EnumAttribute> attributes = new();
 
+    public Transform TargetPos;
+
     // Add an attribute to the player
     public void AddAttribute(EnumAttribute attribute)
     {

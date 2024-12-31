@@ -92,7 +92,8 @@ public class ProductTrigger : Obstacleable
             Debug.Log("Match found.");
             
             player.GetComponent<PeopleSelect>().peoples[player.GetComponent<PeopleSelect>().index].GetComponent<Animator>().SetTrigger("TrueProduct");
-            player.GetComponent<PlayerTrigger>().ProductEnter.transform.DOPunchScale(Vector3.one,0.1f);
+            if(!productDrag.IsCollected)
+                player.GetComponent<PlayerTrigger>().ProductEnter.transform.DOPunchScale(Vector3.one,0.1f);
             subProduct.transform.DOScale(player.GetComponent<PlayerTrigger>().ProductEnter.localScale,.25f);
             EventManager.Broadcast(GameEvent.OnProductPlaced);
             transform.DORotate(player.GetComponent<PlayerTrigger>().ProductEnter.rotation.eulerAngles,.25f).OnComplete(()=>{
@@ -105,7 +106,8 @@ public class ProductTrigger : Obstacleable
                 EventManager.Broadcast(GameEvent.OnMatchFound);
                 subProduct.transform.localScale=initialScale;
                 transform.gameObject.SetActive(false);
-                player.GetComponent<PlayerTrigger>().ProductEnter.transform.DOPunchScale(Vector3.one,0.5f);
+                if(!productDrag.IsCollected)
+                    player.GetComponent<PlayerTrigger>().ProductEnter.transform.DOPunchScale(Vector3.one,0.5f);
             });
             productDrag.IsPlaced=true;
             dragManager.productDrags.Add(productDrag);

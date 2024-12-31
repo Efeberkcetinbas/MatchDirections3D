@@ -313,9 +313,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2142262522}
-        m_TargetAssemblyTypeName: ProductManager, Assembly-CSharp
-        m_MethodName: MoveProductsByMatchingAttributes
+      - m_Target: {fileID: 2142262523}
+        m_TargetAssemblyTypeName: CollectorHelper, Assembly-CSharp
+        m_MethodName: MoveProductsByPlayerAttributes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8355,6 +8355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2142262521}
   - component: {fileID: 2142262522}
+  - component: {fileID: 2142262523}
   m_Layer: 0
   m_Name: ProductManager
   m_TagString: Untagged
@@ -8389,6 +8390,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f4d88b7b1cac9438e3f26af38fa9c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2142262523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142262520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb7c757a3114f94ca2a6bdf09a4afb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalMoveTime: 10
 --- !u!23 &228970397278565823
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8523,63 +8537,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1001 &499496194616799891
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2272397612875241912, guid: d952ba095fabaae468cbe1776e62fc25, type: 3}
-      propertyPath: m_Name
-      value: PlacedParticle
-      objectReference: {fileID: 0}
-    - target: {fileID: 2686984136583996486, guid: d952ba095fabaae468cbe1776e62fc25, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2686984136583996486, guid: d952ba095fabaae468cbe1776e62fc25, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2686984136583996486, guid: d952ba095fabaae468cbe1776e62fc25, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2686984136583996486, guid: d952ba095fabaae468cbe1776e62fc25, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2686984136583996486, guid: d952ba095fabaae468cbe1776e62fc25, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2686984136583996486, guid: d952ba095fabaae468cbe1776e62fc25, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2686984136583996486, guid: d952ba095fabaae468cbe1776e62fc25, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2686984136583996486, guid: d952ba095fabaae468cbe1776e62fc25, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2686984136583996486, guid: d952ba095fabaae468cbe1776e62fc25, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2686984136583996486, guid: d952ba095fabaae468cbe1776e62fc25, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d952ba095fabaae468cbe1776e62fc25, type: 3}
 --- !u!23 &508816969097416064
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11184,4 +11141,3 @@ SceneRoots:
   - {fileID: 5237982917776445746}
   - {fileID: 155313306}
   - {fileID: 321192314}
-  - {fileID: 499496194616799891}

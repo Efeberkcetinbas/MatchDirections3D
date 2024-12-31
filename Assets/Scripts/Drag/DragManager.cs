@@ -49,6 +49,7 @@ public class DragManager : MonoBehaviour
         {
             productDrags[i].Reset();
             productDrags[i].IsPlaced=false;
+            productDrags[i].IsCollected=false;
             productDrags[i].GetComponent<ProductTrigger>().OnRestart();
         }
     }
@@ -70,7 +71,7 @@ public class DragManager : MonoBehaviour
                 if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, productLayerMask))
                 {
                     CurrentProduct = hit.collider.GetComponent<ProductDrag>();
-                    if (CurrentProduct != null && !CurrentProduct.IsPlaced)
+                    if (CurrentProduct != null && !CurrentProduct.IsPlaced && !CurrentProduct.IsCollected)
                     {
                         CurrentProduct.IsBeingDragged = true;
                         CurrentProduct.Collider.isTrigger=true;

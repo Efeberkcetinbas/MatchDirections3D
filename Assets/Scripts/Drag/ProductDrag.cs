@@ -6,10 +6,13 @@ public class ProductDrag : MonoBehaviour
 {
     public bool IsBeingDragged{get;set;}
     public bool IsPlaced {get;set;}
+    public bool IsCollected{get; set;}
     public Collider Collider{get; set;}
     public Rigidbody rb{get; set;}
 
     public Outline OutlineMesh;
+
+    
 
 
 
@@ -17,6 +20,7 @@ public class ProductDrag : MonoBehaviour
     {
         Collider = GetComponent<Collider>();
         rb=GetComponent<Rigidbody>();
+        
     }
 
    

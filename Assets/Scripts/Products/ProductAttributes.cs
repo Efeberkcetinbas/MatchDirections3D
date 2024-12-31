@@ -7,6 +7,18 @@ public class ProductAttributes : MonoBehaviour
 {
     private Dictionary<Type, EnumAttribute> attributes = new();
 
+    private ProductDrag productDrag;
+
+    private void Start()
+    {
+        productDrag=GetComponent<ProductDrag>();
+    }
+
+    internal void SetProductCollected()
+    {
+        productDrag.IsCollected=true;
+    }
+
     // Add an attribute to the product
     public void AddAttribute(EnumAttribute attribute)
     {
