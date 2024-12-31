@@ -10,7 +10,17 @@ public class CollectorHelper : MonoBehaviour
     [SerializeField]
     private float totalMoveTime = 10f; // Total time for all products to move, adjustable in Inspector
 
-    public void MoveProductsByPlayerAttributes()
+    private void OnEnable()
+    {
+        EventManager.AddHandler(GameEvent.OnCollector,OnCollector);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.RemoveHandler(GameEvent.OnCollector,OnCollector);
+    }
+
+    private void OnCollector()
     {
         // Start the Coroutine to move the products
         StartCoroutine(MoveProductsCoroutine());
@@ -37,6 +47,7 @@ public class CollectorHelper : MonoBehaviour
             if (player.GetTypes().Count() > 0) // Check if player has attributes
             {
                 selectedPlayer = player;
+                selectedPlayer.SetCollectAmount(); // Set the collection amount
                 break;
             }
         }
@@ -59,9 +70,10 @@ public class CollectorHelper : MonoBehaviour
         Vector3 targetPosition = selectedPlayer.TargetPos.position;
 
         // Calculate the total number of products and the time for each product to move
-        float timePerProduct = totalMoveTime / (products.Length); // Only 1 move per product now
+        float timePerProduct = totalMoveTime / selectedPlayer.CollectAmount; // Time for each product to move
 
-        // Now, move products that have matching attributes as the selected player
+        // Now, move the specified number of products that have matching attributes as the selected player
+        int productsMoved = 0;
         foreach (var product in products)
         {
             bool isMatch = true;
@@ -82,13 +94,25 @@ public class CollectorHelper : MonoBehaviour
 
             if (isMatch)
             {
+                // Only move the products up to the player's CollectAmount
+                if (productsMoved >= selectedPlayer.CollectAmount)
+                    break;
+
                 // Debug: Log where the product starts moving from
                 product.SetProductCollected();
                 Debug.Log($"Moving product: {product.name} from position: {product.transform.position}");
 
-                // Move product to the local Y position first, then jump to the target position
+                // Move product to the target position using the jump
                 yield return StartCoroutine(MoveToTargetPositionWithJump(product, targetPosition, timePerProduct));
+
+                productsMoved++;
             }
+        }
+
+        // If not enough products match the player's attributes
+        if (productsMoved < selectedPlayer.CollectAmount)
+        {
+            Debug.LogWarning("Not enough products found to match the player's attributes.");
         }
     }
 
@@ -99,12 +123,12 @@ public class CollectorHelper : MonoBehaviour
         float jumpHeight = 5f;
 
         // Move product using DOJump: target position, jump height, number of jumps, and duration
-        product.transform.DOJump(targetPosition, jumpHeight, 1, duration/2);
+        product.transform.DOJump(targetPosition, jumpHeight, 1, duration / 2);
 
         Debug.Log($"Product {product.name} started moving to target position with jump");
 
         // Wait for the jump to complete before finishing
-        yield return new WaitForSeconds(duration/2); // Duration of jump movement
+        yield return new WaitForSeconds(duration / 2); // Duration of jump movement
 
         Debug.Log($"Product {product.name} reached the target with jump");
     }

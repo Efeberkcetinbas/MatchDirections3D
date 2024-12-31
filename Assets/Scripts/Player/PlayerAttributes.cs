@@ -6,9 +6,20 @@ using UnityEngine;
 public class PlayerAttributes : MonoBehaviour
 {
     private Dictionary<Type, EnumAttribute> attributes = new();
+    private Player player;
 
     public Transform TargetPos;
+    public int CollectAmount;
 
+    private void Start()
+    {
+        player = GetComponent<Player>();
+    }
+
+    internal void SetCollectAmount()
+    {
+        CollectAmount=player.requirementProduct;
+    }
     // Add an attribute to the player
     public void AddAttribute(EnumAttribute attribute)
     {
