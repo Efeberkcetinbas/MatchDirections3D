@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject xP;
     [SerializeField] private Transform xPSpawnPos;
-    [SerializeField] private int productNumber;
     [SerializeField] private Vector3 startPos;
     [SerializeField] private GameData gameData;
     [SerializeField] private CollectCoin collectCoin;
@@ -31,6 +30,8 @@ public class Player : MonoBehaviour
     internal Destination destination;
     
     public int requirementProduct;
+    public int productNumber;
+
     public Vector3 NewScale=Vector3.one;
     public Mesh placeholderMesh;
     public Material mat;

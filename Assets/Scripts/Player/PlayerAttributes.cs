@@ -18,7 +18,7 @@ public class PlayerAttributes : MonoBehaviour
 
     internal void SetCollectAmount()
     {
-        CollectAmount=player.requirementProduct;
+        CollectAmount=player.requirementProduct-player.productNumber;
     }
     // Add an attribute to the player
     public void AddAttribute(EnumAttribute attribute)

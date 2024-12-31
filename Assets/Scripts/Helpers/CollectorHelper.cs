@@ -26,6 +26,7 @@ public class CollectorHelper : MonoBehaviour
         StartCoroutine(MoveProductsCoroutine());
     }
 
+    
     private IEnumerator MoveProductsCoroutine()
     {
         // Find all active products in the scene
