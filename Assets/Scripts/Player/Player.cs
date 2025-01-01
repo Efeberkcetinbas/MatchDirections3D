@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
    
     private PlayerWait playerWait;
     private int randomIndex;
+    private int responseIndex;
     private int coincounter;
     private WaitForSeconds waitForSeconds;
     private Renderer successRenderer;
@@ -93,8 +94,8 @@ public class Player : MonoBehaviour
 
     private void GetRandomFullParticle()
     {
-        int randomIndex=Random.Range(0,matchFullParticles.Count);
-        matchFullParticles[randomIndex].Play();
+        responseIndex=Random.Range(0,matchFullParticles.Count);
+        matchFullParticles[responseIndex].Play();
     }
 
     private IEnumerator OnSuccessCompleted()
@@ -108,6 +109,8 @@ public class Player : MonoBehaviour
         
         transform.DOMove(doorPos,1).OnComplete(()=>{
             transform.DOMove(startPos,1).OnComplete(()=>{
+                responseIndex=Random.Range(0,matchFullParticles.Count);
+                matchFullParticles[responseIndex].Stop();
                 gameObject.SetActive(false);
             });
         });

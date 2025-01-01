@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private void Awake() 
     {
         ClearData();
+        gameData.vipArriveNumber=0;
     }
 
     private void Start()

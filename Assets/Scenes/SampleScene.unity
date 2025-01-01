@@ -2588,7 +2588,7 @@ MonoBehaviour:
   NextButton: {fileID: 1241496279}
   RestartButton: {fileID: 477334909}
   StartButton: {fileID: 1822650365}
-  vipImage: {fileID: 0}
+  vipImage: {fileID: 123561675}
   gameData: {fileID: 11400000, guid: 6f4f5a97a52dbab4eaa60efa1f850580, type: 2}
 --- !u!1 &321192313
 GameObject:
@@ -10595,25 +10595,25 @@ MonoBehaviour:
     UseAmountText: {fileID: 1317604235}
     PriceText: {fileID: 0}
     helperConfig: {fileID: 11400000, guid: 2a5618f70cecda0449b292ad3f4015f5, type: 2}
-    gameEvent: 22
+    gameEvent: 23
   - BuyButton: {fileID: 285387345}
     UseButton: {fileID: 1767558320}
     UseAmountText: {fileID: 457259887}
     PriceText: {fileID: 0}
     helperConfig: {fileID: 11400000, guid: 41cadd4f2b541094299daf720a6a0fd3, type: 2}
-    gameEvent: 27
+    gameEvent: 28
   - BuyButton: {fileID: 1333896377}
     UseButton: {fileID: 2027944106}
     UseAmountText: {fileID: 611389252}
     PriceText: {fileID: 0}
     helperConfig: {fileID: 11400000, guid: 9935d70c11b21354c83ebabe0f22451e, type: 2}
-    gameEvent: 25
+    gameEvent: 26
   - BuyButton: {fileID: 542874237}
     UseButton: {fileID: 873455571}
     UseAmountText: {fileID: 942092168}
     PriceText: {fileID: 0}
     helperConfig: {fileID: 11400000, guid: d4ef9ccb2cbbf884b9a3029384730fa7, type: 2}
-    gameEvent: 23
+    gameEvent: 24
 --- !u!4 &1296351455
 Transform:
   m_ObjectHideFlags: 0

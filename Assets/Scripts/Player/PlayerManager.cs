@@ -119,13 +119,7 @@ public class PlayerManager : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnPlayerStartMove);
         List<Transform> availableDestinations = new List<Transform>(destinationTargets);
         
-        //VIP 
-        gameData.vipArriveNumber++;
-        if(gameData.vipArriveNumber==10)
-        {
-            EventManager.Broadcast(GameEvent.OnVipOnTheWay);
-            gameData.vipArriveNumber=0;
-        }
+        
 
         for (int i = 0; i < playersToMove; i++)
         {
@@ -174,6 +168,14 @@ public class PlayerManager : MonoBehaviour
             PlayerWaitManager.Instance.RegisterWaiter(player.GetComponent<PlayerWait>());
         });
         
+        //VIP 
+        gameData.vipArriveNumber++;
+        if(gameData.vipArriveNumber==5)
+        {
+            EventManager.Broadcast(GameEvent.OnVipOnTheWay);
+            gameData.vipArriveNumber=0;
+        }
+
         index++;
         Debug.Log("INDEX " + index);
     }
