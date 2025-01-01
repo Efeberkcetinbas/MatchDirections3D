@@ -9,7 +9,6 @@ using TMPro;
 [Serializable]
 public class HelperProperties
 {
-    public Image HelperImage;
     public Button BuyButton;
     public Button UseButton;
     public TextMeshProUGUI UseAmountText;
@@ -27,8 +26,8 @@ public class Helper : MonoBehaviour
 
     private void Start()
     {
-        /*AssignHelperImages();
-        CheckIfButtonAvailable();*/
+        AssignHelperImages();
+        CheckIfButtonAvailable();
     }
 
     private void OnEnable()
@@ -43,8 +42,8 @@ public class Helper : MonoBehaviour
 
     private void OnCheckHelpers()
     {
-        //CheckIfButtonAvailable();
-        Debug.Log("CHECK HELPERS");
+        CheckIfButtonAvailable();
+        
     }
     private void AssignHelperImages()
     {
@@ -57,7 +56,7 @@ public class Helper : MonoBehaviour
             // Load the Amount value from PlayerPrefs, defaulting to 0 if not set
             config.Amount = PlayerPrefs.GetInt($"Helper_{i}_Amount", 0);
             helperProperty.UseAmountText.SetText(config.Amount.ToString());
-            helperProperty.PriceText.SetText(config.RequirementScore.ToString());
+            //helperProperty.PriceText.SetText(config.RequirementScore.ToString());
         }
     }
 

@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject xP;
     [SerializeField] private Transform xPSpawnPos;
     [SerializeField] private Vector3 startPos;
+    [SerializeField] private Vector3 doorPos;
     [SerializeField] private GameData gameData;
     [SerializeField] private CollectCoin collectCoin;
     [SerializeField] private ParticleSystem successParticle;
@@ -104,9 +105,13 @@ public class Player : MonoBehaviour
                 PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
         transform.Rotate(0, 180, 0);
         EventManager.Broadcast(GameEvent.OnPlayerLeaving);
-        transform.DOMove(startPos,2).OnComplete(()=>{
+        
+        transform.DOMove(doorPos,1).OnComplete(()=>{
+            transform.DOMove(startPos,1).OnComplete(()=>{
                 gameObject.SetActive(false);
             });
+        });
+        
         peopleSelect.peoples[peopleSelect.index].GetComponent<Animator>().SetTrigger("Completed");
 
             
