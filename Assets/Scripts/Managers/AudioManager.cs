@@ -38,6 +38,17 @@ public class AudioClipsHelpers
     public AudioClip CollectorMoveSound;
     
 }
+
+[Serializable]
+public class AudioClipsVIP
+{
+    public AudioClip VipSummonSound;
+    public AudioClip VipArrivedSound;
+    public AudioClip VipProductHitSound;
+    public AudioClip VipProductPlacedSound;
+    public AudioClip VipLeaveSound;
+    
+}
 public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
@@ -49,6 +60,10 @@ public class AudioManager : MonoBehaviour
 
     [Header("Helpers")]
     public AudioClipsHelpers audioClipsHelpers;
+
+    [Header("VIP")]
+    public AudioClipsVIP audioClipsVIP;
+
     private AudioSource musicSource,effectSource;
     
 
@@ -89,6 +104,14 @@ public class AudioManager : MonoBehaviour
 
         //Helpers
         EventManager.AddHandler(GameEvent.OnCollectorMove,OnCollectorMove);
+
+        //VIP
+        EventManager.AddHandler(GameEvent.OnVipSummoned,OnVipSummoned);
+        EventManager.AddHandler(GameEvent.OnVipLeave,OnVipLeave);
+        EventManager.AddHandler(GameEvent.OnVipProductCreated,OnVipProductCreated);
+        EventManager.AddHandler(GameEvent.OnVipProductPlaced,OnVipProductPlaced);
+        EventManager.AddHandler(GameEvent.OnVipProductTouched,OnVipProductTouched);
+        
     }
     private void OnDisable() 
     {
@@ -118,6 +141,13 @@ public class AudioManager : MonoBehaviour
 
         //Helpers
         EventManager.RemoveHandler(GameEvent.OnCollectorMove,OnCollectorMove);
+
+        //VIP
+        EventManager.RemoveHandler(GameEvent.OnVipSummoned,OnVipSummoned);
+        EventManager.RemoveHandler(GameEvent.OnVipLeave,OnVipLeave);
+        EventManager.RemoveHandler(GameEvent.OnVipProductCreated,OnVipProductCreated);
+        EventManager.RemoveHandler(GameEvent.OnVipProductPlaced,OnVipProductPlaced);
+        EventManager.RemoveHandler(GameEvent.OnVipProductTouched,OnVipProductTouched);
 
     }
 
@@ -234,5 +264,33 @@ public class AudioManager : MonoBehaviour
 
     #endregion
 
+    #region VIP
+
+    private void OnVipSummoned()
+    {
+        effectSource.PlayOneShot(audioClipsVIP.VipSummonSound);
+    }
+
+    private void OnVipLeave()
+    {
+        effectSource.PlayOneShot(audioClipsVIP.VipLeaveSound);
+    }
+
+    private void OnVipProductCreated()
+    {
+        effectSource.PlayOneShot(audioClipsVIP.VipArrivedSound);
+    }   
+
+    private void OnVipProductTouched()
+    {
+        effectSource.PlayOneShot(audioClipsVIP.VipProductHitSound);
+    }
+
+    private void OnVipProductPlaced()
+    {
+        effectSource.PlayOneShot(audioClipsVIP.VipProductPlacedSound);
+    }
+
+    #endregion
 
 }

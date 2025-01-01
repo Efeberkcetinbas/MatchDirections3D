@@ -27,13 +27,14 @@ public class CameraManager : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.AddHandler(GameEvent.OnVipLeave,OnVipLeave);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
-
-    }
+        EventManager.RemoveHandler(GameEvent.OnVipLeave,OnVipLeave);
+    }       
 
 
    
@@ -43,6 +44,11 @@ public class CameraManager : MonoBehaviour
     private void OnNextLevel()
     {
 
+    }
+
+    private void OnVipLeave()
+    {
+        Noise(amplitudeGain,frequencyGain,shakeTime);
     }
 
     private void OnMatchFound()

@@ -13,6 +13,9 @@ public enum GameEvent
     //VIP
     OnVipProductTouched,
     OnVipProductCreated,
+    OnVipProductPlaced,
+    OnVipSummoned,
+    OnVipLeave,
 
     //Player-Product
     

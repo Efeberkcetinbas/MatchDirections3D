@@ -8,8 +8,10 @@ public class VipManager : MonoBehaviour
     [Header("VIP Configuration")]
     [SerializeField] private GameObject[] vipPool; // Pool of VIPs in the scene
     [SerializeField] private Transform vipDestination; // Destination point for the VIP
+    [SerializeField] private Transform startDestination; // Start point for the VIP
     [SerializeField] private float movementDuration = 2f; // Time for the VIP to reach the destination
     [SerializeField] private Ease ease;
+    [SerializeField] private Ease productEase;
 
     [Header("Product Configuration")]
     [SerializeField] private GameObject[] productList; // List of possible products
@@ -17,12 +19,22 @@ public class VipManager : MonoBehaviour
     [SerializeField] private float interactionTimeLimit = 10f; // Time limit for player interaction
     [SerializeField] private float productMoveDuration = 1f; // Duration to move the product to the preview position
 
+    [Header("Money")]
+    [SerializeField] private CollectCoin collectCoin;
+    
+    
     [Header("Game Data")]
     [SerializeField] private GameData gameData;
+
+    
+
+    
+    
 
     private GameObject activeVIP;
     private GameObject activeProduct;
     private bool playerInteracted = false;
+    private bool isHitProduct=false;
 
     private void OnEnable()
     {
@@ -33,6 +45,8 @@ public class VipManager : MonoBehaviour
     {
         EventManager.RemoveHandler(GameEvent.OnVipProductTouched, OnVipProductTouched);
     }
+
+    
 
     /// <summary>
     /// Summons a VIP and assigns a product.
@@ -46,8 +60,9 @@ public class VipManager : MonoBehaviour
         }
 
         activeVIP = GetRandomVIP();
+        activeVIP.GetComponent<VipPlayer>().meshRenderer.enabled=false;
         
-
+        EventManager.Broadcast(GameEvent.OnVipSummoned);
         MoveVIPToDestination();
     }
 
@@ -58,8 +73,10 @@ public class VipManager : MonoBehaviour
     {
         if (activeProduct == null) return;
 
-        playerInteracted = true;
-
+        //playerInteracted = true;
+        isHitProduct=true;
+        activeProduct.GetComponent<VipProduct>().Reset();
+        activeProduct.transform.DOPunchScale(Vector3.one,0.25f);
         // Move product to the VIP preview position
         MoveProductToPreview();
     }
@@ -80,8 +97,9 @@ public class VipManager : MonoBehaviour
 
     private void SetVIPPreview(GameObject product)
     {
-        var vipPreview = activeVIP.GetComponentInChildren<VipPlayer>().meshFilter;
-        var vipRenderer = activeVIP.GetComponentInChildren<VipPlayer>().meshRenderer;
+        activeVIP.GetComponent<VipPlayer>().meshRenderer.enabled=true;
+        var vipPreview = activeVIP.GetComponent<VipPlayer>().meshFilter;
+        var vipRenderer = activeVIP.GetComponent<VipPlayer>().meshRenderer;
 
         if (vipPreview == null || vipRenderer == null)
         {
@@ -105,11 +123,14 @@ public class VipManager : MonoBehaviour
 
     private void MoveVIPToDestination()
     {
+        activeVIP.transform.DORotate(Vector3.zero,0.1f);
         activeVIP.transform.DOMove(vipDestination.position, movementDuration)
             .SetEase(ease)
             .OnComplete(() =>
             {
+                activeVIP.GetComponent<VipPlayer>().PlayParticle();
                 activeProduct = InstantiateRandomProduct();
+                activeVIP.transform.DOPunchScale(Vector3.one,0.25f);
                 EventManager.Broadcast(GameEvent.OnVipProductCreated);
                 SetVIPPreview(activeProduct);
                 gameData.isVipHere = true;
@@ -138,15 +159,21 @@ public class VipManager : MonoBehaviour
 
     private void MoveProductToPreview()
     {
-        var previewPosition = activeVIP.GetComponentInChildren<VipPlayer>().meshRenderer.transform.position;
-
-        activeProduct.GetComponent<VipProduct>().Reset();
+        var previewPosition = activeVIP.GetComponent<VipPlayer>().meshRenderer.transform.position;
+        activeVIP.GetComponent<VipPlayer>().PullParticle();
+        
+        activeProduct.GetComponent<VipProduct>().PlayProductParticle();
         //transform.DORotate(player.GetComponent<PlayerTrigger>().ProductEnter.rotation.eulerAngles,.25f)
         activeProduct.transform.DORotate(Vector3.zero,0.25f);
-        activeProduct.transform.DOMove(previewPosition, productMoveDuration).SetEase(Ease.InOutQuad).OnComplete(() =>
+        activeProduct.transform.DOMove(previewPosition, productMoveDuration).SetEase(productEase).OnComplete(() =>
         {
             //Particle, Sound
-            ResetVIP();
+            //ResetVIP();
+            EventManager.Broadcast(GameEvent.OnVipProductPlaced);
+            activeVIP.GetComponent<VipPlayer>().meshRenderer.enabled=false;
+            activeVIP.transform.DOPunchScale(Vector3.one,0.2f);
+            activeProduct.transform.SetParent(activeVIP.transform);
+            playerInteracted = true;
             Debug.Log("Product moved to preview position.");
         });
     }
@@ -154,14 +181,27 @@ public class VipManager : MonoBehaviour
     private void HandleVIPSuccess()
     {
         Debug.Log("VIP request fulfilled successfully!");
+        collectCoin.StartCollectCoin(50);
+        activeVIP.transform.DORotate(new Vector3(0,180,0),1f).OnComplete(()=>{
+            EventManager.Broadcast(GameEvent.OnVipLeave);
+            activeVIP.transform.DOMove(startDestination.position, movementDuration)
+            .SetEase(ease)
+            .OnComplete(()=>{
+                ResetVIP();
+            });
+        });
         //ResetVIP();
     }
 
     private void HandleVIPFailure()
     {
-        Debug.Log("Time's up! The VIP is leaving.");
-        gameData.isVipHere = false;
-        ResetVIP();
+        if(!isHitProduct)
+        {
+            Debug.Log("Time's up! The VIP is leaving.");
+            gameData.isVipHere = false;
+            ResetVIP();
+        }
+        
     }
 
     private void ResetVIP()
@@ -179,5 +219,6 @@ public class VipManager : MonoBehaviour
         activeVIP = null;
         activeProduct = null;
         playerInteracted = false;
+        isHitProduct=false;
     }
 }
