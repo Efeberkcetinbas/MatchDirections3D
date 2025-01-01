@@ -5,7 +5,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 public class PanelManager : MonoBehaviour
 {
-    [SerializeField] private RectTransform StartPanel,ScenePanel,SuccessPanel,FailPanel;
+    [SerializeField] private RectTransform StartPanel,ScenePanel,SuccessPanel,FailPanel,VipImage;
 
     [SerializeField] private List<GameObject> SceneUIs=new List<GameObject>();
     [SerializeField] private List<GameObject> SuccessElements=new List<GameObject>();
@@ -59,6 +59,16 @@ public class PanelManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnFailUI,OnFailUI);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);*/
 
+    }
+
+    private void OnVipSummoned()
+    {
+
+    }
+
+    private void OnVipLeave()
+    {
+        
     }
     //TEMP!
     #region TEMP

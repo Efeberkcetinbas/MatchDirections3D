@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSuccess()
     {
+        gameData.isGameEnd=true;
         StartCoroutine(OpenSuccess());
     }
 

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14db6eb11dc14d4a9aadc380891c5fd, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  score: 6
-  increaseScore: 3
+  score: 966
+  increaseScore: 12
   decreaseScore: 10
   levelIndex: 0
   levelNumber: 0
@@ -24,3 +24,4 @@ MonoBehaviour:
   isGameEnd: 0
   dissatisfy: 0
   isFreezer: 0
+  isVipHere: 0

@@ -7,7 +7,6 @@ public class VipProduct : MonoBehaviour
     public MeshFilter meshFilter;
     public MeshRenderer meshRenderer;
 
-    [SerializeField] private ParticleSystem productParticle;
 
     private Rigidbody rb;
     private BoxCollider boxCollider;
@@ -22,10 +21,6 @@ public class VipProduct : MonoBehaviour
     {
         boxCollider.enabled=false;
         rb.useGravity=false;
-    }
-
-    internal void PlayProductParticle()
-    {
-        productParticle.Play();
+        rb.isKinematic=true;
     }
 }

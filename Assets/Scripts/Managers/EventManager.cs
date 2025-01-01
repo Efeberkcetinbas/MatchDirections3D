@@ -15,6 +15,8 @@ public enum GameEvent
     OnVipProductCreated,
     OnVipProductPlaced,
     OnVipSummoned,
+    OnVipSuccess,
+    OnVipFail,
     OnVipLeave,
 
     //Player-Product

@@ -47,6 +47,11 @@ public class AudioClipsVIP
     public AudioClip VipProductHitSound;
     public AudioClip VipProductPlacedSound;
     public AudioClip VipLeaveSound;
+    public AudioClip VipSuccessManSound;
+    public AudioClip VipSuccessFemaleSound;
+    public AudioClip VipFailManSound;
+    public AudioClip VipFailFemaleSound;
+
     
 }
 public class AudioManager : MonoBehaviour
@@ -111,6 +116,8 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnVipProductCreated,OnVipProductCreated);
         EventManager.AddHandler(GameEvent.OnVipProductPlaced,OnVipProductPlaced);
         EventManager.AddHandler(GameEvent.OnVipProductTouched,OnVipProductTouched);
+        EventManager.AddHandler(GameEvent.OnVipSuccess,OnVipSuccess);
+        EventManager.AddHandler(GameEvent.OnVipFail,OnVipFail);
         
     }
     private void OnDisable() 
@@ -148,6 +155,8 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnVipProductCreated,OnVipProductCreated);
         EventManager.RemoveHandler(GameEvent.OnVipProductPlaced,OnVipProductPlaced);
         EventManager.RemoveHandler(GameEvent.OnVipProductTouched,OnVipProductTouched);
+        EventManager.RemoveHandler(GameEvent.OnVipSuccess,OnVipSuccess);
+        EventManager.RemoveHandler(GameEvent.OnVipFail,OnVipFail);
 
     }
 
@@ -289,6 +298,27 @@ public class AudioManager : MonoBehaviour
     private void OnVipProductPlaced()
     {
         effectSource.PlayOneShot(audioClipsVIP.VipProductPlacedSound);
+    }
+
+    private void OnVipSuccess()
+    {
+        int randomNumber=Random.Range(0,2);
+        Debug.Log(randomNumber+"RN");
+        if(randomNumber==0)
+            effectSource.PlayOneShot(audioClipsVIP.VipSuccessManSound);
+        else        
+            effectSource.PlayOneShot(audioClipsVIP.VipSuccessFemaleSound);
+    
+    }
+
+    private void OnVipFail()
+    {
+        int randomNumber=Random.Range(0,2);
+        
+        if(randomNumber==0)
+            effectSource.PlayOneShot(audioClipsVIP.VipFailManSound);
+        else        
+            effectSource.PlayOneShot(audioClipsVIP.VipFailFemaleSound);
     }
 
     #endregion

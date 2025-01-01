@@ -15,6 +15,9 @@ public class ProductTrigger : Obstacleable
 
     [SerializeField] private GameObject subProduct;
 
+    [Header("Particles")]
+    [SerializeField] private ParticleSystem placeParticle;
+
     private void Start()
     {
         productAttributes = GetComponent<ProductAttributes>();
@@ -96,6 +99,7 @@ public class ProductTrigger : Obstacleable
                 player.GetComponent<PlayerTrigger>().ProductEnter.transform.DOPunchScale(Vector3.one,0.1f);
             subProduct.transform.DOScale(player.GetComponent<PlayerTrigger>().ProductEnter.localScale,.25f);
             EventManager.Broadcast(GameEvent.OnProductPlaced);
+            placeParticle.Play();
             transform.DORotate(player.GetComponent<PlayerTrigger>().ProductEnter.rotation.eulerAngles,.25f).OnComplete(()=>{
                 
                 //Add event for sound

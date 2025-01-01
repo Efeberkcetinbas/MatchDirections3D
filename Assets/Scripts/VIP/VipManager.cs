@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Linq;
 
 public class VipManager : MonoBehaviour
 {
     [Header("VIP Configuration")]
-    [SerializeField] private GameObject[] vipPool; // Pool of VIPs in the scene
+    [SerializeField] private GameObject vipPool; // Pool of VIPs in the scene
+    [SerializeField] private GameObject[] vipMeshPool; // Pool of VIPs in the scene
     [SerializeField] private Transform vipDestination; // Destination point for the VIP
     [SerializeField] private Transform startDestination; // Start point for the VIP
     [SerializeField] private float movementDuration = 2f; // Time for the VIP to reach the destination
@@ -26,6 +28,9 @@ public class VipManager : MonoBehaviour
     [Header("Game Data")]
     [SerializeField] private GameData gameData;
 
+    [Header("Particles VIP")]
+    [SerializeField] private ParticleSystem vipLeaveParticle;
+
     
 
     
@@ -35,6 +40,8 @@ public class VipManager : MonoBehaviour
     private GameObject activeProduct;
     private bool playerInteracted = false;
     private bool isHitProduct=false;
+
+    private int tempIncreaseScore;
 
     private void OnEnable()
     {
@@ -58,8 +65,8 @@ public class VipManager : MonoBehaviour
             Debug.LogWarning("A VIP is already active!");
             return;
         }
-
-        activeVIP = GetRandomVIP();
+        GetRandomVIP();
+        activeVIP = vipPool;
         activeVIP.GetComponent<VipPlayer>().meshRenderer.enabled=false;
         
         EventManager.Broadcast(GameEvent.OnVipSummoned);
@@ -81,12 +88,15 @@ public class VipManager : MonoBehaviour
         MoveProductToPreview();
     }
 
-    private GameObject GetRandomVIP()
+    private void GetRandomVIP()
     {
-        int randomIndex = Random.Range(0, vipPool.Length);
-        GameObject vip = vipPool[randomIndex];
-        vip.SetActive(true);
-        return vip;
+        int randomIndex = Random.Range(0, vipMeshPool.Length);
+        vipPool.SetActive(true);
+        for (int i = 0; i < vipMeshPool.Length; i++)
+        {
+            vipMeshPool[i].gameObject.SetActive(false);    
+        }
+        vipMeshPool[randomIndex].gameObject.SetActive(true);
     }
 
     private GameObject InstantiateRandomProduct()
@@ -128,7 +138,6 @@ public class VipManager : MonoBehaviour
             .SetEase(ease)
             .OnComplete(() =>
             {
-                activeVIP.GetComponent<VipPlayer>().PlayParticle();
                 activeProduct = InstantiateRandomProduct();
                 activeVIP.transform.DOPunchScale(Vector3.one,0.25f);
                 EventManager.Broadcast(GameEvent.OnVipProductCreated);
@@ -140,6 +149,7 @@ public class VipManager : MonoBehaviour
 
     private IEnumerator StartInteractionTimer()
     {
+        Debug.LogWarning("CALLED");
         float elapsedTime = 0f;
 
         while (elapsedTime < interactionTimeLimit)
@@ -160,19 +170,19 @@ public class VipManager : MonoBehaviour
     private void MoveProductToPreview()
     {
         var previewPosition = activeVIP.GetComponent<VipPlayer>().meshRenderer.transform.position;
-        activeVIP.GetComponent<VipPlayer>().PullParticle();
         
-        activeProduct.GetComponent<VipProduct>().PlayProductParticle();
+        activeVIP.GetComponent<VipPlayer>().meshRenderer.enabled=false;
         //transform.DORotate(player.GetComponent<PlayerTrigger>().ProductEnter.rotation.eulerAngles,.25f)
         activeProduct.transform.DORotate(Vector3.zero,0.25f);
-        activeProduct.transform.DOMove(previewPosition, productMoveDuration).SetEase(productEase).OnComplete(() =>
+        activeProduct.transform.DOJump(previewPosition,1,1, productMoveDuration).SetEase(productEase).OnComplete(() =>
         {
             //Particle, Sound
             //ResetVIP();
             EventManager.Broadcast(GameEvent.OnVipProductPlaced);
-            activeVIP.GetComponent<VipPlayer>().meshRenderer.enabled=false;
+            
             activeVIP.transform.DOPunchScale(Vector3.one,0.2f);
-            activeProduct.transform.SetParent(activeVIP.transform);
+            activeProduct.transform.DOScale(new Vector3(0.1f,0.1f,0.1f),0.25f).OnComplete(()=>activeProduct.SetActive(false));
+            activeProduct.SetActive(false);
             playerInteracted = true;
             Debug.Log("Product moved to preview position.");
         });
@@ -181,25 +191,41 @@ public class VipManager : MonoBehaviour
     private void HandleVIPSuccess()
     {
         Debug.Log("VIP request fulfilled successfully!");
+        tempIncreaseScore=gameData.increaseScore;
+        gameData.increaseScore=50;
         collectCoin.StartCollectCoin(50);
+        EventManager.Broadcast(GameEvent.OnVipSuccess);
         activeVIP.transform.DORotate(new Vector3(0,180,0),1f).OnComplete(()=>{
+            gameData.increaseScore=tempIncreaseScore;
             EventManager.Broadcast(GameEvent.OnVipLeave);
+            vipLeaveParticle.gameObject.SetActive(true);
+            vipLeaveParticle.Play();
             activeVIP.transform.DOMove(startDestination.position, movementDuration)
             .SetEase(ease)
             .OnComplete(()=>{
                 ResetVIP();
             });
         });
-        //ResetVIP();
     }
 
     private void HandleVIPFailure()
     {
         if(!isHitProduct)
         {
-            Debug.Log("Time's up! The VIP is leaving.");
-            gameData.isVipHere = false;
-            ResetVIP();
+            EventManager.Broadcast(GameEvent.OnVipFail);
+            activeVIP.transform.DORotate(new Vector3(0,180,0),1f).OnComplete(()=>{
+                gameData.increaseScore=tempIncreaseScore;
+                EventManager.Broadcast(GameEvent.OnVipLeave);
+                vipLeaveParticle.gameObject.SetActive(true);
+                vipLeaveParticle.Play();
+                activeVIP.transform.DOMove(startDestination.position, movementDuration)
+                .SetEase(ease)
+                .OnComplete(()=>{
+                    Debug.Log("Time's up! The VIP is leaving.");
+                    gameData.isVipHere = false;
+                    ResetVIP();
+                });
+            });
         }
         
     }
@@ -215,6 +241,9 @@ public class VipManager : MonoBehaviour
         {
             activeVIP.SetActive(false);
         }
+
+        vipLeaveParticle.Stop();
+        vipLeaveParticle.gameObject.SetActive(false);
 
         activeVIP = null;
         activeProduct = null;
