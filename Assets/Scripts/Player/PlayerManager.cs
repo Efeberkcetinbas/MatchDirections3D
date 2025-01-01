@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Transform[] destinationTargets; // Predefined destination points (max 3)
     [SerializeField] private MovementOrderConfig movementOrderConfig; // Movement order for this level
     [SerializeField] private Transform playerInitialPos;
+    [SerializeField] private GameData gameData;
 
     private Queue<Player> playerQueue = new Queue<Player>(); // Queue to manage players
     private int currentMovementIndex = 0; // Tracks the current movement step
@@ -117,6 +118,14 @@ public class PlayerManager : MonoBehaviour
         }
         EventManager.Broadcast(GameEvent.OnPlayerStartMove);
         List<Transform> availableDestinations = new List<Transform>(destinationTargets);
+        
+        //VIP 
+        gameData.vipArriveNumber++;
+        if(gameData.vipArriveNumber==10)
+        {
+            EventManager.Broadcast(GameEvent.OnVipOnTheWay);
+            gameData.vipArriveNumber=0;
+        }
 
         for (int i = 0; i < playersToMove; i++)
         {

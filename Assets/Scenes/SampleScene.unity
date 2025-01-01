@@ -775,7 +775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &123561676
 RectTransform:
   m_ObjectHideFlags: 0
@@ -793,7 +793,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 600}
+  m_AnchoredPosition: {x: -50, y: 600}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &123561677
@@ -2574,7 +2574,7 @@ MonoBehaviour:
   ScenePanel: {fileID: 0}
   SuccessPanel: {fileID: 0}
   FailPanel: {fileID: 0}
-  VipImage: {fileID: 0}
+  VipImage: {fileID: 123561676}
   SceneUIs: []
   SuccessElements: []
   FailElements: []
@@ -2588,6 +2588,7 @@ MonoBehaviour:
   NextButton: {fileID: 1241496279}
   RestartButton: {fileID: 477334909}
   StartButton: {fileID: 1822650365}
+  vipImage: {fileID: 0}
   gameData: {fileID: 11400000, guid: 6f4f5a97a52dbab4eaa60efa1f850580, type: 2}
 --- !u!1 &321192313
 GameObject:
@@ -6012,6 +6013,7 @@ MonoBehaviour:
   - {fileID: 856323971}
   movementOrderConfig: {fileID: 11400000, guid: 80b1bed96ac4920488ae8f006d1ab56d, type: 2}
   playerInitialPos: {fileID: 1171935865}
+  gameData: {fileID: 11400000, guid: 6f4f5a97a52dbab4eaa60efa1f850580, type: 2}
 --- !u!114 &689774254 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1334906018387380696, guid: 67b1130b3124875408a170df148b6a9b, type: 3}
@@ -6627,6 +6629,7 @@ MonoBehaviour:
   - {fileID: 856323971}
   movementOrderConfig: {fileID: 11400000, guid: 7c22868dda6e9d34786a1824b79f8ef7, type: 2}
   playerInitialPos: {fileID: 1171935865}
+  gameData: {fileID: 11400000, guid: 6f4f5a97a52dbab4eaa60efa1f850580, type: 2}
 --- !u!1 &794627905
 GameObject:
   m_ObjectHideFlags: 0
@@ -7294,6 +7297,7 @@ MonoBehaviour:
   - {fileID: 856323971}
   movementOrderConfig: {fileID: 11400000, guid: 618b96f712bf3f14aafecdab557eb22f, type: 2}
   playerInitialPos: {fileID: 1171935865}
+  gameData: {fileID: 11400000, guid: 6f4f5a97a52dbab4eaa60efa1f850580, type: 2}
 --- !u!1 &823404923
 GameObject:
   m_ObjectHideFlags: 0
@@ -8464,6 +8468,7 @@ MonoBehaviour:
   - {fileID: 856323971}
   movementOrderConfig: {fileID: 11400000, guid: cb510fcf2c0989648a61128e74ccedf4, type: 2}
   playerInitialPos: {fileID: 1171935865}
+  gameData: {fileID: 11400000, guid: 6f4f5a97a52dbab4eaa60efa1f850580, type: 2}
 --- !u!1 &942092166
 GameObject:
   m_ObjectHideFlags: 0
@@ -14837,6 +14842,7 @@ MonoBehaviour:
   - {fileID: 856323971}
   movementOrderConfig: {fileID: 11400000, guid: ec8ca9ece48263d4083a4ba207da36ac, type: 2}
   playerInitialPos: {fileID: 1171935865}
+  gameData: {fileID: 11400000, guid: 6f4f5a97a52dbab4eaa60efa1f850580, type: 2}
 --- !u!1 &2027944104
 GameObject:
   m_ObjectHideFlags: 0

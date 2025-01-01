@@ -14,6 +14,9 @@ public class GameData : ScriptableObject
     public int levelNumber;
     public int dissatisfyPeople;
 
+    //vip counter
+    public int vipArriveNumber;
+
 
     //Combo
     public int comboCount;

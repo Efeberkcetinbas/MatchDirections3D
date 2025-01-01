@@ -46,11 +46,14 @@ public class VipManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnVipProductTouched, OnVipProductTouched);
+        EventManager.AddHandler(GameEvent.OnVipOnTheWay, OnVipOnTheWay);
+        
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnVipProductTouched, OnVipProductTouched);
+        EventManager.RemoveHandler(GameEvent.OnVipOnTheWay, OnVipOnTheWay);
     }
 
     
@@ -58,7 +61,7 @@ public class VipManager : MonoBehaviour
     /// <summary>
     /// Summons a VIP and assigns a product.
     /// </summary>
-    public void SummonVIP()
+    public void OnVipOnTheWay()
     {
         if (activeVIP != null)
         {

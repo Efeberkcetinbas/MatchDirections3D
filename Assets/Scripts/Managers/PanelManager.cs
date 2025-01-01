@@ -15,7 +15,7 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private float sceneX,sceneY,oldSceneX,oldSceneY,duration;
 
     //TEMP. THIS WILL BE REMOVED
-    public GameObject NextButton,RestartButton,StartButton;
+    public GameObject NextButton,RestartButton,StartButton,vipImage;
 
     //
 
@@ -46,6 +46,8 @@ public class PanelManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnFailUI,OnFailUI);
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.AddHandler(GameEvent.OnVipSummoned,OnVipSummoned);
+        EventManager.AddHandler(GameEvent.OnVipLeave,OnVipLeave);
 
     }
 
@@ -59,16 +61,23 @@ public class PanelManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnFailUI,OnFailUI);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);*/
 
+        EventManager.RemoveHandler(GameEvent.OnSuccessUI,OnSuccessUI);
+        EventManager.RemoveHandler(GameEvent.OnFailUI,OnFailUI);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.RemoveHandler(GameEvent.OnVipSummoned,OnVipSummoned);
+        EventManager.RemoveHandler(GameEvent.OnVipLeave,OnVipLeave);
+
     }
 
     private void OnVipSummoned()
     {
-
+        vipImage.SetActive(true);
     }
 
     private void OnVipLeave()
     {
-        
+        vipImage.SetActive(false);
     }
     //TEMP!
     #region TEMP
