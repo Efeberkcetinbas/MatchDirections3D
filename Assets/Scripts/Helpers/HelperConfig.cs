@@ -9,6 +9,7 @@ public class HelperConfig : ScriptableObject
     public int RequirementScore;
     public int Amount;
     public int GivenAmount;
+    public int UnlockLevel; // New property for unlock level
     
     
 }

@@ -11,8 +11,10 @@ public class HelperProperties
 {
     public Button BuyButton;
     public Button UseButton;
+    public GameObject Locked;
     public TextMeshProUGUI UseAmountText;
     public TextMeshProUGUI PriceText;
+    public TextMeshProUGUI UnlockedLevelText;
     public HelperConfig helperConfig;
     public GameEvent gameEvent;
 }
@@ -33,18 +35,26 @@ public class Helper : MonoBehaviour
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnCheckHelpers,OnCheckHelpers);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnCheckHelpers,OnCheckHelpers);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnCheckHelpers()
     {
         CheckIfButtonAvailable();
-        
     }
+
+    //Or OnGameStart
+    private void OnNextLevel()
+    {
+        CheckIfButtonAvailable();
+    }
+
     private void AssignHelperImages()
     {
         for (int i = 0; i < helperProperties.Count; i++)
@@ -56,7 +66,13 @@ public class Helper : MonoBehaviour
             // Load the Amount value from PlayerPrefs, defaulting to 0 if not set
             config.Amount = PlayerPrefs.GetInt($"Helper_{i}_Amount", 0);
             helperProperty.UseAmountText.SetText(config.Amount.ToString());
-            //helperProperty.PriceText.SetText(config.RequirementScore.ToString());
+            helperProperty.PriceText.SetText(config.RequirementScore.ToString());
+
+            // Check lock status and set unlock level text
+            bool isLocked = gameData.levelNumber < config.UnlockLevel;
+            helperProperty.Locked.SetActive(isLocked);
+            helperProperty.UnlockedLevelText.SetText($"Unlocks at Level {config.UnlockLevel}");
+            helperProperty.UnlockedLevelText.gameObject.SetActive(isLocked);
         }
     }
 
@@ -69,6 +85,10 @@ public class Helper : MonoBehaviour
             var config = helperProperty.helperConfig;
             var buyButton = helperProperty.BuyButton;
             var useButton = helperProperty.UseButton;
+            var lockedButton=helperProperty.Locked;
+
+             // Check if the helper is unlocked based on the level
+            bool isUnlocked = gameData.levelNumber >= config.UnlockLevel;
 
             // Check if the helper has been bought
             bool hasAmount = config.Amount > 0;
@@ -76,13 +96,18 @@ public class Helper : MonoBehaviour
             // Check if the score requirement is met
             bool canBuy = config.RequirementScore <= gameData.score;
 
+            // Update lock panel visibility
+            lockedButton.SetActive(!isUnlocked);
+
             // Update button visibility
-            buyButton.gameObject.SetActive(!hasAmount);
-            useButton.gameObject.SetActive(hasAmount);
+            buyButton.gameObject.SetActive(isUnlocked && !hasAmount);
+            useButton.gameObject.SetActive(isUnlocked && hasAmount);
+
+
 
             // Update button interactability
-            /*buyButton.interactable = !hasAmount && canBuy;
-            useButton.interactable = hasAmount;*/
+            buyButton.interactable = isUnlocked && !hasAmount && canBuy;
+            useButton.interactable = isUnlocked && hasAmount;
 
             PlayerPrefs.SetInt($"Helper_{i}_Amount", config.Amount);
         }

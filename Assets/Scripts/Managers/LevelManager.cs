@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
         }
         PlayerPrefs.SetInt("LevelNumber", gameData.levelIndex);
         
-        gameData.levelNumber=PlayerPrefs.GetInt("RealLevel");
+        gameData.levelNumber=PlayerPrefs.GetInt("RealLevel") + 1;
 
         //EventManager.Broadcast(GameEvent.OnLevelUIUpdate);
        

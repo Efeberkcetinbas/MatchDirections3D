@@ -51,7 +51,13 @@ public class Player : MonoBehaviour
         
     }
 
-    
+    private void Start()
+    {
+        for (int i = 0; i < matchFullParticles.Count; i++)
+        {
+            matchFullParticles[i].gameObject.SetActive(false);
+        }
+    }
 
    
 
@@ -95,8 +101,11 @@ public class Player : MonoBehaviour
     private void GetRandomFullParticle()
     {
         responseIndex=Random.Range(0,matchFullParticles.Count);
+        matchFullParticles[responseIndex].gameObject.SetActive(true);
         matchFullParticles[responseIndex].Play();
     }
+
+    
 
     private IEnumerator OnSuccessCompleted()
     {
@@ -111,6 +120,7 @@ public class Player : MonoBehaviour
             transform.DOMove(startPos,1).OnComplete(()=>{
                 responseIndex=Random.Range(0,matchFullParticles.Count);
                 matchFullParticles[responseIndex].Stop();
+                matchFullParticles[responseIndex].gameObject.SetActive(false);
                 gameObject.SetActive(false);
             });
         });

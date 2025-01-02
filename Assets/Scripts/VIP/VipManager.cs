@@ -17,7 +17,7 @@ public class VipManager : MonoBehaviour
 
     [Header("Product Configuration")]
     [SerializeField] private GameObject[] productList; // List of possible products
-    [SerializeField] private Transform productSpawnPosition; // Position where the product is spawned
+    [SerializeField] private List<Transform> productSpawnPosition=new List<Transform>(); // Position where the product is spawned
     [SerializeField] private float interactionTimeLimit = 10f; // Time limit for player interaction
     [SerializeField] private float productMoveDuration = 1f; // Duration to move the product to the preview position
 
@@ -104,8 +104,22 @@ public class VipManager : MonoBehaviour
 
     private GameObject InstantiateRandomProduct()
     {
-        int randomIndex = Random.Range(0, productList.Length);
-        return Instantiate(productList[randomIndex], productSpawnPosition.position, Quaternion.identity);
+        if (productSpawnPosition == null || productSpawnPosition.Count == 0)
+        {
+            Debug.LogError("Product spawn positions list is empty!");
+            return null;
+        }
+
+        // Randomly select a spawn position from the list
+        int randomPositionIndex = Random.Range(0, productSpawnPosition.Count);
+        Transform randomSpawnPosition = productSpawnPosition[randomPositionIndex];
+
+        // Randomly select a product from the product list
+        int randomProductIndex = Random.Range(0, productList.Length);
+        GameObject selectedProduct = productList[randomProductIndex];
+
+        // Instantiate the product at the random position
+        return Instantiate(selectedProduct, randomSpawnPosition.position, randomSpawnPosition.rotation);
     }
 
     private void SetVIPPreview(GameObject product)

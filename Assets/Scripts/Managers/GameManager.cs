@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     {
         ClearData();
         gameData.vipArriveNumber=0;
+        OnVipLeave();
+        
     }
 
     private void Start()
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnFail,OnFail);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.AddHandler(GameEvent.OnFreezerIn,OnFreezerIn);
+        EventManager.AddHandler(GameEvent.OnVipLeave,OnVipLeave);
 
     }
 
@@ -46,9 +49,13 @@ public class GameManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnFail,OnFail);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.RemoveHandler(GameEvent.OnFreezerIn,OnFreezerIn);
+        EventManager.RemoveHandler(GameEvent.OnVipLeave,OnVipLeave);
     }
 
-    
+    private void OnVipLeave()
+    {
+        gameData.getVipRandomNumber=Random.Range(5,15);
+    }
     
 
     private void OnNextLevel()

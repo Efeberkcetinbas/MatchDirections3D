@@ -170,7 +170,7 @@ public class PlayerManager : MonoBehaviour
         
         //VIP 
         gameData.vipArriveNumber++;
-        if(gameData.vipArriveNumber==5)
+        if(gameData.vipArriveNumber==gameData.getVipRandomNumber)
         {
             EventManager.Broadcast(GameEvent.OnVipOnTheWay);
             gameData.vipArriveNumber=0;
