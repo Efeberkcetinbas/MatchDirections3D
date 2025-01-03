@@ -49,6 +49,8 @@ public enum GameEvent
     OnSetSameProductsUp,
     OnFreezerOut,
     OnSetMaxSatisfaction,
+    OnOpenPurchasePanel,
+    OnClosePurchasePanel,
     
     //Game Management
     OnGameStart,

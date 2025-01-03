@@ -48,7 +48,9 @@ public class SatisfactionManager : MonoBehaviour
     
     private void Update()
     {
-        if(!gameData.isGameEnd && !gameData.isFreezer)
+        // && !gameData.isFreezer
+        
+        if(!gameData.isGameEnd)
         {
             DecreaseSatisfaction(DecreaseRate * Time.deltaTime);
             

@@ -27,5 +27,6 @@ public class GameData : ScriptableObject
     public bool dissatisfy=false;
     public bool isFreezer=false;
     public bool isVipHere=false;
+    public bool isUIIntheScene=false;
 
 }

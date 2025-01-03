@@ -4,19 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 
 [Serializable]
 public class HelperProperties
 {
+    public Sprite PurchaseIcon;
+    public string PurchaseHeader;
+    public string PurchaseBrief;
+
+
     public Button BuyButton;
     public Button UseButton;
     public GameObject Locked;
     public TextMeshProUGUI UseAmountText;
-    public TextMeshProUGUI PriceText;
     public TextMeshProUGUI UnlockedLevelText;
     public HelperConfig helperConfig;
-    public GameEvent gameEvent;
 }
 
 public class Helper : MonoBehaviour
@@ -24,7 +28,16 @@ public class Helper : MonoBehaviour
     [SerializeField] private GameData gameData;
     [SerializeField] private List<HelperProperties> helperProperties=new List<HelperProperties>();
 
+    [Header("Purchase Panel")]
+    [SerializeField] private GameObject purchasePanel;
+    [SerializeField] private TextMeshProUGUI headerText,purchaseAmountText,briefText,purchasePriceText;
+    [SerializeField] private Image purchaseIcon;
+    [SerializeField] private Button purchaseBuyButton;
+    
+
     private bool isUsingHelper=false;
+
+    private int buyIndex=0;
 
     private void Start()
     {
@@ -38,6 +51,8 @@ public class Helper : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnCollector,OnCollector);
         EventManager.AddHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
+        EventManager.AddHandler(GameEvent.OnSuccess,OnSuccess);
+        EventManager.AddHandler(GameEvent.OnFail,OnFail);
     }
 
     private void OnDisable()
@@ -46,6 +61,8 @@ public class Helper : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnCollector,OnCollector);
         EventManager.RemoveHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
+        EventManager.RemoveHandler(GameEvent.OnSuccess,OnSuccess);
+        EventManager.RemoveHandler(GameEvent.OnFail,OnFail);
     }
 
     private void OnCheckHelpers()
@@ -57,6 +74,16 @@ public class Helper : MonoBehaviour
     private void OnNextLevel()
     {
         CheckIfButtonAvailable();
+    }
+
+    private void OnSuccess()
+    {
+        purchasePanel.SetActive(false);
+    }
+
+    private void OnFail()
+    {
+        purchasePanel.SetActive(false);
     }
 
     private void OnCollector()
@@ -82,7 +109,6 @@ public class Helper : MonoBehaviour
             // Load the Amount value from PlayerPrefs, defaulting to 0 if not set
             config.Amount = PlayerPrefs.GetInt($"Helper_{i}_Amount", 0);
             helperProperty.UseAmountText.SetText(config.Amount.ToString());
-            helperProperty.PriceText.SetText(config.RequirementScore.ToString());
 
             // Check lock status and set unlock level text
             bool isLocked = (gameData.levelNumber+1) < config.UnlockLevel;
@@ -122,8 +148,8 @@ public class Helper : MonoBehaviour
 
 
             // Update button interactability
-            buyButton.interactable = isUnlocked && !hasAmount && canBuy && !isUsingHelper;
-            useButton.interactable = isUnlocked && hasAmount && !isUsingHelper;
+            /*buyButton.interactable = isUnlocked && !hasAmount && canBuy && !isUsingHelper;
+            useButton.interactable = isUnlocked && hasAmount && !isUsingHelper;*/
 
             PlayerPrefs.SetInt($"Helper_{i}_Amount", config.Amount);
         }
@@ -131,20 +157,62 @@ public class Helper : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void BuyHelper(int index)
+
+    //Use Purchase panel and helper panel effects in panel manager!!!!
+    public void OpenPurchasePanel(int index)
     {
-        if(gameData.score>=helperProperties[index].helperConfig.RequirementScore)
+        purchasePanel.transform.localScale=Vector3.zero;
+        purchasePanel.SetActive(true);
+        purchasePanel.transform.DOScale(Vector3.one,.5f).SetEase(Ease.OutQuart);
+        EventManager.Broadcast(GameEvent.OnOpenPurchasePanel);
+        headerText.SetText(helperProperties[index].PurchaseHeader);
+        purchaseAmountText.SetText("x " + helperProperties[index].helperConfig.GivenAmount.ToString());
+        briefText.SetText(helperProperties[index].PurchaseBrief);
+        purchasePriceText.SetText(helperProperties[index].helperConfig.RequirementScore.ToString());
+        purchaseIcon.sprite=helperProperties[index].PurchaseIcon;
+        
+        buyIndex=index;
+
+         // Check if the helper is unlocked based on the level
+        bool isUnlocked = (gameData.levelNumber+1) >= helperProperties[index].helperConfig.UnlockLevel;
+
+        // Check if the helper has been bought
+        bool hasAmount = helperProperties[index].helperConfig.Amount > 0;
+
+        // Check if the score requirement is met
+        bool canBuy = helperProperties[index].helperConfig.RequirementScore <= gameData.score;
+        purchaseBuyButton.interactable = isUnlocked && !hasAmount && canBuy && !isUsingHelper;
+
+        gameData.isUIIntheScene=true;
+        
+    }
+
+    public void ClosePurchasePanel()
+    {
+        EventManager.Broadcast(GameEvent.OnClosePurchasePanel);
+        purchasePanel.transform.DOScale(Vector3.zero,.5f).SetEase(Ease.OutQuart).OnComplete(()=>{
+            purchasePanel.SetActive(false);
+        });
+        
+        gameData.isUIIntheScene=false;
+    }
+
+    public void BuyHelper()
+    {
+        if(gameData.score>=helperProperties[buyIndex].helperConfig.RequirementScore)
         {
-            gameData.score-=helperProperties[index].helperConfig.RequirementScore;
-            gameData.decreaseScore=helperProperties[index].helperConfig.RequirementScore;
+            gameData.score-=helperProperties[buyIndex].helperConfig.RequirementScore;
+            gameData.decreaseScore=helperProperties[buyIndex].helperConfig.RequirementScore;
             EventManager.Broadcast(GameEvent.OnScoreUIUpdate);
             PlayerPrefs.SetInt("Score",gameData.score);
-            helperProperties[index].helperConfig.Amount=helperProperties[index].helperConfig.GivenAmount;
-            helperProperties[index].UseAmountText.SetText(helperProperties[index].helperConfig.Amount.ToString());
+            helperProperties[buyIndex].helperConfig.Amount=helperProperties[buyIndex].helperConfig.GivenAmount;
+            helperProperties[buyIndex].UseAmountText.SetText(helperProperties[buyIndex].helperConfig.Amount.ToString());
 
             EventManager.Broadcast(GameEvent.OnBuyButtonTap);
             
             CheckIfButtonAvailable();
+
+            ClosePurchasePanel();
         }
 
         else
@@ -155,9 +223,32 @@ public class Helper : MonoBehaviour
     {
         helperProperties[index].helperConfig.Amount--;
         helperProperties[index].UseAmountText.SetText(helperProperties[index].helperConfig.Amount.ToString());
-        EventManager.Broadcast(helperProperties[index].gameEvent);
+        SetGameEvent(index);
         EventManager.Broadcast(GameEvent.OnUseButtonTap);
         CheckIfButtonAvailable();
+    }
+
+
+    private void SetGameEvent(int eventIndex)
+    {
+        switch(eventIndex)
+        {
+            case 0:
+                EventManager.Broadcast(GameEvent.OnFreezerIn);
+                break;
+
+            case 1:
+                EventManager.Broadcast(GameEvent.OnSetMaxSatisfaction);
+                break;
+            
+            case 2:
+                EventManager.Broadcast(GameEvent.OnSetSameProductsUp);
+                break;
+
+            case 3:
+                EventManager.Broadcast(GameEvent.OnCollector);
+                break;
+        }
     }
 
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CollectSameProduct
   m_EditorClassIdentifier: 
   HelperSprite: {fileID: 21300000, guid: e21eb3d9d2391d842a379a160c63a427, type: 3}
-  RequirementScore: 0
-  Amount: 2
+  RequirementScore: 500
+  Amount: 0
   GivenAmount: 3
   UnlockLevel: 0

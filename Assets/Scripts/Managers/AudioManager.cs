@@ -43,6 +43,10 @@ public class AudioClipsHelpers
 {
     public AudioClip CollectorMoveSound;
     public AudioClip CollectorEndSound;
+
+
+    public AudioClip OpenPurchasePanelSound;
+    public AudioClip ClosePurchasePanelSound;
     
 }
 
@@ -121,6 +125,9 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnCollectorMove,OnCollectorMove);
         EventManager.AddHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
 
+        EventManager.AddHandler(GameEvent.OnOpenPurchasePanel,OnOpenPurchasePanel);
+        EventManager.AddHandler(GameEvent.OnClosePurchasePanel,OnClosePurchasePanel);
+
         //VIP
         EventManager.AddHandler(GameEvent.OnVipSummoned,OnVipSummoned);
         EventManager.AddHandler(GameEvent.OnVipLeave,OnVipLeave);
@@ -163,6 +170,9 @@ public class AudioManager : MonoBehaviour
         //Helpers
         EventManager.RemoveHandler(GameEvent.OnCollectorMove,OnCollectorMove);
         EventManager.RemoveHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
+
+        EventManager.RemoveHandler(GameEvent.OnOpenPurchasePanel,OnOpenPurchasePanel);
+        EventManager.RemoveHandler(GameEvent.OnClosePurchasePanel,OnClosePurchasePanel);
 
         //VIP
         EventManager.RemoveHandler(GameEvent.OnVipSummoned,OnVipSummoned);
@@ -306,6 +316,16 @@ public class AudioManager : MonoBehaviour
     {
         effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsHelpers.CollectorEndSound);
+    }
+
+    private void OnOpenPurchasePanel()
+    {
+        effectSource.PlayOneShot(audioClipsHelpers.OpenPurchasePanelSound);
+    }
+
+    private void OnClosePurchasePanel()
+    {
+        effectSource.PlayOneShot(audioClipsHelpers.ClosePurchasePanelSound);
     }
 
     #endregion

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MaximizeSatisfaction
   m_EditorClassIdentifier: 
   HelperSprite: {fileID: 21300000, guid: ad84385de3ed1a2458d66c02b59aeeed, type: 3}
-  RequirementScore: 10
+  RequirementScore: 5
   Amount: 0
   GivenAmount: 2
   UnlockLevel: 0

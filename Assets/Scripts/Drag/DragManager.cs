@@ -29,7 +29,7 @@ public class DragManager : MonoBehaviour
 
     private void Update()
     {
-        if(!gameData.isGameEnd && canDrag)
+        if(!gameData.isGameEnd && canDrag && !gameData.isUIIntheScene)
             HandleDrag();
     }
 

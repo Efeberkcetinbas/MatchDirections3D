@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour
         gameData.isGameEnd=true;
         gameData.dissatisfy=false;
         gameData.isFreezer=false;
+        gameData.isUIIntheScene=false;
 
         gameData.dissatisfyPeople=0;
         gameData.comboCount=0;
