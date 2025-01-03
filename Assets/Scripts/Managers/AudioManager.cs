@@ -14,6 +14,8 @@ public class AudioClipsGameManagement
     public AudioClip StartSound;
     public AudioClip FailUISound;
     public AudioClip IncreaseScoreSound;
+    public AudioClip HelperBuyButtonTapSound;
+    public AudioClip HelperUseButtonTapSound;
     
 }
 
@@ -91,6 +93,8 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.AddHandler(GameEvent.OnCoinIncreaseSound,OnCoinIncreaseSound);
+        EventManager.AddHandler(GameEvent.OnBuyButtonTap,OnBuyButtonTap);
+        EventManager.AddHandler(GameEvent.OnUseButtonTap,OnUseButtonTap);
         #endregion
 
         //Player
@@ -130,6 +134,8 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.RemoveHandler(GameEvent.OnCoinIncreaseSound,OnCoinIncreaseSound);
+        EventManager.RemoveHandler(GameEvent.OnBuyButtonTap,OnBuyButtonTap);
+        EventManager.RemoveHandler(GameEvent.OnUseButtonTap,OnUseButtonTap);
         #endregion
 
         //Player
@@ -198,6 +204,16 @@ public class AudioManager : MonoBehaviour
     {
         effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsGameManagement.IncreaseScoreSound);
+    }
+
+    private void OnBuyButtonTap()
+    {
+        effectSource.PlayOneShot(audioClipsGameManagement.HelperBuyButtonTapSound);
+    }
+
+    private void OnUseButtonTap()
+    {
+        effectSource.PlayOneShot(audioClipsGameManagement.HelperUseButtonTapSound);
     }
 
     #endregion

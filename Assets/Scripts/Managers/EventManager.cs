@@ -20,6 +20,8 @@ public enum GameEvent
     OnVipFail,
     OnVipLeave,
 
+    
+
     //Player-Product
     
     OnProductPlaced,
@@ -51,10 +53,12 @@ public enum GameEvent
    
     //UI
     OnScoreUIUpdate,
-    OnLevelUIUpdate,
     OnComboUIUpdate,
+    OnLevelUpdateUI,
     OnComboProgress,
     OnCoinIncreaseSound,
+    OnBuyButtonTap,
+    OnUseButtonTap,
 
 
 

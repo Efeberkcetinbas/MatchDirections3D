@@ -53,8 +53,14 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        ResetParticles();
+    }
+
+    private void ResetParticles()
+    {
         for (int i = 0; i < matchFullParticles.Count; i++)
         {
+            matchFullParticles[i].Stop();
             matchFullParticles[i].gameObject.SetActive(false);
         }
     }
@@ -115,12 +121,13 @@ public class Player : MonoBehaviour
                 PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
         transform.Rotate(0, 180, 0);
         EventManager.Broadcast(GameEvent.OnPlayerLeaving);
+
+        
         
         transform.DOMove(doorPos,1).OnComplete(()=>{
+            ResetParticles();
             transform.DOMove(startPos,1).OnComplete(()=>{
                 responseIndex=Random.Range(0,matchFullParticles.Count);
-                matchFullParticles[responseIndex].Stop();
-                matchFullParticles[responseIndex].gameObject.SetActive(false);
                 gameObject.SetActive(false);
             });
         });

@@ -117,13 +117,13 @@ public class PlayerCombo : MonoBehaviour
     /// </summary>
     private void RandomizeUIElements()
     {
-        foreach (RectTransform element in posUIElements)
+        /*foreach (RectTransform element in posUIElements)
         {
             // Set Random Position
             float randomX = Random.Range(xMin, xMax);
             float randomY = Random.Range(yMin, yMax);
             element.anchoredPosition = new Vector2(randomX, randomY);
-        }
+        }*/
         
         Color randomColor = GetRandomColor();
 

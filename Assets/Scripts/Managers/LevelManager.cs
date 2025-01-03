@@ -24,10 +24,8 @@ public class LevelManager : MonoBehaviour
         }
         PlayerPrefs.SetInt("LevelNumber", gameData.levelIndex);
         
-        gameData.levelNumber=PlayerPrefs.GetInt("RealLevel") + 1;
+        gameData.levelNumber=PlayerPrefs.GetInt("RealLevel");
 
-        //EventManager.Broadcast(GameEvent.OnLevelUIUpdate);
-       
 
         for (int i = 0; i < levels.Count; i++)
         {
@@ -42,6 +40,8 @@ public class LevelManager : MonoBehaviour
         PlayerPrefs.SetInt("RealLevel", PlayerPrefs.GetInt("RealLevel", 0) + 1);
         LoadLevel();
         EventManager.Broadcast(GameEvent.OnNextLevel);
+        EventManager.Broadcast(GameEvent.OnLevelUpdateUI);       
+
     }
 
     public void RestartLevel()

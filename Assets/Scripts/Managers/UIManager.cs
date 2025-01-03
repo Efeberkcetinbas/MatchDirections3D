@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Combo Part")]
     [SerializeField] private TextMeshProUGUI comboText;
-    [SerializeField] private Image progressBar;
+    [SerializeField] private Image comboProgressBar;
 
     [Header("Coin Amount")]
     [SerializeField] private TextMeshProUGUI coinText;
@@ -23,23 +23,24 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnScoreUIUpdate, OnUIUpdate);
-        EventManager.AddHandler(GameEvent.OnLevelUIUpdate,OnLevelUIUpdate);
         EventManager.AddHandler(GameEvent.OnComboProgress,OnComboProgress);
         EventManager.AddHandler(GameEvent.OnComboUIUpdate,OnComboUIUpdate);
+        EventManager.AddHandler(GameEvent.OnLevelUpdateUI, OnLevelUpdateUI);
         
         
     }
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnScoreUIUpdate, OnUIUpdate);
-        EventManager.RemoveHandler(GameEvent.OnLevelUIUpdate,OnLevelUIUpdate);
         EventManager.RemoveHandler(GameEvent.OnComboProgress,OnComboProgress);
         EventManager.RemoveHandler(GameEvent.OnComboUIUpdate,OnComboUIUpdate);
+        EventManager.RemoveHandler(GameEvent.OnLevelUpdateUI, OnLevelUpdateUI);
     }
 
     private void Start()
     {
         OnUIUpdate();
+        OnLevelUpdateUI();
     }
 
     
@@ -48,7 +49,7 @@ public class UIManager : MonoBehaviour
         coinText.SetText(gameData.score.ToString());
     }
 
-    private void OnLevelUIUpdate()
+    private void OnLevelUpdateUI()
     {
         levelText.SetText("LEVEL " + (gameData.levelNumber+1).ToString());
     }
@@ -56,7 +57,7 @@ public class UIManager : MonoBehaviour
     private void OnComboProgress()
     {
         var val=gameData.elapsedTime/gameData.currentInterval;
-        progressBar.fillAmount=val;
+        comboProgressBar.fillAmount=val;
     }
 
     private void OnComboUIUpdate()
