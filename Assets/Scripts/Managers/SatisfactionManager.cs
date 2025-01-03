@@ -12,6 +12,7 @@ public class SatisfactionManager : MonoBehaviour
     [Range(0, 100)] public float Satisfaction = 100f;
     public float DecreaseRate = 0.1f; // Automatic decrease rate per second
     public float CorrectProductBoost = 10f;
+    public float FullMatchProductBoost = 10f;
     public float WrongProductPenalty = 15f;
     public float TimeoutPenalty = 20f;
 
@@ -124,6 +125,8 @@ public class SatisfactionManager : MonoBehaviour
                 gameData.dissatisfy=false;
             }
         }
+
+        IncreaseSatisfaction(FullMatchProductBoost);
     }
     private void IncreaseSatisfaction(float amount)
     {

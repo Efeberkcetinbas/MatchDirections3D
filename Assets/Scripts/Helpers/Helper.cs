@@ -28,6 +28,9 @@ public class Helper : MonoBehaviour
     [SerializeField] private GameData gameData;
     [SerializeField] private List<HelperProperties> helperProperties=new List<HelperProperties>();
 
+    [Header("Helper Particles")]
+    [SerializeField] private ParticleSystem satisfactionParticle;
+
     [Header("Purchase Panel")]
     [SerializeField] private GameObject purchasePanel;
     [SerializeField] private TextMeshProUGUI headerText,purchaseAmountText,briefText,purchasePriceText;
@@ -53,6 +56,7 @@ public class Helper : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
         EventManager.AddHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.AddHandler(GameEvent.OnFail,OnFail);
+        EventManager.AddHandler(GameEvent.OnSetMaxSatisfaction,OnSetMaxSatisfaction);
     }
 
     private void OnDisable()
@@ -63,6 +67,7 @@ public class Helper : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
         EventManager.RemoveHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.RemoveHandler(GameEvent.OnFail,OnFail);
+        EventManager.RemoveHandler(GameEvent.OnSetMaxSatisfaction,OnSetMaxSatisfaction);
     }
 
     private void OnCheckHelpers()
@@ -96,6 +101,11 @@ public class Helper : MonoBehaviour
     {
         isUsingHelper=false;
         CheckIfButtonAvailable();
+    }
+
+    private void OnSetMaxSatisfaction()
+    {
+        satisfactionParticle.Play();
     }
 
     private void AssignHelperImages()
@@ -148,8 +158,8 @@ public class Helper : MonoBehaviour
 
 
             // Update button interactability
-            /*buyButton.interactable = isUnlocked && !hasAmount && canBuy && !isUsingHelper;
-            useButton.interactable = isUnlocked && hasAmount && !isUsingHelper;*/
+            /*buyButton.interactable = isUnlocked && !hasAmount && canBuy && !isUsingHelper;*/
+            useButton.interactable = isUnlocked && hasAmount && !isUsingHelper;
 
             PlayerPrefs.SetInt($"Helper_{i}_Amount", config.Amount);
         }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27f161e4e2a43748b86a664f3057605, type: 3}
   m_Name: MaximizeSatisfaction
   m_EditorClassIdentifier: 
-  RequirementScore: 5
+  RequirementScore: 50
   Amount: 0
   GivenAmount: 2
   UnlockLevel: 1

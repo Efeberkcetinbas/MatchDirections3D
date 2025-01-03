@@ -15,4 +15,4 @@ MonoBehaviour:
   RequirementScore: 5
   Amount: 0
   GivenAmount: 3
-  UnlockLevel: 0
+  UnlockLevel: 2

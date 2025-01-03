@@ -43,7 +43,9 @@ public class AudioClipsHelpers
 {
     public AudioClip CollectorMoveSound;
     public AudioClip CollectorEndSound;
-
+    public AudioClip FreezerInSound;
+    public AudioClip FreezerOutSound;
+    public AudioClip SatisfactionSound;
 
     public AudioClip OpenPurchasePanelSound;
     public AudioClip ClosePurchasePanelSound;
@@ -124,6 +126,9 @@ public class AudioManager : MonoBehaviour
         //Helpers
         EventManager.AddHandler(GameEvent.OnCollectorMove,OnCollectorMove);
         EventManager.AddHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
+        EventManager.AddHandler(GameEvent.OnFreezerIn,OnFreezerIn);
+        EventManager.AddHandler(GameEvent.OnFreezerOut,OnFreezerOut);
+        EventManager.AddHandler(GameEvent.OnSetMaxSatisfaction,OnSetMaxSatisfaction);
 
         EventManager.AddHandler(GameEvent.OnOpenPurchasePanel,OnOpenPurchasePanel);
         EventManager.AddHandler(GameEvent.OnClosePurchasePanel,OnClosePurchasePanel);
@@ -170,6 +175,9 @@ public class AudioManager : MonoBehaviour
         //Helpers
         EventManager.RemoveHandler(GameEvent.OnCollectorMove,OnCollectorMove);
         EventManager.RemoveHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
+        EventManager.RemoveHandler(GameEvent.OnFreezerIn,OnFreezerIn);
+        EventManager.RemoveHandler(GameEvent.OnFreezerOut,OnFreezerOut);
+        EventManager.RemoveHandler(GameEvent.OnSetMaxSatisfaction,OnSetMaxSatisfaction);
 
         EventManager.RemoveHandler(GameEvent.OnOpenPurchasePanel,OnOpenPurchasePanel);
         EventManager.RemoveHandler(GameEvent.OnClosePurchasePanel,OnClosePurchasePanel);
@@ -326,6 +334,24 @@ public class AudioManager : MonoBehaviour
     private void OnClosePurchasePanel()
     {
         effectSource.PlayOneShot(audioClipsHelpers.ClosePurchasePanelSound);
+    }
+
+    private void OnFreezerIn()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsHelpers.FreezerInSound);
+    }
+
+    private void OnFreezerOut()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsHelpers.FreezerOutSound);
+    }
+
+    private void OnSetMaxSatisfaction()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsHelpers.SatisfactionSound);
     }
 
     #endregion
