@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         waitForSeconds=new WaitForSeconds(2);
-        freezerWaitForSeconds=new WaitForSeconds(5);
+        freezerWaitForSeconds=new WaitForSeconds(10);
         minigame.SetActive(false);
     }
 
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     {
         yield return freezerWaitForSeconds;
         gameData.isFreezer=false;
-        //EventManager.Broadcast(GameEvent.OnFreezerOut);
+        EventManager.Broadcast(GameEvent.OnFreezerOut);
     }
 
     private void OnSetMaxSatisfaction()

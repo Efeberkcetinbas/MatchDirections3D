@@ -166,6 +166,7 @@ public class PlayerManager : MonoBehaviour
             player.GetComponent<PlayerWait>().SetActivityProgress(true);
             player.UpdateCounterText();
             player.GetComponent<PlayerTrigger>().ProductEnter=destination.GetComponent<Destination>().ProductEnter;
+            destination.GetComponent<Destination>().SetScaleEffect();
             player.peopleSelect.peoples[player.peopleSelect.index].GetComponent<Animator>().SetTrigger("Hold");
             player.destination=destination.GetComponent<Destination>();
             PlayerWaitManager.Instance.RegisterWaiter(player.GetComponent<PlayerWait>());

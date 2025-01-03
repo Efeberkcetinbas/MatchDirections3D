@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class Destination : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Destination : MonoBehaviour
     public ParticleSystem ProductParticle;
     
     public Vector3 initialScale;
+
+    [SerializeField] private Transform placeholderkeeper;
     private void Awake()
     {
         ResetText();
@@ -40,6 +43,11 @@ public class Destination : MonoBehaviour
         transform.localScale=initialScale;
     }
 
+    internal void SetScaleEffect()
+    {
+        placeholderkeeper.localScale=Vector3.zero;
+        placeholderkeeper.DOScale(Vector3.one,0.25f).SetEase(Ease.OutQuart);
+    }
 
     private void ResetText()
     {
