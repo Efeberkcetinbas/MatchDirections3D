@@ -9,6 +9,7 @@ public class DragManager : MonoBehaviour
     private Camera _mainCamera;
     private Vector3 _offset;
     private Plane _dragPlane;
+    private bool canDrag=true;
 
 
     [SerializeField] private LayerMask productLayerMask;
@@ -28,7 +29,7 @@ public class DragManager : MonoBehaviour
 
     private void Update()
     {
-        if(!gameData.isGameEnd)
+        if(!gameData.isGameEnd && canDrag)
             HandleDrag();
     }
 
@@ -36,12 +37,26 @@ public class DragManager : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.AddHandler(GameEvent.OnCollector,OnCollector);
+        EventManager.AddHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.RemoveHandler(GameEvent.OnCollector,OnCollector);
+        EventManager.RemoveHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
+    }
+
+    private void OnCollector()
+    {
+        canDrag=false;
+    }
+
+    private void OnCollectorEnd()
+    {
+        canDrag=true;
     }
 
     private void OnRestartLevel()
@@ -58,6 +73,7 @@ public class DragManager : MonoBehaviour
     private void OnGameStart()
     {
         productDrags.Clear();
+        canDrag=true;
     }
    
     private void HandleDrag()

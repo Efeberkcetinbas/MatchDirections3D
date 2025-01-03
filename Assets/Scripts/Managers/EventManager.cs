@@ -32,6 +32,9 @@ public enum GameEvent
     OnProductDragStop,
     OnProductReset,
 
+    //Environment
+    OnDestinationProduct,
+
     //Mini Game
     OnUpdateMiniMap,
     OnUpdateBuilding,

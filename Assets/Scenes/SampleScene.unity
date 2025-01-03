@@ -1554,6 +1554,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9182201125137587334, guid: 7bbfe4aca42885f4c9e92019ab103d75, type: 3}
   m_PrefabInstance: {fileID: 185738566}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &185738571 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8464063634012355791, guid: 7bbfe4aca42885f4c9e92019ab103d75, type: 3}
+  m_PrefabInstance: {fileID: 185738566}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &209671497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,6 +1627,7 @@ MonoBehaviour:
     CompletedMatchSound: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
     ProductPlacedSound: {fileID: 8300000, guid: a0dcd913c842c4b40b8e3d96b05e8ef5, type: 3}
     PlayerThanksSound: {fileID: 8300000, guid: 38a17a92b9d9748c6a1e67972041b833, type: 3}
+    DestinationProductSound: {fileID: 8300000, guid: d854a188dc8875743aa820e3dc49f098, type: 3}
   audioClipsHelpers:
     CollectorMoveSound: {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
     CollectorEndSound: {fileID: 8300000, guid: 657578e4be6b64dbf9b09deada272e55, type: 3}
@@ -4369,6 +4375,11 @@ MeshFilter:
 --- !u!4 &421552832 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9182201125137587334, guid: 7bbfe4aca42885f4c9e92019ab103d75, type: 3}
+  m_PrefabInstance: {fileID: 421552828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &421552833 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8464063634012355791, guid: 7bbfe4aca42885f4c9e92019ab103d75, type: 3}
   m_PrefabInstance: {fileID: 421552828}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &429017782
@@ -8714,6 +8725,7 @@ MonoBehaviour:
   meshFilter: {fileID: 711941306}
   meshRenderer: {fileID: 711941305}
   ProductEnter: {fileID: 711941304}
+  ProductParticle: {fileID: 6684146060031131735}
   initialScale: {x: 0, y: 0, z: 0}
 --- !u!1 &786530957
 GameObject:
@@ -10270,6 +10282,7 @@ MonoBehaviour:
   meshFilter: {fileID: 185738569}
   meshRenderer: {fileID: 185738568}
   ProductEnter: {fileID: 185738567}
+  ProductParticle: {fileID: 185738571}
   initialScale: {x: 0, y: 0, z: 0}
 --- !u!1 &866919694
 GameObject:
@@ -11563,6 +11576,7 @@ MonoBehaviour:
   meshFilter: {fileID: 421552831}
   meshRenderer: {fileID: 421552830}
   ProductEnter: {fileID: 421552829}
+  ProductParticle: {fileID: 421552833}
   initialScale: {x: 0, y: 0, z: 0}
 --- !u!1 &945710283
 GameObject:
@@ -14843,7 +14857,7 @@ MonoBehaviour:
     PriceText: {fileID: 521647173}
     UnlockedLevelText: {fileID: 1923315251}
     helperConfig: {fileID: 11400000, guid: d4ef9ccb2cbbf884b9a3029384730fa7, type: 2}
-    gameEvent: 24
+    gameEvent: 25
 --- !u!4 &1296351455
 Transform:
   m_ObjectHideFlags: 0
@@ -25850,6 +25864,11 @@ Transform:
   - {fileID: 9176105309689209408}
   m_Father: {fileID: 347963836}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &6684146060031131735 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8464063634012355791, guid: 7bbfe4aca42885f4c9e92019ab103d75, type: 3}
+  m_PrefabInstance: {fileID: 3443623321244501555}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6775013310126630980
 Transform:
   m_ObjectHideFlags: 0

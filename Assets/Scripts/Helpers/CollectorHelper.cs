@@ -64,7 +64,7 @@ public class CollectorHelper : MonoBehaviour
         foreach (var type in selectedPlayer.GetTypes())
         {
             var playerAttribute = selectedPlayer.GetAttributeByType(type);
-            Debug.Log($"Type: {type.Name}, Value: {playerAttribute}");
+            //Debug.Log($"Type: {type.Name}, Value: {playerAttribute}");
         }
 
         // Get the player's position to move products to
@@ -101,7 +101,6 @@ public class CollectorHelper : MonoBehaviour
 
                 // Debug: Log where the product starts moving from
                 product.SetProductCollected();
-                Debug.Log($"Moving product: {product.name} from position: {product.transform.position}");
 
                 // Move product to the target position using the jump
                 yield return StartCoroutine(MoveToTargetPositionWithJump(product, targetPosition, timePerProduct));
@@ -111,6 +110,7 @@ public class CollectorHelper : MonoBehaviour
         }
 
         EventManager.Broadcast(GameEvent.OnCollectorEnd);
+        Debug.LogWarning("DURAN EMMI GELDI DIYIN");
 
         // If not enough products match the player's attributes
         if (productsMoved < selectedPlayer.CollectAmount)
@@ -128,12 +128,12 @@ public class CollectorHelper : MonoBehaviour
         // Move product using DOJump: target position, jump height, number of jumps, and duration
         product.transform.DOJump(targetPosition, jumpHeight, 1, duration / 2);
 
-        Debug.Log($"Product {product.name} started moving to target position with jump");
+        //Debug.Log($"Product {product.name} started moving to target position with jump");
         EventManager.Broadcast(GameEvent.OnCollectorMove);
 
         // Wait for the jump to complete before finishing
         yield return new WaitForSeconds(duration / 2); // Duration of jump movement
 
-        Debug.Log($"Product {product.name} reached the target with jump");
+        //Debug.Log($"Product {product.name} reached the target with jump");
     }
 }

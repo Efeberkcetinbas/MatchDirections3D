@@ -9,6 +9,7 @@ public class Destination : MonoBehaviour
     public MeshFilter meshFilter;
     public MeshRenderer meshRenderer;
     public Transform ProductEnter;
+    public ParticleSystem ProductParticle;
     
     public Vector3 initialScale;
     private void Awake()

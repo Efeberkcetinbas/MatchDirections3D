@@ -147,6 +147,8 @@ public class PlayerManager : MonoBehaviour
                 break;
             }
         }
+
+
     }
 
     private void MovePlayerToDestination(Player player, Transform destination)
@@ -157,6 +159,7 @@ public class PlayerManager : MonoBehaviour
         player.transform.DOMove(destination.position,1f).OnComplete(()=>{
             destination.GetComponent<Destination>().meshRenderer.transform.localScale=player.NewScale;
             destination.GetComponent<Destination>().meshFilter.mesh=player.placeholderMesh;
+            destination.GetComponent<Destination>().ProductParticle.Play();
             destination.GetComponent<Destination>().meshRenderer.material=player.mat;
             player.counterText=destination.GetComponent<Destination>().CounterText;
             player.GetComponent<Player>().Reset();
@@ -166,6 +169,7 @@ public class PlayerManager : MonoBehaviour
             player.peopleSelect.peoples[player.peopleSelect.index].GetComponent<Animator>().SetTrigger("Hold");
             player.destination=destination.GetComponent<Destination>();
             PlayerWaitManager.Instance.RegisterWaiter(player.GetComponent<PlayerWait>());
+            EventManager.Broadcast(GameEvent.OnDestinationProduct);
         });
         
         //VIP 
