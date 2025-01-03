@@ -38,6 +38,7 @@ public class AudioClipsPlayer
 public class AudioClipsHelpers
 {
     public AudioClip CollectorMoveSound;
+    public AudioClip CollectorEndSound;
     
 }
 
@@ -113,6 +114,7 @@ public class AudioManager : MonoBehaviour
 
         //Helpers
         EventManager.AddHandler(GameEvent.OnCollectorMove,OnCollectorMove);
+        EventManager.AddHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
 
         //VIP
         EventManager.AddHandler(GameEvent.OnVipSummoned,OnVipSummoned);
@@ -154,6 +156,7 @@ public class AudioManager : MonoBehaviour
 
         //Helpers
         EventManager.RemoveHandler(GameEvent.OnCollectorMove,OnCollectorMove);
+        EventManager.RemoveHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
 
         //VIP
         EventManager.RemoveHandler(GameEvent.OnVipSummoned,OnVipSummoned);
@@ -285,6 +288,12 @@ public class AudioManager : MonoBehaviour
     {
         effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsHelpers.CollectorMoveSound);
+    }
+
+    private void OnCollectorEnd()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsHelpers.CollectorEndSound);
     }
 
     #endregion

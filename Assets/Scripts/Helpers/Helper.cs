@@ -24,7 +24,7 @@ public class Helper : MonoBehaviour
     [SerializeField] private GameData gameData;
     [SerializeField] private List<HelperProperties> helperProperties=new List<HelperProperties>();
 
-
+    private bool isUsingHelper=false;
 
     private void Start()
     {
@@ -36,12 +36,16 @@ public class Helper : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnCheckHelpers,OnCheckHelpers);
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.AddHandler(GameEvent.OnCollector,OnCollector);
+        EventManager.AddHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnCheckHelpers,OnCheckHelpers);
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnCollector,OnCollector);
+        EventManager.RemoveHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
     }
 
     private void OnCheckHelpers()
@@ -52,6 +56,18 @@ public class Helper : MonoBehaviour
     //Or OnGameStart
     private void OnNextLevel()
     {
+        CheckIfButtonAvailable();
+    }
+
+    private void OnCollector()
+    {
+        isUsingHelper=true;
+        CheckIfButtonAvailable();
+    }
+
+    private void OnCollectorEnd()
+    {
+        isUsingHelper=false;
         CheckIfButtonAvailable();
     }
 
@@ -106,8 +122,8 @@ public class Helper : MonoBehaviour
 
 
             // Update button interactability
-            buyButton.interactable = isUnlocked && !hasAmount && canBuy;
-            useButton.interactable = isUnlocked && hasAmount;
+            buyButton.interactable = isUnlocked && !hasAmount && canBuy && !isUsingHelper;
+            useButton.interactable = isUnlocked && hasAmount && !isUsingHelper;
 
             PlayerPrefs.SetInt($"Helper_{i}_Amount", config.Amount);
         }

@@ -110,6 +110,8 @@ public class CollectorHelper : MonoBehaviour
             }
         }
 
+        EventManager.Broadcast(GameEvent.OnCollectorEnd);
+
         // If not enough products match the player's attributes
         if (productsMoved < selectedPlayer.CollectAmount)
         {
@@ -122,7 +124,7 @@ public class CollectorHelper : MonoBehaviour
     {
         // Calculate the height of the jump for the Y movement (you can adjust this value)
         float jumpHeight = 5f;
-
+        product.GetComponent<ProductDrag>().CollectedByCollector();
         // Move product using DOJump: target position, jump height, number of jumps, and duration
         product.transform.DOJump(targetPosition, jumpHeight, 1, duration / 2);
 

@@ -36,6 +36,13 @@ public class ProductDrag : MonoBehaviour
         IsBeingDragged=false;
     }
 
+    internal void CollectedByCollector()
+    {
+        Collider.isTrigger=true;
+        rb.useGravity=false;
+        rb.isKinematic=true;
+    }
+
     
 
    

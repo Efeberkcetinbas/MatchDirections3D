@@ -42,6 +42,7 @@ public enum GameEvent
     OnFreezerIn,
     OnCollector,
     OnCollectorMove,
+    OnCollectorEnd,
     OnSetSameProductsUp,
     OnFreezerOut,
     OnSetMaxSatisfaction,
