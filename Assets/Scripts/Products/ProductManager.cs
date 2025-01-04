@@ -52,11 +52,11 @@ public class ProductManager : MonoBehaviour
     private void OnVipProductCreated()
     {
         // Find all active ProductAttributes in the scene
-        var products = FindObjectsOfType<ProductAttributes>();
+        /*var products = FindObjectsOfType<ProductAttributes>();
         foreach (var product in products)
         {
             product.transform.position += new Vector3(0, 5, 0);
-        }
+        }*/
     }
     
     //Events Calling

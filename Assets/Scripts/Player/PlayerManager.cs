@@ -15,9 +15,13 @@ public class PlayerManager : MonoBehaviour
     private int currentMovementIndex = 0; // Tracks the current movement step
     private int counter;
     private int index;
+    private WaitForSeconds vipWaitforseconds;
 
    
-
+    private void Start()
+    {
+        vipWaitforseconds=new WaitForSeconds(2);
+    }
     
     private void OnEnable()
     {
@@ -177,14 +181,19 @@ public class PlayerManager : MonoBehaviour
         gameData.vipArriveNumber++;
         if(gameData.vipArriveNumber==gameData.getVipRandomNumber)
         {
-            EventManager.Broadcast(GameEvent.OnVipOnTheWay);
-            gameData.vipArriveNumber=0;
+            StartCoroutine(SetVipOnTheWay());
         }
 
         index++;
         Debug.Log("INDEX " + index);
     }
 
+    private IEnumerator SetVipOnTheWay()
+    {
+        yield return vipWaitforseconds;
+        EventManager.Broadcast(GameEvent.OnVipOnTheWay);
+        gameData.vipArriveNumber=0;
+    }
     private void OnRestartLevel()
     {
         currentMovementIndex=0;

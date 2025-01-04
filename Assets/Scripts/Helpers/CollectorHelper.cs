@@ -45,12 +45,17 @@ public class CollectorHelper : MonoBehaviour
         // Loop through players and find one with valid attributes
         foreach (var player in players)
         {
-            if (player.GetTypes().Count() > 0) // Check if player has attributes
+            if (player.GetTypes().Count() > 0 && !player.GetComponent<Player>().Full) // Check if player has attributes and is not full
             {
                 selectedPlayer = player;
                 selectedPlayer.SetCollectAmount(); // Set the collection amount
                 break;
             }
+        }
+
+        if(selectedPlayer!=null)
+        {
+            selectedPlayer.GetComponent<Player>().SetCollectParticle();
         }
 
         if (selectedPlayer == null)

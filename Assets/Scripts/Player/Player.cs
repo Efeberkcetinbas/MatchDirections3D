@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameData gameData;
     [SerializeField] private CollectCoin collectCoin;
     [SerializeField] private ParticleSystem successParticle;
+    [SerializeField] private ParticleSystem collectParticle;
     [SerializeField] private List<Material> particleMaterials=new List<Material>();
     [SerializeField] private List<ParticleSystem> matchFullParticles=new List<ParticleSystem>();
     
@@ -90,8 +91,8 @@ public class Player : MonoBehaviour
         {
             Debug.Log("FULL");
             Full=true;
-            destination.ResetDestination();
-            destination=null;
+            /*destination.ResetDestination();
+            destination=null;*/
             GetRandomFullParticle();
             coincounter=Mathf.Max(1,gameData.comboCount);
             gameData.increaseScore=coincounter;
@@ -116,6 +117,9 @@ public class Player : MonoBehaviour
     private IEnumerator OnSuccessCompleted()
     {
         yield return waitForSeconds;
+        destination.ResetDestination();
+        destination=null;
+        
         EventManager.Broadcast(GameEvent.OnMatchFullPlayer);
         if(!Unregister)
                 PlayerWaitManager.Instance.UnRegisterWaiter(GetComponent<PlayerWait>());
@@ -158,6 +162,10 @@ public class Player : MonoBehaviour
         CheckAllMatch();
     }
 
+    internal void SetCollectParticle()
+    {
+        collectParticle.Play();
+    }
     
 
     private void GetRandomIndex()

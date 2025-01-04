@@ -41,11 +41,13 @@ public class AudioClipsPlayer
 [Serializable]
 public class AudioClipsHelpers
 {
+    public AudioClip CollectSound;
     public AudioClip CollectorMoveSound;
     public AudioClip CollectorEndSound;
     public AudioClip FreezerInSound;
     public AudioClip FreezerOutSound;
     public AudioClip SatisfactionSound;
+    
 
     public AudioClip OpenPurchasePanelSound;
     public AudioClip ClosePurchasePanelSound;
@@ -124,6 +126,7 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnDestinationProduct,OnDestinationProduct);
 
         //Helpers
+        EventManager.AddHandler(GameEvent.OnCollector,OnCollector);
         EventManager.AddHandler(GameEvent.OnCollectorMove,OnCollectorMove);
         EventManager.AddHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
         EventManager.AddHandler(GameEvent.OnFreezerIn,OnFreezerIn);
@@ -173,6 +176,7 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnProductPlaced,OnProductPlaced);
 
         //Helpers
+        EventManager.RemoveHandler(GameEvent.OnCollector,OnCollector);
         EventManager.RemoveHandler(GameEvent.OnCollectorMove,OnCollectorMove);
         EventManager.RemoveHandler(GameEvent.OnCollectorEnd,OnCollectorEnd);
         EventManager.RemoveHandler(GameEvent.OnFreezerIn,OnFreezerIn);
@@ -314,6 +318,11 @@ public class AudioManager : MonoBehaviour
 
     #region Helpers
 
+    private void OnCollector()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsHelpers.CollectSound);
+    }
     private void OnCollectorMove()
     {
         effectSource.pitch=Random.Range(1,1.5f);

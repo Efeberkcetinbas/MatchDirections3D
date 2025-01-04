@@ -39,11 +39,12 @@ public class Helper : MonoBehaviour
     
 
     private bool isUsingHelper=false;
-
+    private WaitForSeconds collectorEnd;
     private int buyIndex=0;
 
     private void Start()
     {
+        collectorEnd=new WaitForSeconds(3);
         AssignHelperImages();
         CheckIfButtonAvailable();
     }
@@ -99,6 +100,12 @@ public class Helper : MonoBehaviour
 
     private void OnCollectorEnd()
     {
+        StartCoroutine(SetCollectorEnd());
+    }
+
+    private IEnumerator SetCollectorEnd()
+    {
+        yield return collectorEnd;
         isUsingHelper=false;
         CheckIfButtonAvailable();
     }
