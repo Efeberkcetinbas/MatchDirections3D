@@ -33,6 +33,14 @@ public class ProductTrigger : Obstacleable
 
     internal override void DoAction(PlayerAttributes player)
     {
+        if(player.GetComponent<PlayerTrigger>().ProductEnter==null)
+        {
+            Debug.LogWarning("WAIT FOR PRODUCT ENTER");
+            productDrag.Reset();
+            dragManager.CurrentProduct=null;
+            return;
+        }
+
         if (productAttributes == null || player == null)
         {
             Debug.LogWarning("Missing ProductAttributes or PlayerAttributes.");
