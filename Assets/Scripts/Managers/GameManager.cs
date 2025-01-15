@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [Header("Minigame")]
     [SerializeField] private GameObject minigame;
 
-    private WaitForSeconds waitForSeconds;
+    private WaitForSeconds waitForSeconds,failWaitforseconds;
     private WaitForSeconds freezerWaitForSeconds;
 
 
@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         waitForSeconds=new WaitForSeconds(2);
+        failWaitforseconds=new WaitForSeconds(0.5f);
         freezerWaitForSeconds=new WaitForSeconds(10);
         minigame.SetActive(false);
         GetCustomerNumber();
@@ -136,7 +137,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator OpenFail()
     {
-        yield return waitForSeconds;
+        yield return failWaitforseconds;
         OpenFailPanel();
     }
 

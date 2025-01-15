@@ -83,7 +83,7 @@ public class PanelManager : MonoBehaviour
         SetSceneUIPosition(sceneX,sceneY);
 
         helperPanel.SetActive(true);
-        StartCoroutine(SetElementsDotween(SpecialElements));
+        StartCoroutine(SetElementsDotween(SpecialElements,0.25f));
         EventManager.Broadcast(GameEvent.OnGameStart);
         
     }
@@ -128,7 +128,7 @@ public class PanelManager : MonoBehaviour
 
     }
 
-    private IEnumerator SetElementsDotween(List<GameObject> elements)
+    private IEnumerator SetElementsDotween(List<GameObject> elements,float localwaitforseconds)
     {
         for (int i = 0; i < elements.Count; i++)
         {
@@ -137,7 +137,7 @@ public class PanelManager : MonoBehaviour
 
         for (int i = 0; i < elements.Count; i++)
         {
-            yield return waitForSeconds;
+            yield return localwaitforseconds;
             elements[i].transform.DOScale(Vector3.one,duration);
         }
     }
@@ -162,7 +162,7 @@ public class PanelManager : MonoBehaviour
     {
         SuccessPanel.gameObject.SetActive(true);
         SetActivity(SceneUIs,false);
-        StartCoroutine(SetElementsDotween(SuccessElements));
+        StartCoroutine(SetElementsDotween(SuccessElements,0.1f));
         earnedText.SetText(gameData.earnedAmount.ToString());
         totalCustomerNumberText.SetText(gameData.totalCustomerNumber.ToString());
 
@@ -174,7 +174,7 @@ public class PanelManager : MonoBehaviour
         FailPanel.gameObject.SetActive(true);
         helperPanel.SetActive(false);
         SetActivity(SceneUIs,false);
-        StartCoroutine(SetElementsDotween(FailElements));
+        StartCoroutine(SetElementsDotween(FailElements,0.25f));
     }
 
     private void SetSceneUIPosition(float valX,float valY)
