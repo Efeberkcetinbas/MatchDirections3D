@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     [Header("Level")]
     [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private TextMeshProUGUI gameEndinglevelText;
 
     [Header("Combo Part")]
     [SerializeField] private TextMeshProUGUI comboText;
@@ -52,6 +53,7 @@ public class UIManager : MonoBehaviour
     private void OnLevelUpdateUI()
     {
         levelText.SetText("LEVEL " + (gameData.levelNumber+1).ToString());
+        gameEndinglevelText.SetText("LEVEL " + (gameData.levelNumber+1).ToString());
     }
 
     private void OnComboProgress()

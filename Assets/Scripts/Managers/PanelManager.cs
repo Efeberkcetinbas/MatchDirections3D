@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 public class PanelManager : MonoBehaviour
 {
     [SerializeField] private RectTransform StartPanel,ScenePanel,SuccessPanel,FailPanel;
@@ -16,7 +17,9 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private Image Fade;
     [SerializeField] private float sceneX,sceneY,oldSceneX,oldSceneY,duration;
 
-    
+    [Header("Game Ending Values")]
+    [SerializeField] private TextMeshProUGUI earnedText;
+    [SerializeField] private TextMeshProUGUI totalCustomerNumberText;
     public GameData gameData;
 
     private WaitForSeconds waitForSeconds,waitforSecondsSpecial;
@@ -150,6 +153,7 @@ public class PanelManager : MonoBehaviour
     private void OnSuccess()
     {
         //SetActivity(SceneUIs,false);
+        PlayerPrefs.SetInt("CustomerNumber",gameData.totalCustomerNumber);
         helperPanel.SetActive(false);
         SetSceneUIPosition(oldSceneX,oldSceneY);
     }
@@ -159,6 +163,9 @@ public class PanelManager : MonoBehaviour
         SuccessPanel.gameObject.SetActive(true);
         SetActivity(SceneUIs,false);
         StartCoroutine(SetElementsDotween(SuccessElements));
+        earnedText.SetText(gameData.earnedAmount.ToString());
+        totalCustomerNumberText.SetText(gameData.totalCustomerNumber.ToString());
+
     }
   
 

@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
             GetRandomFullParticle();
             coincounter=Mathf.Max(1,gameData.comboCount);
             gameData.increaseScore=coincounter;
+            gameData.earnedAmount+=coincounter;
             playerWait.SetActivityProgress(false);
             peopleSelect.peoples[peopleSelect.index].GetComponent<Animator>().SetTrigger("Thanks");
             collectCoin.StartCollectCoin(coincounter);

@@ -17,6 +17,10 @@ public class GameData : ScriptableObject
     //vip counter
     public int vipArriveNumber;
     public int getVipRandomNumber;
+    
+    //Game ending values
+    public int earnedAmount;
+    public int totalCustomerNumber;
 
     //Combo
     public int comboCount;

@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
         waitForSeconds=new WaitForSeconds(2);
         freezerWaitForSeconds=new WaitForSeconds(10);
         minigame.SetActive(false);
+        GetCustomerNumber();
     }
 
     private void OnEnable()
@@ -84,14 +85,15 @@ public class GameManager : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnFreezerOut);
     }
 
-    private void OnSetMaxSatisfaction()
-    {
-        //Snowman Active!
-    }
+    
 
    
     #endregion
 
+    private void GetCustomerNumber()
+    {
+        gameData.totalCustomerNumber=PlayerPrefs.GetInt("CustomerNumber",0);
+    }
     private void ClearData()
     {
         gameData.isGameEnd=true;
@@ -102,6 +104,9 @@ public class GameManager : MonoBehaviour
         gameData.dissatisfyPeople=0;
         gameData.comboCount=0;
         gameData.elapsedTime=0;
+        gameData.earnedAmount=0;
+
+        
     }
 
     private void OnSuccess()

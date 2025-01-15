@@ -157,6 +157,7 @@ public class PlayerManager : MonoBehaviour
 
     private void MovePlayerToDestination(Player player, Transform destination)
     {
+        gameData.totalCustomerNumber++;
         // Replace with your preferred movement logic
         Debug.Log($"{player.name} moving to {destination}");
         player.transform.position=playerInitialPos.position;
