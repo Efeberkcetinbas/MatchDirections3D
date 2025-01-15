@@ -7,6 +7,7 @@ TagManager:
   - DropZone
   - Brick
   - FxTemporaire
+  - Reset
   layers:
   - Default
   - TransparentFX

@@ -235,9 +235,14 @@ public class VipManager : MonoBehaviour
                 EventManager.Broadcast(GameEvent.OnVipLeave);
                 vipLeaveParticle.gameObject.SetActive(true);
                 vipLeaveParticle.Play();
+                if (activeProduct != null)
+                {
+                    Destroy(activeProduct);
+                }
                 activeVIP.transform.DOMove(startDestination.position, movementDuration)
                 .SetEase(ease)
                 .OnComplete(()=>{
+                    
                     Debug.Log("Time's up! The VIP is leaving.");
                     gameData.isVipHere = false;
                     ResetVIP();
