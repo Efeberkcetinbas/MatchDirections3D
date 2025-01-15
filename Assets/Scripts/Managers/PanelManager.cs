@@ -5,7 +5,9 @@ using DG.Tweening;
 using UnityEngine.UI;
 public class PanelManager : MonoBehaviour
 {
-    [SerializeField] private RectTransform StartPanel,ScenePanel,SuccessPanel,FailPanel,VipImage;
+    [SerializeField] private RectTransform StartPanel,ScenePanel,SuccessPanel,FailPanel;
+    [SerializeField] private GameObject vipImage;
+    [SerializeField] private GameObject helperPanel;
 
     [SerializeField] private List<GameObject> SceneUIs=new List<GameObject>();
     [SerializeField] private List<GameObject> SuccessElements=new List<GameObject>();
@@ -14,11 +16,7 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private Image Fade;
     [SerializeField] private float sceneX,sceneY,oldSceneX,oldSceneY,duration;
 
-    //TEMP. THIS WILL BE REMOVED
-    public GameObject NextButton,RestartButton,StartButton,vipImage;
-
-    //
-
+    
     public GameData gameData;
 
     private WaitForSeconds waitForSeconds,waitforSecondsSpecial;
@@ -26,7 +24,7 @@ public class PanelManager : MonoBehaviour
     private void Start()
     {
         waitForSeconds=new WaitForSeconds(.25f);
-        waitforSecondsSpecial=new WaitForSeconds(1);
+        waitforSecondsSpecial=new WaitForSeconds(0.05f);
     }
 
 
@@ -35,17 +33,13 @@ public class PanelManager : MonoBehaviour
 
     private void OnEnable() 
     {
-        /*EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.AddHandler(GameEvent.OnSuccessUI,OnSuccessUI);
-        EventManager.AddHandler(GameEvent.OnGameOver,OnGameOver);
         EventManager.AddHandler(GameEvent.OnFailUI,OnFailUI);
-        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);*/
-
-        EventManager.AddHandler(GameEvent.OnSuccessUI,OnSuccessUI);
-        EventManager.AddHandler(GameEvent.OnFailUI,OnFailUI);
-        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+
+        
         EventManager.AddHandler(GameEvent.OnVipSummoned,OnVipSummoned);
         EventManager.AddHandler(GameEvent.OnVipLeave,OnVipLeave);
 
@@ -54,17 +48,13 @@ public class PanelManager : MonoBehaviour
 
     private void OnDisable() 
     {
-        /*EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.RemoveHandler(GameEvent.OnSuccessUI,OnSuccessUI);
-        EventManager.RemoveHandler(GameEvent.OnGameOver,OnGameOver);
         EventManager.RemoveHandler(GameEvent.OnFailUI,OnFailUI);
-        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);*/
-
-        EventManager.RemoveHandler(GameEvent.OnSuccessUI,OnSuccessUI);
-        EventManager.RemoveHandler(GameEvent.OnFailUI,OnFailUI);
-        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+
+        
         EventManager.RemoveHandler(GameEvent.OnVipSummoned,OnVipSummoned);
         EventManager.RemoveHandler(GameEvent.OnVipLeave,OnVipLeave);
 
@@ -79,47 +69,17 @@ public class PanelManager : MonoBehaviour
     {
         vipImage.SetActive(false);
     }
-    //TEMP!
-    #region TEMP
-    private void OnSuccessUI()
-    {
-        NextButton.SetActive(true);
-    }
-
-    private void OnFailUI()
-    {
-        RestartButton.SetActive(true);
-    }
-
-    private void OnNextLevel()
-    {
-        NextButton.SetActive(false);
-        StartButton.SetActive(true);
-    }
-
-    private void OnRestartLevel()
-    {
-        RestartButton.SetActive(false);
-        StartButton.SetActive(true);
-    }
-
-    public void StartGame()
-    {
-        StartButton.SetActive(false);
-        gameData.isGameEnd=false;
-        EventManager.Broadcast(GameEvent.OnGameStart);
-    }
-    #endregion
     
-    /*
+    
     public void StartGame() 
     {
+        StartCoroutine(Blink(Fade.gameObject,Fade));
         gameData.isGameEnd=false;
         StartPanel.gameObject.SetActive(false);
         ScenePanel.gameObject.SetActive(true);
         SetSceneUIPosition(sceneX,sceneY);
 
-       
+        helperPanel.SetActive(true);
         StartCoroutine(SetElementsDotween(SpecialElements));
         EventManager.Broadcast(GameEvent.OnGameStart);
         
@@ -130,9 +90,13 @@ public class PanelManager : MonoBehaviour
     private void OnRestartLevel()
     {
         FailPanel.gameObject.SetActive(false);
-        StartCoroutine(Blink(Fade.gameObject,Fade));
-        SetActivity(SceneUIs,true);
-        StartCoroutine(SetElementsDotween(SpecialElements));
+        StartCoroutine(StartRestart());
+    }
+
+    private IEnumerator StartRestart()
+    {
+        yield return waitforSecondsSpecial;
+        StartGame();
     }
 
     
@@ -141,9 +105,10 @@ public class PanelManager : MonoBehaviour
     {
         
         SuccessPanel.gameObject.SetActive(false);
-        StartCoroutine(Blink(Fade.gameObject,Fade));
-        SetActivity(SceneUIs,true);
-        StartCoroutine(SetElementsDotween(SpecialElements));
+        StartPanel.gameObject.SetActive(true);
+        /*SetActivity(SceneUIs,true);
+        helperPanel.SetActive(true);
+        StartCoroutine(SetElementsDotween(SpecialElements));*/
     }
 
    
@@ -185,6 +150,7 @@ public class PanelManager : MonoBehaviour
     private void OnSuccess()
     {
         //SetActivity(SceneUIs,false);
+        helperPanel.SetActive(false);
         SetSceneUIPosition(oldSceneX,oldSceneY);
     }
 
@@ -196,15 +162,10 @@ public class PanelManager : MonoBehaviour
     }
   
 
-    private void OnGameOver()
-    {
-        SetSceneUIPosition(oldSceneX,oldSceneY);
-        
-    }
-
     private void OnFailUI()
     {
         FailPanel.gameObject.SetActive(true);
+        helperPanel.SetActive(false);
         SetActivity(SceneUIs,false);
         StartCoroutine(SetElementsDotween(FailElements));
     }
@@ -213,5 +174,5 @@ public class PanelManager : MonoBehaviour
     {
         ScenePanel.DOAnchorPos(new Vector2(valX,valY),duration);
     }
-    */
+    
 }
