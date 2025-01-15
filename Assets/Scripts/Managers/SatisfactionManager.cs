@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -77,7 +78,7 @@ public class SatisfactionManager : MonoBehaviour
     private void SetSatisfactionsElemement()
     {
         float val=Satisfaction/100;
-        satisfactionProgress.fillAmount=val;
+        satisfactionProgress.DOFillAmount(val,0.1f);
         satisfactionProgress.color=GetColorForProgress(val);
         UpdateSatisfactionImage(val);
     }

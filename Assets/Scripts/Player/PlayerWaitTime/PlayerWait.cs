@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,7 +41,7 @@ public class PlayerWait : MonoBehaviour,IPlayerWait
         timer += deltaTime;
 
         var val=timer/waitTime;
-        progressImage.fillAmount=val;
+        progressImage.DOFillAmount(val,0.1f);
         normalImage.color=GetColorForProgress(val);
 
         if (timer >= waitTime)
