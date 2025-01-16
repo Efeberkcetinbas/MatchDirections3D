@@ -159,6 +159,11 @@ public class Player : MonoBehaviour
     internal void IncreaseProductNumber()
     {
         productNumber++;
+        counterText.color=Color.green;
+        counterText.gameObject.transform.DOScaleX(0.15f,0.2f).SetEase(Ease.OutBounce).OnComplete(()=>{
+            counterText.color=Color.white;
+            counterText.gameObject.transform.DOScaleX(0.12f,0.2f).SetEase(Ease.InBounce);
+        });
         counterText.SetText(productNumber.ToString() + " / " + requirementProduct.ToString());
         CheckAllMatch();
     }
