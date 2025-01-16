@@ -9,6 +9,8 @@ public class LevelSpawner : MonoBehaviour
 
     private Queue<GameObject> productPool = new Queue<GameObject>();
 
+    private List<GameObject> productList=new List<GameObject>();
+
     private void Start()
     {
         if (currentLevelConfig == null)
@@ -17,6 +19,7 @@ public class LevelSpawner : MonoBehaviour
             return;
         }
 
+        productList.Clear();
         InitializePool(currentLevelConfig.productSpawnConfigs);
         SpawnProducts();
     }
@@ -24,11 +27,15 @@ public class LevelSpawner : MonoBehaviour
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.AddHandler(GameEvent.OnProductMakerEnd,OnProductMakerEnd);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.RemoveHandler(GameEvent.OnProductMakerEnd,OnProductMakerEnd);
     }
 
     private void InitializePool(List<ProductSpawnConfig> spawnConfigs)
@@ -61,6 +68,7 @@ public class LevelSpawner : MonoBehaviour
                     var product = productPool.Dequeue();
                     product.transform.position = GetRandomSpawnPosition();
                     product.SetActive(true);
+                    productList.Add(product);
                 }
                 else
                 {
@@ -94,8 +102,28 @@ public class LevelSpawner : MonoBehaviour
         }
     }
 
+
+    private void OnGameStart()
+    {
+        for (int i = 0; i < productList.Count; i++)
+        {
+            productList[i].SetActive(false);
+        }
+    }
+
+    private void OnProductMakerEnd()
+    {
+        for (int i = 0; i < productList.Count; i++)
+        {
+            productList[i].SetActive(true);
+        }
+
+        productList.Clear();
+    }
+
     private void OnRestartLevel()
     {
+        productList.Clear();
         ResetPool(); // Return all inactive products to the pool
         SpawnProducts();
     }

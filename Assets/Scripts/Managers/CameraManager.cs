@@ -28,12 +28,14 @@ public class CameraManager : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnVipLeave,OnVipLeave);
+        EventManager.AddHandler(GameEvent.OnProductMakerExplode,OnProductMakerExplode);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnVipLeave,OnVipLeave);
+        EventManager.RemoveHandler(GameEvent.OnProductMakerExplode,OnProductMakerExplode);
     }       
 
 
@@ -44,6 +46,11 @@ public class CameraManager : MonoBehaviour
     private void OnNextLevel()
     {
 
+    }
+
+    private void OnProductMakerExplode()
+    {
+        Noise(amplitudeGain,frequencyGain,shakeTime);
     }
 
     private void OnVipLeave()

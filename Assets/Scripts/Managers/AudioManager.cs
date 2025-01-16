@@ -32,6 +32,7 @@ public class AudioClipsPlayer
     public AudioClip CompletedMatchSound;
     public AudioClip ProductPlacedSound;
     public AudioClip PlayerThanksSound;
+    public AudioClip ProductMakerSound;
 
 
     //Env
@@ -117,6 +118,7 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnMatchFullPlayer,OnMatchFullPlayer);
         EventManager.AddHandler(GameEvent.OnPlayerWaitTooMuch,OnPlayerWaitTooMuch);
         EventManager.AddHandler(GameEvent.OnPlayerThanks,OnPlayerThanks);
+        EventManager.AddHandler(GameEvent.OnProductMakerExplode,OnProductMakerExplode);
 
         //Product
         EventManager.AddHandler(GameEvent.OnProductDragStart,OnProductDragStart);
@@ -168,6 +170,7 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnPlayerWaitTooMuch,OnPlayerWaitTooMuch);
         EventManager.RemoveHandler(GameEvent.OnPlayerThanks,OnPlayerThanks);
         EventManager.RemoveHandler(GameEvent.OnDestinationProduct,OnDestinationProduct);
+        EventManager.RemoveHandler(GameEvent.OnProductMakerExplode,OnProductMakerExplode);
 
         //Product
         EventManager.RemoveHandler(GameEvent.OnProductDragStart,OnProductDragStart);
@@ -312,6 +315,12 @@ public class AudioManager : MonoBehaviour
     {
         effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsPlayer.DestinationProductSound);
+    }
+
+    private void OnProductMakerExplode()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsPlayer.ProductMakerSound);
     }
 
     #endregion

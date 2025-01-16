@@ -54,6 +54,8 @@ public enum GameEvent
     
     //Game Management
     OnGameStart,
+    OnProductMakerEnd,
+    OnProductMakerExplode,
     OnIncreaseScore,
     OnDecreaseScore,
    
