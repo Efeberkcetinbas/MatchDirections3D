@@ -27,6 +27,9 @@ public class GameData : ScriptableObject
     public float currentInterval;
     public float elapsedTime;
 
+    //Life
+    public int lifeTime;
+
     public bool isGameEnd=false;
     public bool dissatisfy=false;
     public bool isFreezer=false;
