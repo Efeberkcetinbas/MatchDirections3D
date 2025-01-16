@@ -19,19 +19,19 @@ public class ProductMaker : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.AddHandler(GameEvent.OnGameStart, OnGameStart);
+        EventManager.AddHandler(GameEvent.OnStartGameFromHomescreen, OnStartGameFromHomescreen);
     }
 
     private void OnDisable()
     {
-        EventManager.RemoveHandler(GameEvent.OnGameStart, OnGameStart);
+        EventManager.RemoveHandler(GameEvent.OnStartGameFromHomescreen, OnStartGameFromHomescreen);
     }
 
-    private void OnGameStart()
+    private void OnStartGameFromHomescreen()
     {
         presentParent.gameObject.SetActive(true);
         GetPresent();
-        presentParent.DOShakeScale(2.5f,1.5f,10).OnComplete(()=>{
+        presentParent.DOShakeScale(1f,1f,10).OnComplete(()=>{
             EventManager.Broadcast(GameEvent.OnProductMakerExplode);
             presentParent.gameObject.SetActive(false);
             dustParticle.Play();

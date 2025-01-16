@@ -54,6 +54,7 @@ public enum GameEvent
     
     //Game Management
     OnGameStart,
+    OnStartGameFromHomescreen,
     OnProductMakerEnd,
     OnProductMakerExplode,
     OnIncreaseScore,

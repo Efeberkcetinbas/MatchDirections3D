@@ -9,7 +9,7 @@ public class LevelSpawner : MonoBehaviour
 
     private Queue<GameObject> productPool = new Queue<GameObject>();
 
-    private List<GameObject> productList=new List<GameObject>();
+    [SerializeField] private List<GameObject> productList=new List<GameObject>();
 
     private void Start()
     {
@@ -27,14 +27,14 @@ public class LevelSpawner : MonoBehaviour
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
-        EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.AddHandler(GameEvent.OnStartGameFromHomescreen,OnStartGameFromHomescreen);
         EventManager.AddHandler(GameEvent.OnProductMakerEnd,OnProductMakerEnd);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
-        EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.RemoveHandler(GameEvent.OnStartGameFromHomescreen,OnStartGameFromHomescreen);
         EventManager.RemoveHandler(GameEvent.OnProductMakerEnd,OnProductMakerEnd);
     }
 
@@ -103,7 +103,7 @@ public class LevelSpawner : MonoBehaviour
     }
 
 
-    private void OnGameStart()
+    private void OnStartGameFromHomescreen()
     {
         for (int i = 0; i < productList.Count; i++)
         {
@@ -123,7 +123,6 @@ public class LevelSpawner : MonoBehaviour
 
     private void OnRestartLevel()
     {
-        productList.Clear();
         ResetPool(); // Return all inactive products to the pool
         SpawnProducts();
     }

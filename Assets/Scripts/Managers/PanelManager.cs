@@ -88,6 +88,11 @@ public class PanelManager : MonoBehaviour
         
     }
 
+    public void HomeScreenStartGame()
+    {
+        EventManager.Broadcast(GameEvent.OnStartGameFromHomescreen);
+    }
+
 
     
     private void OnRestartLevel()
