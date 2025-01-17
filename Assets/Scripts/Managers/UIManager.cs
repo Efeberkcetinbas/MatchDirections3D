@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [Header("Level")]
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI gameEndinglevelText;
+    
 
     [Header("Combo Part")]
     [SerializeField] private TextMeshProUGUI comboText;
@@ -17,6 +18,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Coin Amount")]
     [SerializeField] private TextMeshProUGUI coinText;
+    [SerializeField] private TextMeshProUGUI startCoinText;
 
     [Header("DATA'S")]
     public GameData gameData;
@@ -48,6 +50,7 @@ public class UIManager : MonoBehaviour
     private void OnUIUpdate()
     {
         coinText.SetText(gameData.score.ToString());
+        startCoinText.SetText(gameData.score.ToString());
     }
 
     private void OnLevelUpdateUI()
