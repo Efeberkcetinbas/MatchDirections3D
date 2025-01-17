@@ -50,7 +50,7 @@ public class CameraManager : MonoBehaviour
 
     private void OnProductMakerExplode()
     {
-        Noise(amplitudeGain,frequencyGain,shakeTime);
+        Noise(amplitudeGain,frequencyGain,.5f);
     }
 
     private void OnVipLeave()
