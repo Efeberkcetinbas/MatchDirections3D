@@ -7,8 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public GameData gameData;
 
-    [Header("Minigame")]
-    [SerializeField] private GameObject minigame;
+    
 
     private WaitForSeconds waitForSeconds,failWaitforseconds;
     private WaitForSeconds freezerWaitForSeconds;
@@ -27,7 +26,6 @@ public class GameManager : MonoBehaviour
         waitForSeconds=new WaitForSeconds(2);
         failWaitforseconds=new WaitForSeconds(0.5f);
         freezerWaitForSeconds=new WaitForSeconds(10);
-        minigame.SetActive(false);
         GetCustomerNumber();
     }
 
