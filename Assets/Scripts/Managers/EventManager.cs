@@ -59,6 +59,7 @@ public enum GameEvent
     OnProductMakerExplode,
     OnIncreaseScore,
     OnIncreaseStar,
+    OnFillStarFull,
     OnDecreaseScore,
 
     //Life Manager

@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
             /*destination.ResetDestination();
             destination=null;*/
             GetRandomFullParticle();
-            coincounter=Mathf.Max(1,gameData.comboCount);
+            coincounter=Mathf.Max(5,gameData.comboCount);
             gameData.increaseScore=coincounter;
             gameData.earnedAmount+=coincounter;
             playerWait.SetActivityProgress(false);

@@ -20,6 +20,10 @@ public class PanelManager : MonoBehaviour
     [Header("Game Ending Values")]
     [SerializeField] private TextMeshProUGUI earnedText;
     [SerializeField] private TextMeshProUGUI totalCustomerNumberText;
+
+    [Header("Start Buttons")]
+    [SerializeField] private GameObject startButton;
+    [SerializeField] private GameObject stickerButton;
     public GameData gameData;
 
     private WaitForSeconds waitForSeconds,waitforSecondsSpecial;
@@ -28,6 +32,8 @@ public class PanelManager : MonoBehaviour
     {
         waitForSeconds=new WaitForSeconds(.25f);
         waitforSecondsSpecial=new WaitForSeconds(0.05f);
+        startButton.SetActive(true);
+        stickerButton.SetActive(false);
     }
 
 
@@ -45,6 +51,7 @@ public class PanelManager : MonoBehaviour
         
         EventManager.AddHandler(GameEvent.OnVipSummoned,OnVipSummoned);
         EventManager.AddHandler(GameEvent.OnVipLeave,OnVipLeave);
+        EventManager.AddHandler(GameEvent.OnFillStarFull,OnFillStarFull);
 
     }
 
@@ -60,6 +67,7 @@ public class PanelManager : MonoBehaviour
         
         EventManager.RemoveHandler(GameEvent.OnVipSummoned,OnVipSummoned);
         EventManager.RemoveHandler(GameEvent.OnVipLeave,OnVipLeave);
+        EventManager.RemoveHandler(GameEvent.OnFillStarFull,OnFillStarFull);
 
     }
 
@@ -114,11 +122,18 @@ public class PanelManager : MonoBehaviour
         
         SuccessPanel.gameObject.SetActive(false);
         StartPanel.gameObject.SetActive(true);
+        startButton.SetActive(false);
+        stickerButton.SetActive(true);
         /*SetActivity(SceneUIs,true);
         helperPanel.SetActive(true);
         StartCoroutine(SetElementsDotween(SpecialElements));*/
     }
 
+    private void OnFillStarFull()
+    {
+        startButton.SetActive(true);
+        stickerButton.SetActive(false);
+    }
    
 
     private IEnumerator Blink(GameObject gameObject,Image image)
