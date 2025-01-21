@@ -158,7 +158,9 @@ public class Player : MonoBehaviour
 
     internal void IncreaseProductNumber()
     {
+        gameData.starAmount++;
         productNumber++;
+        EventManager.Broadcast(GameEvent.OnIncreaseStar);
         counterText.color=Color.green;
         counterText.gameObject.transform.DOScaleX(0.15f,0.2f).SetEase(Ease.OutBounce).OnComplete(()=>{
             counterText.color=Color.white;

@@ -22042,7 +22042,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566448674}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26247,41 +26247,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8158666403414510145, guid: 31e534002c2dd8e41965124f6e6e1f69, type: 3}
   m_PrefabInstance: {fileID: 863841098}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &865816109
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 865816110}
-  m_Layer: 5
-  m_Name: Star
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &865816110
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 865816109}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2047791499}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -62.5, y: 0}
-  m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &872652352 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 718547011558908171, guid: c9fa9b5d846913a4ebb02e7c65abeaa5, type: 3}
@@ -28828,6 +28793,54 @@ Transform:
   - {fileID: 258214262}
   m_Father: {fileID: 1754096861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1153097674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1153097677}
+  - component: {fileID: 1153097678}
+  m_Layer: 0
+  m_Name: StickerMiniGame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1153097677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153097674}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1153097678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153097674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a515b4bb95880af44ada693e11eb8a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Panels:
+  - {fileID: 566448674}
+  - {fileID: 1361504154}
+  - {fileID: 1915880495}
 --- !u!1 &1170422111
 GameObject:
   m_ObjectHideFlags: 0
@@ -31288,7 +31301,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361504154}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -39529,7 +39542,7 @@ GameObject:
   - component: {fileID: 1668741400}
   - component: {fileID: 1668741399}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: StarText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40353,7 +40366,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1747544380}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1153097678}
+        m_TargetAssemblyTypeName: StickerPanelNavigator, Assembly-CSharp
+        m_MethodName: OnLeftArrowClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1747544380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41414,7 +41439,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1835943411}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1153097678}
+        m_TargetAssemblyTypeName: StickerPanelNavigator, Assembly-CSharp
+        m_MethodName: OnRightArrowClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1835943411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61119,7 +61156,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915880495}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -67220,7 +67257,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 865816110}
   - {fileID: 3443818482252035376}
   - {fileID: 1668741398}
   m_Father: {fileID: 1057296064}
@@ -67871,6 +67907,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelText: {fileID: 1714862466}
   gameEndinglevelText: {fileID: 1949809954}
+  starAmountText: {fileID: 1668741399}
+  startStarAmountText: {fileID: 1934706211}
   comboText: {fileID: 847632144}
   comboProgressBar: {fileID: 1300151310}
   coinText: {fileID: 418030643}
@@ -88209,14 +88247,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StickerPlaceholder
       objectReference: {fileID: 0}
-    - target: {fileID: 6454397654822893528, guid: 31e534002c2dd8e41965124f6e6e1f69, type: 3}
-      propertyPath: m_text
-      value: 0%
-      objectReference: {fileID: 0}
-    - target: {fileID: 7450594842778044850, guid: 31e534002c2dd8e41965124f6e6e1f69, type: 3}
-      propertyPath: m_FillAmount
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8158666403414510145, guid: 31e534002c2dd8e41965124f6e6e1f69, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -105572,3 +105602,4 @@ SceneRoots:
   - {fileID: 155313306}
   - {fileID: 347963836}
   - {fileID: 231127929}
+  - {fileID: 1153097677}

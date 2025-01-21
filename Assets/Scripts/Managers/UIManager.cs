@@ -10,6 +10,10 @@ public class UIManager : MonoBehaviour
     [Header("Level")]
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI gameEndinglevelText;
+
+    [Header("Star")]
+    [SerializeField] private TextMeshProUGUI starAmountText;
+    [SerializeField] private TextMeshProUGUI startStarAmountText;
     
 
     [Header("Combo Part")]
@@ -29,6 +33,7 @@ public class UIManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnComboProgress,OnComboProgress);
         EventManager.AddHandler(GameEvent.OnComboUIUpdate,OnComboUIUpdate);
         EventManager.AddHandler(GameEvent.OnLevelUpdateUI, OnLevelUpdateUI);
+        EventManager.AddHandler(GameEvent.OnIncreaseStar,OnIncreaseStar);
         
         
     }
@@ -38,12 +43,14 @@ public class UIManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnComboProgress,OnComboProgress);
         EventManager.RemoveHandler(GameEvent.OnComboUIUpdate,OnComboUIUpdate);
         EventManager.RemoveHandler(GameEvent.OnLevelUpdateUI, OnLevelUpdateUI);
+        EventManager.RemoveHandler(GameEvent.OnIncreaseStar,OnIncreaseStar);
     }
 
     private void Start()
     {
         OnUIUpdate();
         OnLevelUpdateUI();
+        OnIncreaseStar();
     }
 
     
@@ -51,6 +58,13 @@ public class UIManager : MonoBehaviour
     {
         coinText.SetText(gameData.score.ToString());
         startCoinText.SetText(gameData.score.ToString());
+        
+    }
+
+    private void OnIncreaseStar()
+    {
+        starAmountText.SetText(gameData.starAmount.ToString());
+        startStarAmountText.SetText(gameData.starAmount.ToString());
     }
 
     private void OnLevelUpdateUI()

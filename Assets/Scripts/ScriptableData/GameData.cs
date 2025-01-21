@@ -8,6 +8,7 @@ public class GameData : ScriptableObject
 {
 
     public int score;
+    public int starAmount;
     public int increaseScore;
     public int decreaseScore;
     public int levelIndex;

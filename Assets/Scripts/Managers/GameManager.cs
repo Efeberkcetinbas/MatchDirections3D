@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     {
         ClearData();
         gameData.vipArriveNumber=0;
+        gameData.starAmount=0;
         OnVipLeave();
         
     }
