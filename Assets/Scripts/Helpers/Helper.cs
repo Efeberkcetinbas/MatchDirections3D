@@ -130,7 +130,7 @@ public class Helper : MonoBehaviour
             // Check lock status and set unlock level text
             bool isLocked = (gameData.levelNumber+1) < config.UnlockLevel;
             helperProperty.Locked.SetActive(isLocked);
-            helperProperty.UnlockedLevelText.SetText($"Unlocks at Level {config.UnlockLevel}");
+            helperProperty.UnlockedLevelText.SetText($"Level {config.UnlockLevel}");
             helperProperty.UnlockedLevelText.gameObject.SetActive(isLocked);
         }
     }
